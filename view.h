@@ -41,20 +41,20 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
 
  if(png_sig_cmp(header, 0, HEADER_NUM)){
   printf("png_sig_cmp error!\n");
-  return -1;
+  return ERROR;
  }
 
  png = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
  if(png == NULL){
   printf("png_create_read_struct error!\n");
-  return -1;
+  return ERROR;
  }
 
  info = png_create_info_struct(png);
 
  if(info == NULL){
   printf("png_crete_info_struct error!\n");
-  return -1;
+  return ERROR;
  }
 
  png_init_io(png, fi);
@@ -70,7 +70,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  /* とりあえずRGBだけ対応 */
  if(type != PNG_COLOR_TYPE_RGB && type != PNG_COLOR_TYPE_RGB_ALPHA){
   printf("color type is not RGB or RGBA\n");
-  return -1;
+  return ERROR;
  }
 
  bitmapData->width = width;
@@ -88,7 +88,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
   (unsigned char*)malloc(sizeof(unsigned char) * bitmapData->width * bitmapData->height * bitmapData->ch);
  if(bitmapData->data == NULL){
    printf("data malloc error\n");
-   return -1;
+   return ERROR;
  }
 
  for(j = 0; j < bitmapData->height; j++){
@@ -98,7 +98,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  png_destroy_read_struct(&png, &info, NULL);
  fclose(fi);
 
- return 0;
+ return SUCCESS;
 }
 
 int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
@@ -113,7 +113,7 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  fo = fopen(filename, "wb");
  if(fo == NULL){
   printf("%sは開けません\n", filename);
-  return -1;
+  return ERROR;
  }
 
  png = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
@@ -125,7 +125,7 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
   type = PNG_COLOR_TYPE_RGB_ALPHA;
  } else {
   printf("ch num is invalid!\n");
-  return -1;
+  return ERROR;
  }
 
  png_init_io(png, fo);
@@ -152,7 +152,7 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  png_destroy_write_struct(&png, &info);
  fclose(fo);
 
- return 0;
+ return SUCCESS;
 }
 
 int freeBitmapData(BITMAPDATA_t *bitmap){
@@ -162,5 +162,5 @@ int freeBitmapData(BITMAPDATA_t *bitmap){
   bitmap->data = NULL;
  }
 
- return 0;
+ return SUCCESS;
 }
