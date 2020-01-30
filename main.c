@@ -24,12 +24,11 @@ int main(void)
  //変数宣言
  BITMAPDATA_t bitmap;
 
-  if(pngFileReadDecode(&bitmap, PNG_FILE) == EXIT_FAILURE){
-    printf("pngFileReadDecode error\n");
-    exit(EXIT_FAILURE);
-  }
-
-  freeBitmapData(&bitmap);
+ //構造体変数 bitmap に png ファイルをデコードし格納
+ if(PngFileReadDecode(&bitmap, PNG_FILE) == EXIT_FAILURE){
+  printf("pngFileReadDecode error\n");
+  exit(EXIT_FAILURE);
+ }
 
   exit(EXIT_SUCCESS);
 }

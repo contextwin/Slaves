@@ -177,3 +177,15 @@ int freeBitmapData(BITMAPDATA_t *bitmap){
 
  return EXIT_SUCCESS;
 }
+
+int PngFileReadDecode(BITMAPDATA_t *bitmap, char* png_file){
+
+ if(pngFileReadDecode(bitmap, png_file) == EXIT_FAILURE){
+  printf("pngFileReadDecode error\n");
+  return EXIT_FAILURE;
+ }
+
+ freeBitmapData(bitmap);
+
+ return EXIT_SUCCESS;
+}
