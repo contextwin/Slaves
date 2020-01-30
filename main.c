@@ -14,9 +14,6 @@
 #include <X11/keysymdef.h>
 #include <X11/Xlocale.h>
 
-//bitmap描画関連ライブラリヘッダリンク
-#include <png.h>
-
 //ユーザー定義ヘッダリンク
 #include "function.h"
 #include "view.h"
@@ -29,8 +26,6 @@ int main(int argc, char *argv[])
  int i, j, c;
  int ave, sum;
  char outname[256];
-
- FILE *fo;
 
    if(argc != 2){
     printf("ファイル名が指定されていません\n");
