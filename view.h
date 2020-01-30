@@ -15,6 +15,7 @@ typedef struct{
 } BITMAPDATA_t;
 
 //関数プロトタイプ宣言
+/* 引数に指定されたfilenameの読み込みとデコードし画像データをbitmapDataにセット */
 int pngFileReadDecode(BITMAPDATA_t *, const char*);
 int pngFileEncodeWrite(BITMAPDATA_t *, const char*);
 int freeBitmapData(BITMAPDATA_t *);
@@ -34,6 +35,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  png_byte header[HEADER_NUM];
 
  fi = fopen(filename, "rb");
+
  if(fi == NULL){
     printf("%sは開けません\n", filename);
     return ERROR;
@@ -41,17 +43,21 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
 
  readSize = fread(header, 1, HEADER_NUM, fi);
 
+ /* ファイルがPNGかどうかのチェック */
  if(png_sig_cmp(header, 0, HEADER_NUM)){
   printf("png_sig_cmp error!\n");
   return ERROR;
  }
 
+ /* read構造体の生成 */
  png = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+
  if(png == NULL){
   printf("png_create_read_struct error!\n");
   return ERROR;
  }
 
+ /* info構造体の生成 */
  info = png_create_info_struct(png);
 
  if(info == NULL){
@@ -59,16 +65,18 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
   return ERROR;
  }
 
- png_init_io(png, fi);
+ png_init_io(png, fi); /* 読み込み先のファイルポインタの設定 */
  png_set_sig_bytes(png, readSize);
+
+ /* 画像の読み込みの開始 */
  png_read_png(png, info, PNG_TRANSFORM_PACKING | PNG_TRANSFORM_STRIP_16, NULL);
 
+ /* 画像情報取得 */
  width = png_get_image_width(png, info);
  height = png_get_image_height(png, info);
-
  datap = png_get_rows(png, info);
-
  type = png_get_color_type(png, info);
+
  /* とりあえずRGBだけ対応 */
  if(type != PNG_COLOR_TYPE_RGB && type != PNG_COLOR_TYPE_RGB_ALPHA){
   printf("color type is not RGB or RGBA\n");
@@ -93,10 +101,12 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
    return ERROR;
  }
 
+ /* デコード結果のメモリ領域へのコピー */
  for(j = 0; j < bitmapData->height; j++){
-   memcpy(bitmapData->data + j * bitmapData->width * bitmapData->ch, datap[j], bitmapData->width * bitmapData->ch);
+  memcpy(bitmapData->data + j * bitmapData->width * bitmapData->ch, datap[j], bitmapData->width * bitmapData->ch);
  }
 
+ /* 生成した構造体の削除 */
  png_destroy_read_struct(&png, &info, NULL);
  fclose(fi);
 
