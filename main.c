@@ -24,5 +24,6 @@
 
 int main(void)
 {
+ printf("%d\n", cal_center_num(HEIGHT));
  return 0;
 }
