@@ -9,5 +9,5 @@
 int cal_center_num(int num){
  if(CHECK_ODD_NUM(num))
  { return CAL_CENTER_NUM(num);
- } else {return False;}
+ } else {return False;} // 実引数が偶数であれば0を返す
 }
