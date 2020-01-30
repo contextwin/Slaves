@@ -30,6 +30,10 @@ int main(void)
   exit(EXIT_FAILURE);
  }
 
-  exit(EXIT_SUCCESS);
+ //構造体 bitmap 開放
+ FreeBitMapData(&bitmap);
+
+ //main関数終了
+ exit(EXIT_SUCCESS);
 }
 

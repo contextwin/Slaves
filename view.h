@@ -19,7 +19,7 @@ int PngFileReadDecode(BITMAPDATA_t *, const char*);
 /* 引数に指定されfilenameの読み込みとエンコードし出力 */
 int PngFileEncodeWrite(BITMAPDATA_t *, const char*);
 /* 引数に指定された構造体の開放 */
-int FreeBitmapData(BITMAPDATA_t *);
+int FreeBitMapData(BITMAPDATA_t *);
 
 //関数宣言
 int PngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
@@ -166,7 +166,7 @@ int PngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  return EXIT_SUCCESS;
 }
 
-int FreeBitmapData(BITMAPDATA_t *bitmap){
+int FreeBitMapData(BITMAPDATA_t *bitmap){
 
  if(bitmap->data != NULL){
   free(bitmap->data);
