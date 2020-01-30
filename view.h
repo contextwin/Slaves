@@ -15,14 +15,14 @@ typedef struct{
 
 //関数プロトタイプ宣言
 /* 引数に指定されたfilenameの読み込みとデコードし画像データをbitmapDataにセット */
-int pngFileReadDecode(BITMAPDATA_t *, const char*);
+int PngFileReadDecode(BITMAPDATA_t *, const char*);
 /* 引数に指定されfilenameの読み込みとエンコードし出力 */
-int pngFileEncodeWrite(BITMAPDATA_t *, const char*);
+int PngFileEncodeWrite(BITMAPDATA_t *, const char*);
 /* 引数に指定された構造体の開放 */
-int freeBitmapData(BITMAPDATA_t *);
+int FreeBitmapData(BITMAPDATA_t *);
 
 //関数宣言
-int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
+int PngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
 
  FILE *fi;
  int j;
@@ -93,8 +93,6 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
   bitmapData->ch = PNG_COLOR_ALPHA;
  }
 
- printf("width = %d, height = %d, ch = %d\n", bitmapData->width, bitmapData->height, bitmapData->ch);
-
  bitmapData->data =
   (unsigned char*)malloc(sizeof(unsigned char) * bitmapData->width * bitmapData->height * bitmapData->ch);
  if(bitmapData->data == NULL){
@@ -114,7 +112,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  return EXIT_SUCCESS;
 }
 
-int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
+int PngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  FILE *fo;
  int j;
 
@@ -168,24 +166,12 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  return EXIT_SUCCESS;
 }
 
-int freeBitmapData(BITMAPDATA_t *bitmap){
+int FreeBitmapData(BITMAPDATA_t *bitmap){
 
  if(bitmap->data != NULL){
   free(bitmap->data);
   bitmap->data = NULL;
  }
-
- return EXIT_SUCCESS;
-}
-
-int PngFileReadDecode(BITMAPDATA_t *bitmap, char* png_file){
-
- if(pngFileReadDecode(bitmap, png_file) == EXIT_FAILURE){
-  printf("pngFileReadDecode error\n");
-  return EXIT_FAILURE;
- }
-
- freeBitmapData(bitmap);
 
  return EXIT_SUCCESS;
 }
