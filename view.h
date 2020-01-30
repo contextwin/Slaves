@@ -17,7 +17,9 @@ typedef struct{
 //関数プロトタイプ宣言
 /* 引数に指定されたfilenameの読み込みとデコードし画像データをbitmapDataにセット */
 int pngFileReadDecode(BITMAPDATA_t *, const char*);
+/* 引数に指定されfilenameの読み込みとエンコードし出力 */
 int pngFileEncodeWrite(BITMAPDATA_t *, const char*);
+/* 引数に指定された構造体の開放 */
 int freeBitmapData(BITMAPDATA_t *);
 
 //関数宣言
