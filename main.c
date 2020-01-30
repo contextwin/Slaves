@@ -33,6 +33,8 @@ int main(void)
  //構造体 bitmap 開放
  FreeBitMapData(&bitmap);
 
+ getchar();
+
  //main関数終了
  exit(EXIT_SUCCESS);
 }
