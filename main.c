@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
  BITMAPDATA_t bitmap;
  int i, j, c;
  int ave, sum;
- char outname[256];
+ char outname[FILENAME_MAX];
 
    if(argc != 2){
     printf("ファイル名が指定されていません\n");

@@ -1,5 +1,9 @@
 //機能層のヘッダ
 
+//マクロ変数
+#define SUCCESS 0
+#define ERROR 1
+
 //数値算出
 #define CHECK_ODD_NUM(num) (num % 2) //奇数ならばTrue,偶数ならばFalseを返す
 #define CAL_CENTER_NUM(num) ((num / 2) + 1) //奇数の中央値を求める
