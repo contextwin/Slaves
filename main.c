@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
  int ave, sum;
  char outname[FILENAME_MAX];
 
+ printf("%d,%d\n", PNG_COLOR_TYPE_RGB, PNG_COLOR_TYPE_RGB_ALPHA);
+
    if(argc != 2){
     printf("ファイル名が指定されていません\n");
     return -1;

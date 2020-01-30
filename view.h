@@ -3,6 +3,8 @@
 #include <png.h>
 
 #define HEADER_NUM 8
+#define PNG_COLOR 3
+#define PNG_COLOR_ALPHA 4
 
 typedef struct{
  /* pngデコード後のBITMAPデータの先頭ポインタを指すアドレス */
@@ -77,9 +79,9 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  bitmapData->height = height;
 
  if(type == PNG_COLOR_TYPE_RGB) {
-  bitmapData->ch = 3;
+  bitmapData->ch = PNG_COLOR;
  } else if(type == PNG_COLOR_TYPE_RGBA) {
-  bitmapData->ch = 4;
+  bitmapData->ch = PNG_COLOR_ALPHA;
  }
 
  printf("width = %d, height = %d, ch = %d\n", bitmapData->width, bitmapData->height, bitmapData->ch);
@@ -119,9 +121,9 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  png = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
  info = png_create_info_struct(png);
 
- if(bitmapData->ch == 3) {
+ if(bitmapData->ch == PNG_COLOR) {
   type = PNG_COLOR_TYPE_RGB;
- } else if(bitmapData->ch == 4) {
+ } else if(bitmapData->ch == PNG_COLOR_ALPHA) {
   type = PNG_COLOR_TYPE_RGB_ALPHA;
  } else {
   printf("ch num is invalid!\n");
