@@ -24,6 +24,17 @@ int main(void)
  //変数宣言
  BITMAPDATA_t bitmap;
 
+ XEvent event;
+ Display *dpy = XOpenDisplay (NULL);
+ Window win = XCreateSimpleWindow(dpy, DefaultRootWindow(dpy),0,0,WIDTH,HEIGHT,0,0,0);
+
+ XMapWindow(dpy, win);
+ XFlush(dpy);
+
+ XNextEvent(dpy, &event);
+ if (event.type == KeyPress){
+ }
+
  //構造体変数 bitmap に png ファイルをデコードし格納
  if(PngFileReadDecode(&bitmap, PNG_FILE) == EXIT_FAILURE){
   printf("pngFileReadDecode error\n");
@@ -33,7 +44,8 @@ int main(void)
  //構造体 bitmap 開放
  FreeBitMapData(&bitmap);
 
- getchar();
+ XDestroyWindow(dpy, win);
+ XCloseDisplay(dpy);
 
  //main関数終了
  exit(EXIT_SUCCESS);
