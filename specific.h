@@ -4,3 +4,5 @@
 #define WIDTH 521
 #define HEIGHT 351
 
+#define PNG_FILE "./image/sample.png"
+

@@ -1,8 +1,6 @@
 //機能層のヘッダ
 
 //マクロ変数
-#define SUCCESS 0
-#define ERROR 1
 
 
 //数値算出

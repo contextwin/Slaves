@@ -40,7 +40,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
 
  if(fi == NULL){
     printf("%sは開けません\n", filename);
-    return ERROR;
+    return EXIT_FAILURE;
  }
 
  readSize = fread(header, 1, HEADER_NUM, fi);
@@ -48,7 +48,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  /* ファイルがPNGかどうかのチェック */
  if(png_sig_cmp(header, 0, HEADER_NUM)){
   printf("png_sig_cmp error!\n");
-  return ERROR;
+  return EXIT_FAILURE;
  }
 
  /* read構造体の生成 */
@@ -56,7 +56,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
 
  if(png == NULL){
   printf("png_create_read_struct error!\n");
-  return ERROR;
+  return EXIT_FAILURE;
  }
 
  /* info構造体の生成 */
@@ -64,7 +64,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
 
  if(info == NULL){
   printf("png_crete_info_struct error!\n");
-  return ERROR;
+  return EXIT_FAILURE;
  }
 
  png_init_io(png, fi); /* 読み込み先のファイルポインタの設定 */
@@ -82,7 +82,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  /* とりあえずRGBだけ対応 */
  if(type != PNG_COLOR_TYPE_RGB && type != PNG_COLOR_TYPE_RGB_ALPHA){
   printf("color type is not RGB or RGBA\n");
-  return ERROR;
+  return EXIT_FAILURE;
  }
 
  bitmapData->width = width;
@@ -100,7 +100,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
   (unsigned char*)malloc(sizeof(unsigned char) * bitmapData->width * bitmapData->height * bitmapData->ch);
  if(bitmapData->data == NULL){
    printf("data malloc error\n");
-   return ERROR;
+   return EXIT_FAILURE;
  }
 
  /* デコード結果のメモリ領域へのコピー */
@@ -112,7 +112,7 @@ int pngFileReadDecode(BITMAPDATA_t *bitmapData, const char* filename){
  png_destroy_read_struct(&png, &info, NULL);
  fclose(fi);
 
- return SUCCESS;
+ return EXIT_SUCCESS;
 }
 
 int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
@@ -127,7 +127,7 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  fo = fopen(filename, "wb");
  if(fo == NULL){
   printf("%sは開けません\n", filename);
-  return ERROR;
+  return EXIT_FAILURE;
  }
 
  png = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
@@ -139,7 +139,7 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
   type = PNG_COLOR_TYPE_RGB_ALPHA;
  } else {
   printf("ch num is invalid!\n");
-  return ERROR;
+  return EXIT_FAILURE;
  }
 
  png_init_io(png, fo);
@@ -166,7 +166,7 @@ int pngFileEncodeWrite(BITMAPDATA_t *bitmapData, const char *filename){
  png_destroy_write_struct(&png, &info);
  fclose(fo);
 
- return SUCCESS;
+ return EXIT_SUCCESS;
 }
 
 int freeBitmapData(BITMAPDATA_t *bitmap){
@@ -176,5 +176,5 @@ int freeBitmapData(BITMAPDATA_t *bitmap){
   bitmap->data = NULL;
  }
 
- return SUCCESS;
+ return EXIT_SUCCESS;
 }

@@ -19,7 +19,7 @@
 #include "view.h"
 #include "specific.h"
 
-int main(int argc, char *argv[])
+int main(void)
 {
  //変数宣言
  BITMAPDATA_t bitmap;
@@ -29,14 +29,9 @@ int main(int argc, char *argv[])
 
  printf("%d,%d\n", PNG_COLOR_TYPE_RGB, PNG_COLOR_TYPE_RGB_ALPHA);
 
-   if(argc != 2){
-    printf("ファイル名が指定されていません\n");
-    return -1;
-  }
-
-  if(pngFileReadDecode(&bitmap, argv[1]) == -1){
+  if(pngFileReadDecode(&bitmap, PNG_FILE) == EXIT_FAILURE){
     printf("pngFileReadDecode error\n");
-    return -1;
+    exit(EXIT_FAILURE);
   }
 
   printf("bitmap->data = %p\n", bitmap.data);
@@ -60,14 +55,8 @@ int main(int argc, char *argv[])
 
   sprintf(outname, "%s", "output.PNG");
 
-  if(pngFileEncodeWrite(&bitmap, outname) == -1){
-    printf("pngFileEncodeWrite error\n");
-    freeBitmapData(&bitmap);
-    return -1;
-  }
-
   freeBitmapData(&bitmap);
 
-  return 0;
+  exit(EXIT_SUCCESS);
 }
 
