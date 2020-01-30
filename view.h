@@ -1,5 +1,4 @@
 //抽象層のヘッダ
-
 #include <png.h>
 
 #define HEADER_NUM 8
