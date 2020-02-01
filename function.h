@@ -1,4 +1,6 @@
 //機能層のヘッダ
+#include <string.h>
+#include <stdlib.h>
 #include <png.h>
 
 //マクロ変数
@@ -52,7 +54,7 @@ int FreeBitMapData(BITMAPDATA_t *);
 int CalCenterNum(int num){
  if(CHECK_ODD_NUM(num))
  { return CAL_CENTER_NUM(num);
- } else {return False;} // 実引数が偶数であれば0を返す
+ } else {return EXIT_FAILURE;} // 実引数が偶数であれば1を返す
 }
 //算出関連関数 end
 

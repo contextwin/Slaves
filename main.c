@@ -1,53 +1,47 @@
-//標準ライブラリヘッダリンク
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdlib.h>
-#include <time.h>
-#include <stdlib.h>
-
-//Xlib関連ライブラリヘッダリンク
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/Xatom.h>
-#include <X11/keysymdef.h>
-#include <X11/Xlocale.h>
-
-//ユーザー定義ヘッダリンク
 #include "function.h"
 #include "view.h"
 #include "specific.h"
 
-int main(void)
-{
- //変数宣言
- BITMAPDATA_t bitmap;
+int main(int argc, char* argv[]) {
+ SDL_Window* window = NULL; // 描画ウィンドウ
+ SDL_Surface* screenSurface = NULL; // windowのサーフェイス
+ 
+ /* 初期化処理 */
+ if(SDL_Init(SDL_INIT_VIDEO) != EXIT_SUCCESS)
+ {
+  printf("SDL初期化失敗. SDL_Error: %s\n", SDL_GetError());
+ } else {
+  // window生成
+  window = SDL_CreateWindow("Slaves", 
+                             SDL_WINDOWPOS_UNDEFINED,
+                             SDL_WINDOWPOS_UNDEFINED,
+                             WIDTH,
+                             HEIGHT,
+                             SDL_WINDOW_SHOWN);
 
- XEvent event;
- Display *dpy = XOpenDisplay (NULL);
- Window win = XCreateSimpleWindow(dpy, DefaultRootWindow(dpy),0,0,WIDTH,HEIGHT,0,0,0);
+  if(window == NULL)
+  {
+   printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
+  } else {
+   //window サーフェイス取得
+   screenSurface = SDL_GetWindowSurface(window);
+     
+   //Fill 
+   SDL_FillRect(screenSurface, NULL,
+                SDL_MapRGB(screenSurface->format,
+                           0xFF, 0xFF, 0xFF));
 
- XMapWindow(dpy, win);
- XFlush(dpy);
-
- XNextEvent(dpy, &event);
- if (event.type == KeyPress){
- }
-
- //構造体変数 bitmap に png ファイルをデコードし格納
- if(PngFileReadDecode(&bitmap, PNG_FILE) == EXIT_FAILURE){
-  printf("pngFileReadDecode error\n");
-  exit(EXIT_FAILURE);
- }
-
- //構造体 bitmap 開放
- FreeBitMapData(&bitmap);
-
- XDestroyWindow(dpy, win);
- XCloseDisplay(dpy);
-
- //main関数終了
- exit(EXIT_SUCCESS);
+   //サーフェイスを交信 
+   SDL_UpdateWindowSurface(window);
+     
+   //wait
+   SDL_Delay(2000);
+  }  
+ } 
+ /* ... */
+ //window 開放
+ SDL_DestroyWindow(window);  
+ SDL_Quit(); // 全てのサブシステムの終了
+ 
+ return EXIT_SUCCESS;
 }
-

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja-JP">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="keywords" content="Simple Directmedia Layer SDL2.0">
+<link rel="top" href="index.html" title="ホーム">
+<link rel="parent" href="ApiByCategory.html" title="1つ上">
+<title>Vulkanグラフィック</title>
+</head>
+<body>
+<a href="index.html">目次</a> - <a href="ApiByCategory.html">API(機能別)</a> - Vulkanグラフィック
+<hr>
+<h1>Vulkanグラフィック</h1>
+インクルードファイル:
+<a href="http://hg.libsdl.org/SDL/file/default/include/SDL_vulkan.h">SDL_vulkan.h</a>
+<h2>概要</h2>
+<p>
+ここに分類される関数は, サーフェイス生成のために必要なVulkanイクステンションを持つVulkanインスタンスを生成するためのものである.
+</p>
+<p>
+通常のVulkanベースのSDLアプリケーションの流れは次のようになる:
+<ol>
+<li>必要ならば<a href="SDL_Vulkan_LoadLibrary.html">SDL_Vulkan_LoadLibrary()</a>と<a href="SDL_Vulkan_GetVkGetInstanceProcAddr.html">SDL_Vulkan_GetVkInstanceProcAddr()</a>でVulkanライブラリを読み込み, ドライバ関数へのポインタを問い合わせる. (これはビデオシステムを初期化した後で行う必要がある.)
+<li><a href="SDL_Vulkan_GetInstanceExtensions.html">SDL_Vulkan_GetInstanceExtensions()</a>でイクステンションを問い合わせ, その情報でVkInstanceを生成する.
+<li><a href="SDL_Vulkan_CreateSurface.html">SDL_Vulkan_CreateSurface()</a>でウィンドウに描画するためのサーフェイスを生成する.
+<li>新しく生成したサーフェイスにパイプラインとフレームバッファを設定する場合は, <a href="SDL_Vulkan_GetDrawableSize.html">SDL_Vulkan_GetDrawableSize()</a>でサーフェイスイクステンションを問い合わせる.
+</ol>
+</p>
+<h2>関数</h2>
+<ol>
+<li><a href="SDL_Vulkan_CreateSurface.html">SDL_Vulkan_CreateSurface</a>
+<li><a href="SDL_Vulkan_GetDrawableSize.html">SDL_Vulkan_GetDrawableSize</a>
+<li><a href="SDL_Vulkan_GetInstanceExtensions.html">SDL_Vulkan_GetInstanceExtensions</a>
+<li><a href="SDL_Vulkan_GetVkGetInstanceProcAddr.html">SDL_Vulkan_GetVkGetInstanceProcAddr</a>
+<li><a href="SDL_Vulkan_LoadLibrary.html">SDL_Vulkan_LoadLibrary</a>
+<li><a href="SDL_Vulkan_UnloadLibrary.html">SDL_Vulkan_UnloadLibrary</a>
+</ol>
+<h2>SDL Wikiへのリンク</h2>
+<a href="https://wiki.libsdl.org/CategoryVulkan">Vulkan Support - SDL Wiki</a>
+<hr>
+</body>
+</html>

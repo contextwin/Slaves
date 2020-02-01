@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja-JP">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="keywords" content="Simple Directmedia Layer SDL2.0">
+<link rel="top" href="index.html" title="ホーム">
+<link rel="parent" href="CategorySWM.html" title="1つ上">
+<title>SDL_SysWMinfo</title>
+</head>
+<body>
+<a href="index.html">目次</a> - <a href="ApiByCategory.html">API(機能別)</a> - <a href="CategorySWM.html">環境依存ウィンドウ</a> - SDL_SysWMinfo
+<hr>
+<h1>SDL_SysWMinfo</h1>
+<h2>フィールド</h2>
+ウィンドウに関するシステム依存の情報の構造体
+<table border="1" summary="SDL_SysWMinfo">
+<tr><td colspan="3" align="center">全システム</td></tr>
+<tr><td><a href="SDL_version-structure.html">SDL_version</a></td><td>version</td><td>SDLのバージョン</td></tr>
+<tr><td><a href="SDL_SYSWM_TYPE.html">SDL_SYSWM_TYPE</a></td><td>subsystem</td><td>ウィンドウシステムの種別</td></tr>
+<tr><td>int</td><td>dummy</td><td>未使用 (利用できるシステムがない場合にコンパイラを助けるため)</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_WINDOWS</td></tr>
+<tr><td>HWND</td><td>win.window</td><td>Window handle</td></tr>
+<tr><td>HDC</td><td>win.hdc</td><td>Window device context (SDL 2.0.4以降)</td></tr>
+<tr><td>HINSTANCE </td><td>win.hinstance</td><td>Window hinstance (SDL 2.0.6以降)</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_WINRT (SDL2.0.3以降)</td></tr>
+<tr><td>IInspectable*</td><td>winrt.window</td><td>WinRT CoreWindow</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_X11</td></tr>
+<tr><td>Display*</td><td>x11.display</td><td>X11 display</td></tr>
+<tr><td>Window</td><td>x11.window</td><td>X11 window</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_DIRECTFB</td></tr>
+<tr><td>IDirectFB*</td><td>dfb.dfb</td><td>DirectFB main interface</td></tr>
+<tr><td>IDirectFBWindow*</td><td>dfb.window</td><td>DirectFB window handle</td></tr>
+<tr><td>IDirectFBSurface*</td><td>dfb.surface</td><td>DirectFB client surface</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_COCOA</td></tr>
+<tr><td>NSWindow*</td><td>cocoa.window</td><td>Cocoa window</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_UIKIT</td></tr>
+<tr><td>UIWindow*</td><td>uikit.window</td><td>UIKit window</td></tr>
+<tr><td>GLuint</td><td>uikit.framebuffer</td><td>GLビューのFrameBuffer Object: GLでスクリーンをレンダリングするときバインドされる (SDL 2.0.4以降)</td></tr>
+<tr><td>GLuint</td><td>uikit.colorbuffer</td><td>GLビューのRenderbuffer Object: <a href="SDL_GL_SwapWindow.html">SDL_GL_SwapWindow()</a>が呼ばれたときバインドされる (SDL 2.0.4以降)</td></tr>
+<tr><td>GLuint</td><td>uikit.resolveFramebuffer</td><td>resolve color Renderbufferを持つFramebuffer Object, MSAAが使われる (SDL 2.0.4以降)</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_WAYLAND (SDL2.0.2以降)</td></tr>
+<tr><td>wl_display*</td><td>wl.display</td><td>Wayland display</td></tr>
+<tr><td>wl_surface*</td><td>wl.surface</td><td>Wayland surface</td></tr>
+<tr><td>wl_shell_surface*</td><td>wl.shell_surface</td><td>Wayland shell_surface (window manager handle)</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_MIR (SDL2.0.2以降)</td></tr>
+<tr><td>MirConnection*</td><td>mir.connection</td><td>Mir display server connection</td></tr>
+<tr><td>MirSurface*</td><td>mir.surface</td><td>Mir surface</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_ANDROID (SDL2.0.4以降)</td></tr>
+<tr><td>ANativeWindow*</td><td>android.connection</td><td>Android native window</td></tr>
+<tr><td>EGLSurface</td><td>android.surface</td><td>Android EGL surface</td></tr>
+<tr><td colspan="3" align="center">SDL_SYSWM_VIVANTE (SDL2.0.5以降)</td></tr>
+<tr><td>EGLNativeDisplayType</td><td>vivante.display</td><td>Vivante EGL display type</td></tr>
+<tr><td>EGLNativeWindowType</td><td>vivante.window</td><td>Vivante EGL window type</td></tr>
+</table>
+<h2>詳細</h2>
+<p>
+この構造体の値は<a href="SDL_GetWindowWMInfo.html">SDL_GetWindowWMInfo()</a>で得られる.
+</p>
+<h2>関連項目(列挙体)</h2>
+<a href="SDL_SYSWM_TYPE.html">SDL_SYSWM_TYPE</a><br>
+<h2>関連項目(構造体)</h2>
+<a href="SDL_VERSION.html">SDL_version</a><br>
+<h2>関連項目(関数)</h2>
+<a href="SDL_GetWindowWMInfo.html">SDL_GetWindowWMInfo</a><br>
+<h2>SDL Wikiへのリンク</h2>
+<a href="https://wiki.libsdl.org/SDL_SysWMinfo">SDL_SysWMinfo - SDL Wiki</a><br>
+<hr>
+</body>
+</html>
