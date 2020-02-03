@@ -1,7 +1,7 @@
 //Slaves固有の振る舞いのヘッダ
 
 //描画マクロ
-#define WIDTH 521 * 3
+#define WIDTH (521 * 2) + 1
 #define HEIGHT 351 * 3
 
 #define IMAGE_DIR "./image/"
