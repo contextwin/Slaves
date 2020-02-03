@@ -7,6 +7,7 @@
 #define PNG_COLOR 3
 #define PNG_COLOR_ALPHA 4
 
+
 //マクロ関数
 //数値算出
 #define CHECK_ODD_NUM(num) (num % 2) //奇数ならばTrue,偶数ならばFalseを返す

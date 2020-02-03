@@ -1,14 +1,17 @@
-#include "function.h"
-#include "view.h"
-#include "specific.h"
+#include "mysdl2.h"
+
+// limt
+#define FILE_NAME_MAX 256
 
 int main(int argc, char* argv[]) {
+ char img_dir_name[FILE_NAME_MAX] = IMAGE_DIR;
  SDL_Window* window = NULL; // 描画ウィンドウ
  SDL_Surface* screenSurface = NULL; // windowのサーフェイス
  SDL_Surface* image = NULL; // 画像のサーフェイス
  SDL_Rect rect, scr_rect;
  
- image = IMG_Load(PNG_FILE);
+ strcat(img_dir_name, PNG_FILE02);
+ image = IMG_Load(img_dir_name);
  if(!image){
   printf("IMG_Load: %s\n", IMG_GetError());
  }
