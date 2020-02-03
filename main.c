@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
  SDL_Window* window = NULL; // 描画ウィンドウ
  SDL_Surface* screenSurface = NULL; // windowのサーフェイス
  SDL_Surface* image = NULL; // 画像のサーフェイス
- SDL_Rect rect = {0, 0, 100, 100}, scr_rect;
+ SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
  SDL_Renderer *render;
 
  strcat(img_dir_name, PNG_FILE02);
