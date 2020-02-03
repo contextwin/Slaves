@@ -5,11 +5,13 @@
 
 int main(int argc, char* argv[]) {
  char img_dir_name[FILE_NAME_MAX] = IMAGE_DIR;
+ SDL_Event event;
  SDL_Window* window = NULL; // 描画ウィンドウ
  SDL_Surface* screenSurface = NULL; // windowのサーフェイス
  SDL_Surface* image = NULL; // 画像のサーフェイス
- SDL_Rect rect, scr_rect;
- 
+ SDL_Rect rect = {0, 0, 100, 100}, scr_rect;
+ SDL_Renderer *render;
+
  strcat(img_dir_name, PNG_FILE02);
  image = IMG_Load(img_dir_name);
  if(!image){
@@ -35,6 +37,8 @@ int main(int argc, char* argv[]) {
   {
    printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
   } else {
+   render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+
    //window サーフェイス取得 表示
    screenSurface = SDL_GetWindowSurface(window);
      
@@ -44,12 +48,21 @@ int main(int argc, char* argv[]) {
                            0xFF, 0xFF, 0xFF));
 
    SDL_BlitSurface(image, NULL, screenSurface, NULL);
-    
+   
+   SDL_RenderFillRect(render, &rect);
+   
    //サーフェイスを更新
    SDL_UpdateWindowSurface(window);
      
    //wait
    SDL_Delay(2000);
+   /*
+   while(SDL_PollEvent(&event)){
+    switch(event.key.keysym.sym) {
+	 case SDL_QUIT: break;
+	default: break;
+	}
+   }*/
   }  
  } 
  /* ... */
