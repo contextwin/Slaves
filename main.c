@@ -5,6 +5,15 @@
 int main(int argc, char* argv[]) {
  SDL_Window* window = NULL; // 描画ウィンドウ
  SDL_Surface* screenSurface = NULL; // windowのサーフェイス
+ SDL_Surface* image = NULL; // 画像のサーフェイス
+ SDL_Rect rect, scr_rect;
+ 
+ image = IMG_Load(PNG_FILE);
+ if(!image){
+  printf("IMG_Load: %s\n", IMG_GetError());
+ }
+
+// SDL_SetColorKey( image, SDL_TRUE, SDL_MapRGB(image->format, 255, 0, 255));
  
  /* 初期化処理 */
  if(SDL_Init(SDL_INIT_VIDEO) != EXIT_SUCCESS)
@@ -23,7 +32,7 @@ int main(int argc, char* argv[]) {
   {
    printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
   } else {
-   //window サーフェイス取得
+   //window サーフェイス取得 表示
    screenSurface = SDL_GetWindowSurface(window);
      
    //Fill 
@@ -31,7 +40,9 @@ int main(int argc, char* argv[]) {
                 SDL_MapRGB(screenSurface->format,
                            0xFF, 0xFF, 0xFF));
 
-   //サーフェイスを交信 
+   SDL_BlitSurface(image, NULL, screenSurface, NULL);
+    
+   //サーフェイスを更新
    SDL_UpdateWindowSurface(window);
      
    //wait
@@ -42,6 +53,6 @@ int main(int argc, char* argv[]) {
  //window 開放
  SDL_DestroyWindow(window);  
  SDL_Quit(); // 全てのサブシステムの終了
- 
+
  return EXIT_SUCCESS;
 }

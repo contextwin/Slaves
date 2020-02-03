@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <png.h>
-
 //マクロ変数
 #define HEADER_NUM 8
 #define PNG_COLOR 3
