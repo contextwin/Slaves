@@ -34,13 +34,6 @@ int main(int argc, char* argv[]) {
   printf("IMG_GetError: %s\n", IMG_GetError());
  }
  
- //SDL初期化
-/*  if(SDL_Init(SDL_INIT_VIDEO) != EXIT_SUCCESS)
- {
-  printf("SDL初期化失敗. SDL_Error: %s\n", SDL_GetError());
- }
- */
- 
  window = SDL_CreateWindow("Slaves", 
                              SDL_WINDOWPOS_UNDEFINED,
                              SDL_WINDOWPOS_UNDEFINED,
@@ -82,14 +75,13 @@ int main(int argc, char* argv[]) {
  //サーフェイスを更新
  SDL_UpdateWindowSurface(window);
      
-while(!done) {
-    while(SDL_PollEvent(&event)){
-     if(event.type == SDL_QUIT) {
-	  done = SDL_TRUE;
-	 }
- }
-
+ while(!done) {
+  while(SDL_PollEvent(&event)){
+   if(event.type == SDL_QUIT) {
+	done = SDL_TRUE;
    }
+  }
+ }
      
  /* ... */
  SDL_FreeSurface(screenSurface);
