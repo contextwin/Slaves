@@ -7,27 +7,25 @@ int main(int argc, char* argv[]) {
  char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
       font_path_name[FILE_NAME_MAX] = FONT_DIR;
  SDL_Event event;
- SDL_Window* window = NULL; // 描画ウィンドウ
- SDL_Surface* screenSurface = NULL; // windowのサーフェイス
- SDL_Surface* image = NULL; // 画像のサーフェイス
+ SDL_Window *window = NULL; // 描画ウィンドウ
+ SDL_Surface *screenSurface = NULL; // windowのサーフェイス
+ SDL_Surface *image = NULL; // 画像のサーフェイス
  SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
  SDL_Renderer* render;
- TTF_Font *font;
+ TTF_Font *font12px, // 12px
+          *font10px; // 10px
  SDL_Texture *texture;
-
  SDL_bool done = SDL_FALSE;
  
  //TTF初期化
  strcat(font_path_name, TTF_FONT1);
- if (TTF_Init() < 0) {
-  printf("TTF_InitError: %s\n", TTF_GetError());
- }
+ font12px = MyInitTTF(font12px, font_path_name);
  
- font = TTF_OpenFont(font_path_name, 40);
+ memset(font_path_name, '\0', strlen(font_path_name));
+ memcpy(font_path_name, FONT_DIR, strlen(FONT_DIR)); 
  
- if (!font) {
-	  printf("TTF_OpenFont: %s\n", TTF_GetError());
- }
+ strcat(font_path_name, TTF_FONT2);
+ font10px = MyInitTTF(font10px, font_path_name);
  
  //画像データ読み込み
  strcat(img_path_name, PNG_FILE02);
@@ -66,24 +64,21 @@ int main(int argc, char* argv[]) {
  SDL_BlitSurface(image, NULL, screenSurface, NULL);
    
  SDL_SetRenderDrawColor(render, 0,0,0, SDL_ALPHA_OPAQUE);
- DrawSquare(render, 100, 550, 950, 800);
- DrawSquare(render, 500, 50, 950, 500);
+ MyDrawSquare(render, 100, 550, 950, 800);
+ MyDrawSquare(render, 500, 50, 950, 500);
    
  //文字列表示処理
- screenSurface = TTF_RenderUTF8_Blended(font, "hello, world!\n", (SDL_Color){0,255,255,255});
-	  
- texture = SDL_CreateTextureFromSurface(render, screenSurface);
-	 
- int iw,ih;
- SDL_QueryTexture(texture, NULL, NULL, &iw, &ih);
- SDL_Rect txtRect = (SDL_Rect) {0,0,iw,ih};
-	  
- //文字列の表示座標
- SDL_Rect pasteRect = (SDL_Rect){370,650,iw,ih};
-  
- //レンダーにコピー
- SDL_RenderCopy(render,texture,&txtRect, &pasteRect);
-  
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "hello, world!", (SDL_Color){0,255,255,255});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	 
+ 
+ //テクスチャーをx,yの座標にレンダーコピー
+ MyTextureRenderCopy(texture, render, 370, 650);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "hello, world!", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ 
+ MyTextureRenderCopy(texture, render, 370, 670);
+
  //サーフェイスを更新
  SDL_UpdateWindowSurface(window);
      
