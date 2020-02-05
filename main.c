@@ -1,11 +1,9 @@
 #include "mysdl2.h"
 
-// limt
-#define FILE_NAME_MAX 256
-
 int main(int argc, char* argv[]) {
  char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
-      font_path_name[FILE_NAME_MAX] = FONT_DIR;
+      font_path_name[FILE_NAME_MAX] = FONT_DIR,
+      select_square2_strings[4][256] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  SDL_Event event;
  SDL_Window *window = NULL; // 描画ウィンドウ
  SDL_Surface *screenSurface = NULL; // windowのサーフェイス
@@ -17,6 +15,8 @@ int main(int argc, char* argv[]) {
  SDL_Texture *texture;
  SDL_bool done = SDL_FALSE;
  
+ 
+ //メニュー2表示処理
  //TTF初期化
  strcat(font_path_name, TTF_FONT1);
  font12px = MyInitTTF(font12px, font_path_name);
@@ -57,26 +57,26 @@ int main(int argc, char* argv[]) {
  SDL_BlitSurface(image, NULL, screenSurface, NULL);
    
  SDL_SetRenderDrawColor(render, 0,0,0, SDL_ALPHA_OPAQUE);
- MyDrawSquare(render, 100, 550, 950, 800);
- MyDrawSquare(render, 500, 50, 950, 500);
+ MyDrawSquare(render, 100, 550, 950, 800); //select_square2
+ MyDrawSquare(render, 500, 50, 950, 500); //view_square
    
  //文字列表示処理
- screenSurface = TTF_RenderUTF8_Blended(font10px, "つよさ", (SDL_Color){0,255,255,255});	  
+ screenSurface = TTF_RenderUTF8_Blended(font10px, select_square2_strings[0], (SDL_Color){0,255,255,255});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	 
  
  //テクスチャーをx,yの座標にレンダーコピー
  MyTextureRenderCopy(texture, render, 150, 575);
  
- screenSurface = TTF_RenderUTF8_Blended(font10px, "そうび", (SDL_Color){0,0,0,0});	  
+ screenSurface = TTF_RenderUTF8_Blended(font10px, select_square2_strings[1], (SDL_Color){0,0,0,0});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	
  
  MyTextureRenderCopy(texture, render, 440, 575);
  
- screenSurface = TTF_RenderUTF8_Blended(font10px, "とくぎ", (SDL_Color){0,0,0,0});	  
+ screenSurface = TTF_RenderUTF8_Blended(font10px, select_square2_strings[2], (SDL_Color){0,0,0,0});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	
  MyTextureRenderCopy(texture, render, 730, 575);
 
- screenSurface = TTF_RenderUTF8_Blended(font10px, "アビリティUP", (SDL_Color){0,0,0,0});	  
+ screenSurface = TTF_RenderUTF8_Blended(font10px, select_square2_strings[3], (SDL_Color){0,0,0,0});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	
  MyTextureRenderCopy(texture, render, 150, 675);
  
