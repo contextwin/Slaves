@@ -11,7 +11,7 @@ aptコマンドで導入する場合,
 sudo apt install xorg-dev
 を実行して下さい。
 
-sudo apt install libsdl2-dev libsdl-image1.2-dev
+sudo apt install libsdl2-dev libsdl-image1.2-dev libsdl2-ttf-dev
 
 RPGゲーム
 設定資料
