@@ -10,7 +10,8 @@ int main(int argc, char* argv[]) {
  SDL_Surface* screenSurface = NULL; // windowのサーフェイス
  SDL_Surface* image = NULL; // 画像のサーフェイス
  SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
- SDL_Renderer *render;
+ SDL_Renderer* render;
+
  SDL_bool done = SDL_FALSE;
 
  strcat(img_dir_name, PNG_FILE02);
@@ -39,7 +40,6 @@ int main(int argc, char* argv[]) {
    printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
   } else {
    render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-   SDL_SetRenderDrawColor( render, 255, 255, 255, 255);
 
    //window サーフェイス取得 表示
    screenSurface = SDL_GetWindowSurface(window);
@@ -51,9 +51,9 @@ int main(int argc, char* argv[]) {
 
    SDL_BlitSurface(image, NULL, screenSurface, NULL);
    
-   SDL_RenderDrawLine(render, 5, 5, 90, 600);
-   SDL_RenderFillRect(render, &rect);
-   
+   SDL_SetRenderDrawColor(render, 0,0,0, SDL_ALPHA_OPAQUE);
+   DrawSquare(render, 100, 550, 950, 800);
+   DrawSquare(render, 500, 50, 950, 500);
    
    //サーフェイスを更新
    SDL_UpdateWindowSurface(window);
