@@ -3,7 +3,7 @@
 int main(int argc, char* argv[]) {
  char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
       font_path_name[FILE_NAME_MAX] = FONT_DIR,
-      select_square2_strings[4][256] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
+      select_square2_strings[4][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  SDL_Event event;
  SDL_Window *window = NULL; // 描画ウィンドウ
  SDL_Surface *screenSurface = NULL; // windowのサーフェイス
