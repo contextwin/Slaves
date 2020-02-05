@@ -61,17 +61,25 @@ int main(int argc, char* argv[]) {
  MyDrawSquare(render, 500, 50, 950, 500);
    
  //文字列表示処理
- screenSurface = TTF_RenderUTF8_Blended(font10px, "hello, world!", (SDL_Color){0,255,255,255});	  
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "つよさ", (SDL_Color){0,255,255,255});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	 
  
  //テクスチャーをx,yの座標にレンダーコピー
- MyTextureRenderCopy(texture, render, 370, 650);
+ MyTextureRenderCopy(texture, render, 150, 575);
  
- screenSurface = TTF_RenderUTF8_Blended(font10px, "hello, world!", (SDL_Color){0,0,0,0});	  
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "そうび", (SDL_Color){0,0,0,0});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	
  
- MyTextureRenderCopy(texture, render, 370, 670);
+ MyTextureRenderCopy(texture, render, 440, 575);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "とくぎ", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 730, 575);
 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "アビリティUP", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 150, 675);
+ 
  //サーフェイスを更新
  SDL_UpdateWindowSurface(window);
      
