@@ -33,7 +33,7 @@ char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
 }
 
 //メニュー画面2 レンダリングデータ初期化処理
-short int MyFuncInitMenue2(struct MyStructMenue2 *MyMenue2_s) {
+short int MyFuncInitMenue2(struct MyStructMenue2 MyMenue2_s) {
  //TTF初期化
  strcat(font_path_name, TTF_FONT1);
  font12px = MyFuncInitTTF(font12px, font_path_name);

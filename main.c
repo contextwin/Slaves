@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
  SDL_bool done = SDL_FALSE;
  
  // 画面 Menue2 データ初期化処理
- MyMenue2_s = MyFuncInitMenue2(&MyMenue2_s);
+ MyMenue2_s = MyFuncInitMenue2(MyMenue2_s);
  
  //画像データ読み込み
  strcat(img_path_name, PNG_FILE02);
