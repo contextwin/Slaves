@@ -1,5 +1,4 @@
 //Slaves固有の振る舞いのヘッダ
-//#include "mysdl2.h"
 
 //描画マクロ
 #define MyWIDTH (521 * 2) + 1

@@ -1,4 +1,3 @@
-//#include "mysdl2.h"
 #include "function.h"
 #include "view.h"
 #include "mysdl2.h"
