@@ -40,13 +40,13 @@ struct MyStructMenue2 MyFuncInitMenue2() {
  MyMenue2_s.image = NULL;
  
  memset(MyMenue2_s.img_path_neme, '\0', sizeof(MyMenue2_s.img_path_name));
- memcopy(MyMenue2_s.img_path_name, IMAGE_DIR);
+ memcpy(MyMenue2_s.img_path_name, IMAGE_DIR);
  
  memset(MyMenue2_s.font_path_name, '\0', sizeof(MyMenue2_s.font_path_name));
- memcopy(MyMenue2_s.font_path_name, FONT_DIR);
+ memcpy(MyMenue2_s.font_path_name, FONT_DIR);
  
  memset(MyMenue2_s.select_square2_strings, '\0', sizeof(MyMenue2_s.select_square2_strings));
- memcopy(MyMenue2_s.select_square2_strings, select_square2_strings);
+ memcpy(MyMenue2_s.select_square2_strings, select_square2_strings);
  
  
  //TTF初期化
