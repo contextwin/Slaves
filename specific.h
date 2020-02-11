@@ -20,7 +20,7 @@
 #define PNG_FILE02 "chipo_side01.png"
 
 //メニュー画面2 レンダリングデータ保持用 構造体
-struct MyMenue2Struct {
+struct MyStructMenue2 {
 SDL_Surface *image = NULL; // 画像のサーフェイス
 char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
  font_path_name[FILE_NAME_MAX] = FONT_DIR,
@@ -33,6 +33,14 @@ char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
 }
 
 //メニュー画面2 レンダリングデータ初期化処理
-int MyInitMenue2(struct MyMecue2Struct *MyMenue_s) {
-	return EXIT_SUCCESS;
+short int MyFuncInitMenue2(struct MyStructMenue2 *MyMenue2_s) {
+ //TTF初期化
+ strcat(font_path_name, TTF_FONT1);
+ font12px = MyFuncInitTTF(font12px, font_path_name);
+ memset(font_path_name, '\0', strlen(font_path_name));
+ memcpy(font_path_name, FONT_DIR, strlen(FONT_DIR)); 
+ strcat(font_path_name, TTF_FONT2);
+ font10px = MyFuncInitTTF(font10px, font_path_name);
+ 
+ return EXIT_SUCCESS;
 }

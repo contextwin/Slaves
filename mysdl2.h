@@ -13,7 +13,7 @@ void MyDrawSquare(SDL_Renderer *render, int x, int y, int right_x, int lower_rig
 
 };
 
-TTF_Font *MyInitTTF(TTF_Font *font, char *font_path_name) {
+TTF_Font *MyFuncInitTTF(TTF_Font *font, char *font_path_name) {
  
  if (TTF_Init() < 0) {
   printf("TTF_InitError: %s\n", TTF_GetError());
@@ -25,7 +25,7 @@ TTF_Font *MyInitTTF(TTF_Font *font, char *font_path_name) {
 	  printf("TTF_OpenFont: %s\n", TTF_GetError());
  }
  
- return font;
+ return font; // ?
 }
 
 void MyTextureRenderCopy(SDL_Texture *texture, SDL_Renderer *render, int x, int y) {

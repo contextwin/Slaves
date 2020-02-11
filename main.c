@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[]) {
  // 自己定義型宣言
- MyMenue2Struct MyMenue2_s;
+ struct MyStructMenue2 MyMenue2_s;
 
  SDL_Event event;
  SDL_Window *window = NULL; // 描画ウィンドウ
@@ -14,17 +14,8 @@ int main(int argc, char* argv[]) {
  SDL_Surface *screenSurface = NULL; // windowのサーフェイス
  SDL_bool done = SDL_FALSE;
  
- 
- //メニュー2表示処理
- //TTF初期化
- strcat(font_path_name, TTF_FONT1);
- font12px = MyInitTTF(font12px, font_path_name);
- 
- memset(font_path_name, '\0', strlen(font_path_name));
- memcpy(font_path_name, FONT_DIR, strlen(FONT_DIR)); 
- 
- strcat(font_path_name, TTF_FONT2);
- font10px = MyInitTTF(font10px, font_path_name);
+ // 画面 Menue2 データ初期化処理
+ MyMenue2_s = MyFuncInitMenue2(&MyMenue2_s);
  
  //画像データ読み込み
  strcat(img_path_name, PNG_FILE02);
