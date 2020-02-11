@@ -54,10 +54,11 @@ int main(int argc, char* argv[]) {
  SDL_FillRect(screenSurface, NULL,
               SDL_MapRGB(screenSurface->format,
                            0xFF, 0xFF, 0xFF));
-
+ 
+ // 引数1のサーフェイスを引数3のサーフェイスにコピーする
  SDL_BlitSurface(image, NULL, screenSurface, NULL);
    
- SDL_SetRenderDrawColor(render, 0,0,0, 0);
+ SDL_SetRenderDrawColor(render, 0,0,0,0);
  MyDrawSquare(render, 100, 550, 950, 800); //select_square2
  MyDrawSquare(render, 500, 50, 950, 500); //view_square
    
