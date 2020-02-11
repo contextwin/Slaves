@@ -19,7 +19,7 @@
 #define PNG_FILE02 "chipo_side01.png"
 
 //メニュー画面2 レンダリングデータ保持用 構造体
-struct MyMenue2_s {
+struct MyMenue2Struct {
 char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
  font_path_name[FILE_NAME_MAX] = FONT_DIR,
  select_square2_strings[4][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
