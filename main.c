@@ -37,13 +37,14 @@ int main(int argc, char* argv[]) {
  window = SDL_CreateWindow("Slaves", 
                              SDL_WINDOWPOS_UNDEFINED,
                              SDL_WINDOWPOS_UNDEFINED,
-                             WIDTH,
-                             HEIGHT,
+                             MyWIDTH,
+                             MyHEIGHT,
                              SDL_WINDOW_SHOWN);
   
  if(window == NULL){
    printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
  }
+ 
  render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 
  //window サーフェイス取得 表示
@@ -56,14 +57,14 @@ int main(int argc, char* argv[]) {
 
  SDL_BlitSurface(image, NULL, screenSurface, NULL);
    
- SDL_SetRenderDrawColor(render, 0,0,0, SDL_ALPHA_OPAQUE);
+ SDL_SetRenderDrawColor(render, 0,0,0, 0);
  MyDrawSquare(render, 100, 550, 950, 800); //select_square2
  MyDrawSquare(render, 500, 50, 950, 500); //view_square
    
  //文字列表示処理
+ //select_square2
  screenSurface = TTF_RenderUTF8_Blended(font10px, select_square2_strings[0], (SDL_Color){0,255,255,255});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	 
- 
  //テクスチャーをx,yの座標にレンダーコピー
  MyTextureRenderCopy(texture, render, 150, 575);
  
@@ -79,6 +80,40 @@ int main(int argc, char* argv[]) {
  screenSurface = TTF_RenderUTF8_Blended(font10px, select_square2_strings[3], (SDL_Color){0,0,0,0});	  
  texture = SDL_CreateTextureFromSurface(render, screenSurface);	
  MyTextureRenderCopy(texture, render, 150, 675);
+ 
+ //view_square
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "Chipo       Lv 1", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 75);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "        HP 23/23", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 125);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "        MP 15/15", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 170);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "       ABP 15/15", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 220);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "   STR  3  SPD 5", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 270);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "   VIT  3  MGC 5", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 320);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "   INT  3 LUCK 5", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 370);
+ 
+ screenSurface = TTF_RenderUTF8_Blended(font10px, "NextLvUP   8 exp", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(render, screenSurface);	
+ MyTextureRenderCopy(texture, render, 550, 440);
+
  
  //サーフェイスを更新
  SDL_UpdateWindowSurface(window);
