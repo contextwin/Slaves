@@ -1,10 +1,9 @@
 #include "mysdl2.h"
 
 int main(int argc, char* argv[]) {
+ // 自己定義型宣言
  MyMenue2Struct MyMenue2_s;
- char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
-      font_path_name[FILE_NAME_MAX] = FONT_DIR,
-      select_square2_strings[4][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
+
  SDL_Event event;
  SDL_Window *window = NULL; // 描画ウィンドウ
  SDL_Surface *screenSurface = NULL; // windowのサーフェイス
