@@ -19,8 +19,11 @@
 #define PNG_FILE01 "chipo_center01.png"
 #define PNG_FILE02 "chipo_side01.png"
 
+//出力文言データ関連マクロ
+#define MyMENUE2_STRINGSNUM 4
+
 //メニュー画面2　出力文言
-const char select_square2_strings[4][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
+const char select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
 
 //メニュー画面2 レンダリングデータ保持用 構造体
 struct MyStructMenue2 {
@@ -35,20 +38,31 @@ struct MyStructMenue2 {
 
 //メニュー画面2 レンダリングデータ初期化処理
 struct MyStructMenue2 MyFuncInitMenue2() {
+ 
  struct MyStructMenue2 MyMenue2_s;
+ unsigned char i = 0;
  
- MyMenue2_s.image = NULL;
- 
- memset(MyMenue2_s.img_path_neme, '\0', sizeof(MyMenue2_s.img_path_name));
- memcpy(MyMenue2_s.img_path_name, IMAGE_DIR);
+ memset(MyMenue2_s.img_path_name, '\0', sizeof(MyMenue2_s.img_path_name));
+ memcpy(MyMenue2_s.img_path_name, IMAGE_DIR, strlen(IMAGE_DIR));
  
  memset(MyMenue2_s.font_path_name, '\0', sizeof(MyMenue2_s.font_path_name));
- memcpy(MyMenue2_s.font_path_name, FONT_DIR);
+ memcpy(MyMenue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR));
  
  memset(MyMenue2_s.select_square2_strings, '\0', sizeof(MyMenue2_s.select_square2_strings));
- memcpy(MyMenue2_s.select_square2_strings, select_square2_strings);
  
+ for(i = 0; i <= MyMENUE2_STRINGSNUM; i++){
+  memcpy(MyMenue2_s.select_square2_strings[i], select_square2_strings[i], strlen(select_square2_strings[i]));
+ }
  
+ MyMenue2_s.image = NULL;
+ strcat(MyMenue2_s.img_path_name, PNG_FILE02);
+ 
+ //画像データ読み込み
+ MyMenue2_s.image = IMG_Load(MyMenue2_s.img_path_name);
+ if(!MyMenue2_s.image){
+  printf("IMG_GetError: %s\n", IMG_GetError());
+ }
+
  //TTF初期化
  strcat(MyMenue2_s.font_path_name, TTF_FONT1);
  MyMenue2_s.font12px = MyFuncInitTTF(MyMenue2_s.font12px, MyMenue2_s.font_path_name);
