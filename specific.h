@@ -1,4 +1,5 @@
 //Slaves固有の振る舞いのヘッダ
+//#include "mysdl2.h"
 
 //描画マクロ
 #define MyWIDTH (521 * 2) + 1
@@ -20,12 +21,18 @@
 
 //メニュー画面2 レンダリングデータ保持用 構造体
 struct MyMenue2Struct {
+SDL_Surface *image = NULL; // 画像のサーフェイス
 char img_path_name[FILE_NAME_MAX] = IMAGE_DIR,
  font_path_name[FILE_NAME_MAX] = FONT_DIR,
  select_square2_strings[4][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
-
+ SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
+ SDL_Renderer* render;
+ TTF_Font *font12px, // 12px
+          *font10px; // 10px
+ SDL_Texture *texture;
 }
 
-int MyInitMenue2() {
+//メニュー画面2 レンダリングデータ初期化処理
+int MyInitMenue2(struct MyMecue2Struct *MyMenue_s) {
 	return EXIT_SUCCESS;
 }

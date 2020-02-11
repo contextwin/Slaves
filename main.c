@@ -1,4 +1,8 @@
+//#include "mysdl2.h"
+#include "function.h"
+#include "view.h"
 #include "mysdl2.h"
+#include "specific.h"
 
 int main(int argc, char* argv[]) {
  // 自己定義型宣言
@@ -6,13 +10,8 @@ int main(int argc, char* argv[]) {
 
  SDL_Event event;
  SDL_Window *window = NULL; // 描画ウィンドウ
+ 
  SDL_Surface *screenSurface = NULL; // windowのサーフェイス
- SDL_Surface *image = NULL; // 画像のサーフェイス
- SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
- SDL_Renderer* render;
- TTF_Font *font12px, // 12px
-          *font10px; // 10px
- SDL_Texture *texture;
  SDL_bool done = SDL_FALSE;
  
  
