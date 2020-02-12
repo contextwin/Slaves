@@ -8,6 +8,9 @@
 #define FILE_NAME_MAX 256
 #define STRINGS_MAX 256
 
+//ゲーム情報
+#define MyGAME_TITLE "Slaves"
+
 //フォントデータ関連マクロ
 #define FONT_DIR "./fonts/"
 #define TTF_FONT1 "PixelMplus-20130602/PixelMplus12-Regular.ttf"
@@ -21,8 +24,34 @@
 //出力文言データ関連マクロ
 #define MyMENUE2_STRINGSNUM 4
 
-//メニュー画面2　出力文言
-const char select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
+SDL_Window* MyFuncSpeciInitSlavesWindow (SDL_Window* window) {
+ window = SDL_CreateWindow("Slaves", 
+                           SDL_WINDOWPOS_UNDEFINED,
+                           SDL_WINDOWPOS_UNDEFINED,
+                           MyWIDTH,
+                           MyHEIGHT,
+                           SDL_WINDOW_SHOWN);
+  
+ if(window == NULL){
+  printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
+  exit(EXIT_FAILURE);
+ }
+ return window;
+};
+
+/*
+//Slaves SDL_Window作成
+void MySDLCreateWindowSLaves () {
+ struct MyStructSDLWindowData window_data_s;
+	
+ MyStringsAssignment(window_data_s.title, MyGAME_TITLE);
+ window_data_s.x = SDL_WINDOWPOS_UNDEFINED;
+ window_data_s.y = SDL_WINDOWPOS_UNDEFINED;
+ window_data_s.w = MyWIDTH;
+ window_data_s.h = MyHEIGHT;
+ window_data_s.flags = SDL_WINDOW_SHOWN;
+};
+*/
 
 //メニュー画面2 レンダリングデータ保持用 構造体
 struct MyStructMenue2 {
@@ -40,17 +69,23 @@ struct MyStructMenue2 MyFuncInitMenue2() {
  
  struct MyStructMenue2 MyMenue2_s;
  unsigned char i = 0;
+
+ //メニュー画面2 出力文言
+ char select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  
- memset(MyMenue2_s.img_path_name, '\0', sizeof(MyMenue2_s.img_path_name));
- memcpy(MyMenue2_s.img_path_name, IMAGE_DIR, strlen(IMAGE_DIR));
+ MyStringsAssignment(MyMenue2_s.img_path_name, IMAGE_DIR);
+ //memset(MyMenue2_s.img_path_name, '\0', sizeof(MyMenue2_s.img_path_name));
+ //memcpy(MyMenue2_s.img_path_name, IMAGE_DIR, strlen(IMAGE_DIR));
  
- memset(MyMenue2_s.font_path_name, '\0', sizeof(MyMenue2_s.font_path_name));
- memcpy(MyMenue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR));
+ MyStringsAssignment(MyMenue2_s.font_path_name, FONT_DIR);
+ //memset(MyMenue2_s.font_path_name, '\0', sizeof(MyMenue2_s.font_path_name));
+ //memcpy(MyMenue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR));
  
- memset(MyMenue2_s.select_square2_strings, '\0', sizeof(MyMenue2_s.select_square2_strings));
+ //memset(MyMenue2_s.select_square2_strings, '\0', sizeof(MyMenue2_s.select_square2_strings));
  
  for(i = 0; i <= MyMENUE2_STRINGSNUM; i++){
-  memcpy(MyMenue2_s.select_square2_strings[i], select_square2_strings[i], strlen(select_square2_strings[i]));
+  MyStringsAssignment(MyMenue2_s.select_square2_strings[i], select_square2_strings[i]);
+  //memcpy(MyMenue2_s.select_square2_strings[i], select_square2_strings[i], strlen(select_square2_strings[i]));
  }
  
  MyMenue2_s.image = NULL;

@@ -26,6 +26,13 @@ typedef struct{
 
 //関数プロトタイプ宣言
 
+//変数代入関連 start
+void MyStringsAssignment(char *str1, char *str2) {
+ memset(str1, '\0', strlen(str1));
+ strcpy(str1, str2);
+}
+
+//変数代入関連 end
 //算出関連関連 start
 int CalCenterNum(int);
 //算出関連関数 end

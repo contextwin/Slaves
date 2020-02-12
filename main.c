@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
  struct MyStructMenue2 MyMenue2_s;
 
  SDL_Event event;
- SDL_Window *window = NULL; // 描画ウィンドウ
+ SDL_Window* window = NULL; // 描画ウィンドウ
 
  SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
  SDL_Renderer* render;
@@ -16,31 +16,27 @@ int main(int argc, char* argv[]) {
  
  SDL_Surface *screenSurface = NULL; // windowのサーフェイス
  SDL_bool done = SDL_FALSE;
- 
- // 画面 Menue2 データ初期化処理
+
+ //Slaves SDL_Window データ初期化処理
+ window = MyFuncSpeciInitSlavesWindow(window);
+
+ //画面 Menue2 データ初期化処理
  MyMenue2_s = MyFuncInitMenue2();
- 
- window = SDL_CreateWindow("Slaves", 
-                             SDL_WINDOWPOS_UNDEFINED,
-                             SDL_WINDOWPOS_UNDEFINED,
-                             MyWIDTH,
-                             MyHEIGHT,
-                             SDL_WINDOW_SHOWN);
-  
- if(window == NULL){
-   printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
- }
- 
+ //printf("MyFuncInitMenue2() SUCCESS\n");
+   
  render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+ //printf("SDL_CreateRenderer() SUCCESS\n");
 
  //window サーフェイス取得 表示
  screenSurface = SDL_GetWindowSurface(window);
+ //printf("SDL_GetWindowSurface() SUCCESS\n");
 
  //サーフェイスの背景を白にする
  SDL_FillRect(screenSurface, NULL,
               SDL_MapRGB(screenSurface->format,
                            0xFF, 0xFF, 0xFF));
- 
+ //printf("SDL_FileRect() SUCCESS\n");
+                           
  // 引数1のサーフェイスを引数3のサーフェイスにコピーする
  SDL_BlitSurface(MyMenue2_s.image, NULL, screenSurface, NULL);
    
