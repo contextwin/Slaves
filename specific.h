@@ -65,9 +65,8 @@ struct MyStructMenue2 {
 };
 
 //メニュー画面2 レンダリングデータ初期化処理
-struct MyStructMenue2 MyFuncInitMenue2() {
+struct MyStructMenue2 MyFuncInitMenue2(struct MyStructMenue2 MyMenue2_s) {
  
- struct MyStructMenue2 MyMenue2_s;
  unsigned char i = 0;
 
  //メニュー画面2 出力文言

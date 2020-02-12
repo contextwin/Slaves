@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
               SDL_MapRGB(screenSurface->format,
                            0xFF, 0xFF, 0xFF));
  //画面 Menue2 データ初期化処理
- MyMenue2_s = MyFuncInitMenue2();
+ MyMenue2_s = MyFuncInitMenue2(MyMenue2_s);
                    
  // 引数1のサーフェイスを引数3のサーフェイスにコピーする
  SDL_BlitSurface(MyMenue2_s.image, NULL, screenSurface, NULL);
