@@ -39,20 +39,6 @@ SDL_Window* MyFuncSpeciInitSlavesWindow (SDL_Window* window) {
  return window;
 };
 
-/*
-//Slaves SDL_Window作成
-void MySDLCreateWindowSLaves () {
- struct MyStructSDLWindowData window_data_s;
-	
- MyStringsAssignment(window_data_s.title, MyGAME_TITLE);
- window_data_s.x = SDL_WINDOWPOS_UNDEFINED;
- window_data_s.y = SDL_WINDOWPOS_UNDEFINED;
- window_data_s.w = MyWIDTH;
- window_data_s.h = MyHEIGHT;
- window_data_s.flags = SDL_WINDOW_SHOWN;
-};
-*/
-
 //メニュー画面2 レンダリングデータ保持用 構造体
 struct MyStructMenue2 {
  SDL_Surface *image; // 画像のサーフェイス

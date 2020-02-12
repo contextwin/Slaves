@@ -9,21 +9,6 @@ struct MyStructSDLWindowData {
  int x, y, w, h;
  Uint32 flags;
 };
-
-/*
-void MyFuncCreateSDLWindow(SDL_Window *window) {
- 
- render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-
- //window サーフェイス取得 表示
- screenSurface = SDL_GetWindowSurface(window);
-
- //サーフェイスの背景を白にする
- SDL_FillRect(screenSurface, NULL,
-              SDL_MapRGB(screenSurface->format,
-                           0xFF, 0xFF, 0xFF));
-};
-*/
 					   
 void MyDrawSquare(SDL_Renderer *render, int x, int y, int right_x, int lower_right_y ) {
  

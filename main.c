@@ -28,11 +28,13 @@ int main(int argc, char* argv[]) {
  //画面 Menue2 データ初期化処理
  MyMenue2_s = MyFuncInitMenue2(MyMenue2_s);
                    
- // 引数1のサーフェイスを引数3のサーフェイスにコピーする
+ //引数1のサーフェイスを引数3のサーフェイスにコピーする
  SDL_BlitSurface(MyMenue2_s.image, NULL, screenSurface, NULL);
  
+ //画面 Menue2 SDL_Renderer初期化
  render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
  SDL_SetRenderDrawColor(render, 0,0,0,0);
+ 
  MyDrawSquare(render, 100, 550, 950, 800); //select_square2
  MyDrawSquare(render, 500, 50, 950, 500); //view_square
    
