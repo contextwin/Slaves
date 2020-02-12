@@ -19,27 +19,19 @@ int main(int argc, char* argv[]) {
 
  //Slaves SDL_Window データ初期化処理
  window = MyFuncSpeciInitSlavesWindow(window);
-
- //画面 Menue2 データ初期化処理
- MyMenue2_s = MyFuncInitMenue2();
- //printf("MyFuncInitMenue2() SUCCESS\n");
-   
- render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
- //printf("SDL_CreateRenderer() SUCCESS\n");
-
  //window サーフェイス取得 表示
  screenSurface = SDL_GetWindowSurface(window);
- //printf("SDL_GetWindowSurface() SUCCESS\n");
-
- //サーフェイスの背景を白にする
+  //サーフェイスの背景を白にする
  SDL_FillRect(screenSurface, NULL,
               SDL_MapRGB(screenSurface->format,
                            0xFF, 0xFF, 0xFF));
- //printf("SDL_FileRect() SUCCESS\n");
-                           
+ //画面 Menue2 データ初期化処理
+ MyMenue2_s = MyFuncInitMenue2();
+                   
  // 引数1のサーフェイスを引数3のサーフェイスにコピーする
  SDL_BlitSurface(MyMenue2_s.image, NULL, screenSurface, NULL);
-   
+ 
+ render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
  SDL_SetRenderDrawColor(render, 0,0,0,0);
  MyDrawSquare(render, 100, 550, 950, 800); //select_square2
  MyDrawSquare(render, 500, 50, 950, 500); //view_square
