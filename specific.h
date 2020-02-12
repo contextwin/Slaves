@@ -74,18 +74,11 @@ struct MyStructMenue2 MyFuncInitMenue2() {
  char select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  
  MyStringsAssignment(MyMenue2_s.img_path_name, IMAGE_DIR);
- //memset(MyMenue2_s.img_path_name, '\0', sizeof(MyMenue2_s.img_path_name));
- //memcpy(MyMenue2_s.img_path_name, IMAGE_DIR, strlen(IMAGE_DIR));
  
  MyStringsAssignment(MyMenue2_s.font_path_name, FONT_DIR);
- //memset(MyMenue2_s.font_path_name, '\0', sizeof(MyMenue2_s.font_path_name));
- //memcpy(MyMenue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR));
- 
- //memset(MyMenue2_s.select_square2_strings, '\0', sizeof(MyMenue2_s.select_square2_strings));
  
  for(i = 0; i <= MyMENUE2_STRINGSNUM; i++){
   MyStringsAssignment(MyMenue2_s.select_square2_strings[i], select_square2_strings[i]);
-  //memcpy(MyMenue2_s.select_square2_strings[i], select_square2_strings[i], strlen(select_square2_strings[i]));
  }
  
  MyMenue2_s.image = NULL;
