@@ -6,11 +6,13 @@ git clone https://github.com/contextwin/Slaves.git
 Slavesがビルトインの機能しかインストールされていないlinuxで動作するかはまだ検証しておりません。
 
 ビルド要件:
+1.
 Slavesはビルド要件として、xorg-devに依存します。
 aptコマンドで導入する場合,
 sudo apt install xorg-dev
 を実行して下さい。
 
+2.
 Slavesはビルド要件として、libsdl2-dev群に依存しています。
 aptコマンドで導入する場合,
 sudo apt install libsdl2-dev libsdl-image1.2-dev libsdl2-ttf-dev
