@@ -36,6 +36,7 @@ struct MyStructRenderData {
  SDL_Texture *texture;
  SDL_Color TTFColor1,
            TTFColor2;
+ unsigned char user_cursor_position;
  SDL_Renderer* render;
 };
 
@@ -68,13 +69,15 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //メニュー画面2 出力文言
  char select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  
+ Menue2_s.user_cursor_position = 0;
+ 
  MyFuncStringsAssignment(Menue2_s.img_path_name, IMAGE_DIR);
  MyFuncStringsAssignment(Menue2_s.font_path_name, FONT_DIR);
  
  for(i = 0; i <= MyMENUE2_STRINGSNUM; i++){
   MyFuncStringsAssignment(Menue2_s.select_square2_strings[i], select_square2_strings[i]);
  };
- 
+
  Menue2_s.image = NULL;
  strcat(Menue2_s.img_path_name, PNG_FILE02);
  
@@ -120,7 +123,9 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
 };
 
 void MySpeciTexterBleadAndCreateSurface_UserSelecting(struct MyStructRenderData* data_s) {
- data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->select_square2_strings[0], data_s->TTFColor1);  
+ data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, 
+                         data_s->select_square2_strings[data_s->user_cursor_position],
+                         data_s->TTFColor1);  
  data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
