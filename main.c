@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
  
  //文字列表示処理
  //select_square2
- WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[0], (SDL_Color){0,255,255,255});	  
+ WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[0], WinAndRender_s.Menue2_s.TTFColor1);	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	 
  //テクスチャーをx,yの座標にレンダーコピー
  MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 575);
