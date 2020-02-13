@@ -52,7 +52,7 @@ SDL_Window* MyFuncSpeciInitSlavesWindow (SDL_Window* window) {
 };
 
 //メニュー画面2 レンダリングデータ初期化処理
-struct MyStructMenue2 MyFuncInitMenue2(struct MyStructMenue2 MyMenue2_s, SDL_Window* window) {
+struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 MyMenue2_s, SDL_Window* window) {
  
  unsigned char i = 0;
 
