@@ -34,11 +34,10 @@ int main(int argc, char* argv[]) {
  MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s, 2);
  MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 730, 575);
 
- //MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s, 3);
- //MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 440, 575);
-
  MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s, 3);
  MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 675);
+ 
+ MySpeciRenderTextMenue2Square(&WinAndRender_s.Menue2_s);
  
  //view_square
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "Chipo       Lv 1", (SDL_Color){0,0,0,0});	  

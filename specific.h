@@ -30,7 +30,7 @@ struct MyStructRenderData {
  SDL_Surface *screenSurface; // windowのサーフェイス
  char img_path_name[FILE_NAME_MAX],
  font_path_name[FILE_NAME_MAX],
- select_square2_strings[4][STRINGS_MAX];
+ select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX];
  TTF_Font *font12px, // 12px
           *font10px; // 10px
  SDL_Texture *texture;
@@ -134,7 +134,15 @@ void MySpeciTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsig
   data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
-void MySpeciRenderTextMenue2Square(struct MyWindowAndRenderData* data) {
+void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
+ unsigned char i;
+ int xy[MyMENUE2_STRINGSNUM][2] ={{150, 575,},{440, 575},{730, 575},{150, 675}};
+ 
+ for(i = 0; i < MyMENUE2_STRINGSNUM; i++) {
+	 MySpeciTexterBleadAndCreateSurface(data_s, i);
+     MySDLTextureRenderCopy(data_s->texture, data_s->render, xy[i][0], xy[i][1]);
+ }
+ 
 };
 
 
