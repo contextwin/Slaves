@@ -11,8 +11,6 @@ int main(int argc, char* argv[]) {
  SDL_Event event;
  SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
  SDL_Texture *texture;
- 
- SDL_Surface *screenSurface = NULL; // windowのサーフェイス
  SDL_bool done = SDL_FALSE;
 
  //Slaves SDL_Window データ初期化処理
