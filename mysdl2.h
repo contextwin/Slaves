@@ -10,7 +10,7 @@ struct MyStructSDLWindowData {
  Uint32 flags;
 };
 					   
-void MyDrawSquare(SDL_Renderer *render, int x, int y, int right_x, int lower_right_y ) {
+void MySDLDrawSquare(SDL_Renderer *render, int x, int y, int right_x, int lower_right_y ) {
  
  SDL_RenderDrawLine(render, x, y, x, lower_right_y);
  SDL_RenderDrawLine(render, right_x, y, right_x, lower_right_y);

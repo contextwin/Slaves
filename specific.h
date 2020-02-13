@@ -24,6 +24,18 @@
 //出力文言データ関連マクロ
 #define MyMENUE2_STRINGSNUM 4
 
+//メニュー画面2 レンダリングデータ保持用 構造体
+struct MyStructMenue2 {
+ SDL_Surface *image; // 画像のサーフェイス
+ char img_path_name[FILE_NAME_MAX],
+ font_path_name[FILE_NAME_MAX],
+ select_square2_strings[4][STRINGS_MAX];
+ TTF_Font *font12px, // 12px
+          *font10px; // 10px
+ SDL_Texture *texture;
+ SDL_Renderer* render;
+};
+
 SDL_Window* MyFuncSpeciInitSlavesWindow (SDL_Window* window) {
  window = SDL_CreateWindow("Slaves", 
                            SDL_WINDOWPOS_UNDEFINED,
@@ -39,19 +51,8 @@ SDL_Window* MyFuncSpeciInitSlavesWindow (SDL_Window* window) {
  return window;
 };
 
-//メニュー画面2 レンダリングデータ保持用 構造体
-struct MyStructMenue2 {
- SDL_Surface *image; // 画像のサーフェイス
- char img_path_name[FILE_NAME_MAX],
- font_path_name[FILE_NAME_MAX],
- select_square2_strings[4][STRINGS_MAX];
- TTF_Font *font12px, // 12px
-          *font10px; // 10px
- SDL_Texture *texture;
-};
-
 //メニュー画面2 レンダリングデータ初期化処理
-struct MyStructMenue2 MyFuncInitMenue2(struct MyStructMenue2 MyMenue2_s) {
+struct MyStructMenue2 MyFuncInitMenue2(struct MyStructMenue2 MyMenue2_s, SDL_Window* window) {
  
  unsigned char i = 0;
 
@@ -82,6 +83,10 @@ struct MyStructMenue2 MyFuncInitMenue2(struct MyStructMenue2 MyMenue2_s) {
  memcpy(MyMenue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR)); 
  strcat(MyMenue2_s.font_path_name, TTF_FONT2);
  MyMenue2_s.font10px = MyFuncInitTTF(MyMenue2_s.font10px, MyMenue2_s.font_path_name);
+ 
+ //SDL_Renderer 初期化
+ MyMenue2_s.render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+ SDL_SetRenderDrawColor(MyMenue2_s.render, 0,0,0,0);
  
  return MyMenue2_s;
 }
