@@ -24,9 +24,7 @@ int main(int argc, char* argv[]) {
  MySpeciDrawMenue2Square(WinAndRender_s.Menue2_s.render);
  
  //文字列表示処理
- //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー
- MySpeciTexterBleadAndCreateSurface_UserSelecting(&WinAndRender_s.Menue2_s);
- 
+ //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー 
  MySpeciRenderTextMenue2Square(&WinAndRender_s.Menue2_s);
  
  //view_square

@@ -121,7 +121,7 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
  int select_square2_xyrxlry[4] = {100, 550, 950, 800},
      view_square_xyrxlry[4] = {500, 50, 950, 500};
   
- MySDLDrawSquare(render, select_square2_xyrxlry); //select_square2
+ MySDLDrawSquare(render, select_square2_xyrxlry); //select_square
  MySDLDrawSquare(render, view_square_xyrxlry);  //view_square
 };
 
@@ -147,9 +147,10 @@ void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
 	  MySpeciTexterBleadAndCreateSurface_UserSelecting(data_s);
 	 } else { 
 	  MySpeciTexterBleadAndCreateSurface(data_s, i);
-     }
+     };
+     
      MySDLTextureRenderCopy(data_s->texture, data_s->render, xy[i][MyRENDER_X], xy[i][MyRENDER_Y]);
- }
+ };
  
 };
 
