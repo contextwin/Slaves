@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
  SDL_bool done = SDL_FALSE;
 
  //Slaves SDL_Window データ初期化処理
- slaves_window = MyFuncSpeciInitSlavesWindow(slaves_window);
+ slaves_window = MySpeciInitSlavesWindow(slaves_window);
  //window サーフェイス取得 表示
  screenSurface = SDL_GetWindowSurface(slaves_window);
   //サーフェイスの背景を白にする

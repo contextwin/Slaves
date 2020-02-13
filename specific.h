@@ -36,7 +36,7 @@ struct MyStructMenue2 {
  SDL_Renderer* render;
 };
 
-SDL_Window* MyFuncSpeciInitSlavesWindow (SDL_Window* window) {
+SDL_Window* MySpeciInitSlavesWindow (SDL_Window* window) {
  window = SDL_CreateWindow("Slaves", 
                            SDL_WINDOWPOS_UNDEFINED,
                            SDL_WINDOWPOS_UNDEFINED,
