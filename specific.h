@@ -24,7 +24,7 @@
 //出力文言データ関連マクロ
 #define MyMENUE2_STRINGSNUM 4
 
-//メニュー画面2 レンダリングデータ保持用 構造体
+//メニュー画面2 レンダリングデータ保持用構造体構造体変数
 struct MyStructMenue2 {
  SDL_Surface *image; // 画像のサーフェイス
  SDL_Surface *screenSurface; // windowのサーフェイス
@@ -35,6 +35,12 @@ struct MyStructMenue2 {
           *font10px; // 10px
  SDL_Texture *texture;
  SDL_Renderer* render;
+};
+
+//SDL_Window データと各画面レンダリングデータ保持用構造体変数
+struct MyWindowAndRenderData {
+	SDL_Window* slaves_window;
+	struct MyStructMenue2 Menue2_s;
 };
 
 SDL_Window* MySpeciInitSlavesWindow (SDL_Window* window) {
@@ -101,4 +107,6 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
  MySDLDrawSquare(render, view_square_xyrxlry);  //view_square
 }
 
-//void MyspeciCreateMenue2
+
+
+//void MyspeciCreateSlavesMainWindow()

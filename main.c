@@ -20,9 +20,9 @@ int main(int argc, char* argv[]) {
  SDL_FillRect(Menue2_s.screenSurface, NULL,
               SDL_MapRGB(Menue2_s.screenSurface->format,
                            0xFF, 0xFF, 0xFF));
+ 
  //画面 Menue2 データ初期化処理
  Menue2_s = MySpeciInitMenue2(Menue2_s, slaves_window);
-
  //画面 Menue2 枠描画処理
  MySpeciDrawMenue2Square(Menue2_s.render);
  
