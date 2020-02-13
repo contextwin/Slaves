@@ -82,10 +82,10 @@ int main(int argc, char* argv[]) {
 	done = SDL_TRUE;
    } else if (event.type == SDL_KEYDOWN &&
               event.key.keysym.sym == SDLK_RETURN){
-	done = SDL_TRUE;
-}
+	           done = SDL_TRUE;
+   }
   }
-}
+ }
      
  /* ... */
  SDL_FreeSurface(WinAndRender_s.Menue2_s.screenSurface);
