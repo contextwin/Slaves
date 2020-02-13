@@ -61,7 +61,6 @@ struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Wind
  char select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  
  MyFuncStringsAssignment(Menue2_s.img_path_name, IMAGE_DIR);
- 
  MyFuncStringsAssignment(Menue2_s.font_path_name, FONT_DIR);
  
  for(i = 0; i <= MyMENUE2_STRINGSNUM; i++){
@@ -80,8 +79,7 @@ struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Wind
  //TTF初期化
  strcat(Menue2_s.font_path_name, TTF_FONT1);
  Menue2_s.font12px = MyFuncInitTTF(Menue2_s.font12px, Menue2_s.font_path_name);
- memset(Menue2_s.font_path_name, '\0', sizeof(Menue2_s.font_path_name));
- memcpy(Menue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR)); 
+ MyFuncStringsAssignment(Menue2_s.font_path_name, FONT_DIR);
  strcat(Menue2_s.font_path_name, TTF_FONT2);
  Menue2_s.font10px = MyFuncInitTTF(Menue2_s.font10px, Menue2_s.font_path_name);
  
