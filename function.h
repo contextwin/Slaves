@@ -27,7 +27,7 @@ typedef struct{
 //関数プロトタイプ宣言
 
 //変数代入関連 start
-void MyStringsAssignment(char *str1, char *str2) {
+void MyFuncStringsAssignment(char *str1, char *str2) {
  memset(str1, '\0', strlen(str1));
  strcpy(str1, str2);
 }
