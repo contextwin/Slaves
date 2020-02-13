@@ -119,11 +119,9 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
  MySDLDrawSquare(render, view_square_xyrxlry);  //view_square
 };
 
-char MyTTFColor1[4] = {0,255,255,255};
-
 void MySpeciTexterBleadAndCreateSurface(struct MyStructRenderData* data_s) {
-data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->select_square2_strings[0], (SDL_Color){0,255,255,255});  
-data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
+ data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->select_square2_strings[0], data_s->TTFColor1);  
+ data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciRenderTextMenue2Square(struct MyWindowAndRenderData* data) {
