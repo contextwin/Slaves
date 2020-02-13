@@ -1,0 +1,1 @@
+tool/sh/xwindow_capture.sh
