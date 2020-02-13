@@ -10,12 +10,13 @@ struct MyStructSDLWindowData {
  Uint32 flags;
 };
 					   
-void MySDLDrawSquare(SDL_Renderer *render, int x, int y, int right_x, int lower_right_y ) {
+void MySDLDrawSquare(SDL_Renderer *render, int* square_xyrxly ) {
+ enum { x, y, rx, lry}; // x, y, right x, lower right y;
  
- SDL_RenderDrawLine(render, x, y, x, lower_right_y);
- SDL_RenderDrawLine(render, right_x, y, right_x, lower_right_y);
- SDL_RenderDrawLine(render, x, y, right_x, y);
- SDL_RenderDrawLine(render, x, lower_right_y, right_x, lower_right_y);
+ SDL_RenderDrawLine(render, square_xyrxly[x], square_xyrxly[y] , square_xyrxly[x], square_xyrxly[lry]);
+ SDL_RenderDrawLine(render, square_xyrxly[rx], square_xyrxly[y], square_xyrxly[rx], square_xyrxly[lry]);
+ SDL_RenderDrawLine(render, square_xyrxly[x], square_xyrxly[y], square_xyrxly[rx], square_xyrxly[y]);
+ SDL_RenderDrawLine(render, square_xyrxly[x], square_xyrxly[lry], square_xyrxly[rx], square_xyrxly[lry]);
 
 };
 

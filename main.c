@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
  slaves_window = MySpeciInitSlavesWindow(slaves_window);
  //window サーフェイス取得 表示
  Menue2_s.screenSurface = SDL_GetWindowSurface(slaves_window);
-  //サーフェイスの背景を白にする
+ //サーフェイスの背景を白にする
  SDL_FillRect(Menue2_s.screenSurface, NULL,
               SDL_MapRGB(Menue2_s.screenSurface->format,
                            0xFF, 0xFF, 0xFF));
@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
  Menue2_s = MySpeciInitMenue2(Menue2_s, slaves_window);
 
  //画面 Menue2 枠描画処理
- MySpecicDrawMenue2Square(Menue2_s.render);
+ MySpeciDrawMenue2Square(Menue2_s.render);
  
  //文字列表示処理
  //select_square2

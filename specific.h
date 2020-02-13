@@ -93,7 +93,12 @@ struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Wind
  return Menue2_s;
 }
 
-void MySpecicDrawMenue2Square(SDL_Renderer* render) {
- MySDLDrawSquare(render, 100, 550, 950, 800); //select_square2
- MySDLDrawSquare(render, 500, 50, 950, 500);  //view_square
+void MySpeciDrawMenue2Square(SDL_Renderer* render) {
+ int select_square2_xyhw[4] = {100, 550, 950, 800},
+     view_square_xyhw[4] = {500, 50, 950, 500};
+  
+ MySDLDrawSquare(render, select_square2_xyhw); //select_square2
+ MySDLDrawSquare(render, view_square_xyhw);  //view_square
 }
+
+//void MyspeciCreateMenue2
