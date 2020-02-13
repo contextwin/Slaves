@@ -53,41 +53,44 @@ SDL_Window* MySpeciInitSlavesWindow (SDL_Window* window) {
 };
 
 //メニュー画面2 レンダリングデータ初期化処理
-struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 MyMenue2_s, SDL_Window* window) {
+struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Window* window) {
  
  unsigned char i = 0;
 
  //メニュー画面2 出力文言
  char select_square2_strings[MyMENUE2_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  
- MyStringsAssignment(MyMenue2_s.img_path_name, IMAGE_DIR);
+ MyStringsAssignment(Menue2_s.img_path_name, IMAGE_DIR);
  
- MyStringsAssignment(MyMenue2_s.font_path_name, FONT_DIR);
+ MyStringsAssignment(Menue2_s.font_path_name, FONT_DIR);
  
  for(i = 0; i <= MyMENUE2_STRINGSNUM; i++){
-  MyStringsAssignment(MyMenue2_s.select_square2_strings[i], select_square2_strings[i]);
+  MyStringsAssignment(Menue2_s.select_square2_strings[i], select_square2_strings[i]);
  }
  
- MyMenue2_s.image = NULL;
- strcat(MyMenue2_s.img_path_name, PNG_FILE02);
+ Menue2_s.image = NULL;
+ strcat(Menue2_s.img_path_name, PNG_FILE02);
  
  //画像データ読み込み
- MyMenue2_s.image = IMG_Load(MyMenue2_s.img_path_name);
- if(!MyMenue2_s.image){
+ Menue2_s.image = IMG_Load(Menue2_s.img_path_name);
+ if(!Menue2_s.image){
   printf("IMG_GetError: %s\n", IMG_GetError());
  }
 
  //TTF初期化
- strcat(MyMenue2_s.font_path_name, TTF_FONT1);
- MyMenue2_s.font12px = MyFuncInitTTF(MyMenue2_s.font12px, MyMenue2_s.font_path_name);
- memset(MyMenue2_s.font_path_name, '\0', sizeof(MyMenue2_s.font_path_name));
- memcpy(MyMenue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR)); 
- strcat(MyMenue2_s.font_path_name, TTF_FONT2);
- MyMenue2_s.font10px = MyFuncInitTTF(MyMenue2_s.font10px, MyMenue2_s.font_path_name);
+ strcat(Menue2_s.font_path_name, TTF_FONT1);
+ Menue2_s.font12px = MyFuncInitTTF(Menue2_s.font12px, Menue2_s.font_path_name);
+ memset(Menue2_s.font_path_name, '\0', sizeof(Menue2_s.font_path_name));
+ memcpy(Menue2_s.font_path_name, FONT_DIR, strlen(FONT_DIR)); 
+ strcat(Menue2_s.font_path_name, TTF_FONT2);
+ Menue2_s.font10px = MyFuncInitTTF(Menue2_s.font10px, Menue2_s.font_path_name);
  
  //SDL_Renderer 初期化
- MyMenue2_s.render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
- SDL_SetRenderDrawColor(MyMenue2_s.render, 0,0,0,0);
+ Menue2_s.render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+ SDL_SetRenderDrawColor(Menue2_s.render, 0,0,0,0);
  
- return MyMenue2_s;
+ //引数1のサーフェイスを引数3のサーフェイスにコピーする
+ SDL_BlitSurface(Menue2_s.image, NULL, Menue2_s.screenSurface, NULL);
+ 
+ return Menue2_s;
 }

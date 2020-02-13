@@ -23,12 +23,8 @@ int main(int argc, char* argv[]) {
                            0xFF, 0xFF, 0xFF));
  //画面 Menue2 データ初期化処理
  Menue2_s = MySpeciInitMenue2(Menue2_s, slaves_window);
-                   
+
  //画面 Menue2 枠描画処理
- 
- //引数1のサーフェイスを引数3のサーフェイスにコピーする
- SDL_BlitSurface(Menue2_s.image, NULL, Menue2_s.screenSurface, NULL);
- 
  MySDLDrawSquare(Menue2_s.render, 100, 550, 950, 800); //select_square2
  MySDLDrawSquare(Menue2_s.render, 500, 50, 950, 500); //view_square
    
