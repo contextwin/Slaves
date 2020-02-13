@@ -6,34 +6,28 @@
 int main(int argc, char* argv[]) {
  // 自己定義型宣言
  struct MyStructMenue2 Menue2_s;
+ SDL_Window* slaves_window = NULL; // 描画ウィンドウ
 
  SDL_Event event;
- SDL_Window* window = NULL; // 描画ウィンドウ
-
  SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
-// SDL_Renderer* render;
  SDL_Texture *texture;
  
  SDL_Surface *screenSurface = NULL; // windowのサーフェイス
  SDL_bool done = SDL_FALSE;
 
  //Slaves SDL_Window データ初期化処理
- window = MyFuncSpeciInitSlavesWindow(window);
+ slaves_window = MyFuncSpeciInitSlavesWindow(slaves_window);
  //window サーフェイス取得 表示
- screenSurface = SDL_GetWindowSurface(window);
+ screenSurface = SDL_GetWindowSurface(slaves_window);
   //サーフェイスの背景を白にする
  SDL_FillRect(screenSurface, NULL,
               SDL_MapRGB(screenSurface->format,
                            0xFF, 0xFF, 0xFF));
  //画面 Menue2 データ初期化処理
- Menue2_s = MyFuncInitMenue2(Menue2_s, window);
+ Menue2_s = MyFuncInitMenue2(Menue2_s, slaves_window);
                    
  //引数1のサーフェイスを引数3のサーフェイスにコピーする
  SDL_BlitSurface(Menue2_s.image, NULL, screenSurface, NULL);
- 
- //画面 Menue2 SDL_Renderer初期化
- //render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
- //SDL_SetRenderDrawColor(render, 0,0,0,0);
  
  MySDLDrawSquare(Menue2_s.render, 100, 550, 950, 800); //select_square2
  MySDLDrawSquare(Menue2_s.render, 500, 50, 950, 500); //view_square
@@ -93,7 +87,7 @@ int main(int argc, char* argv[]) {
 
  
  //サーフェイスを更新
- SDL_UpdateWindowSurface(window);
+ SDL_UpdateWindowSurface(slaves_window);
      
  while(!done) {
   while(SDL_PollEvent(&event)){
@@ -108,7 +102,7 @@ int main(int argc, char* argv[]) {
  SDL_DestroyTexture(texture);
  SDL_DestroyRenderer(Menue2_s.render);
  //window 開放
- SDL_DestroyWindow(window);  
+ SDL_DestroyWindow(slaves_window);  
  SDL_Quit(); // 全てのサブシステムの終了
 
  return EXIT_SUCCESS;
