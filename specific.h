@@ -25,7 +25,7 @@
 #define MyMENUE2_STRINGSNUM 4
 
 //メニュー画面2 レンダリングデータ保持用構造体構造体変数
-struct MyStructMenue2 {
+struct MyStructRenderData {
  SDL_Surface *image; // 画像のサーフェイス
  SDL_Surface *screenSurface; // windowのサーフェイス
  char img_path_name[FILE_NAME_MAX],
@@ -40,7 +40,7 @@ struct MyStructMenue2 {
 //SDL_Window データと各画面レンダリングデータ保持用構造体変数
 struct MyWindowAndRenderData {
 	SDL_Window* slaves_window;
-	struct MyStructMenue2 Menue2_s;
+	struct MyStructRenderData Menue2_s;
 };
 
 SDL_Window* MySpeciInitSlavesWindow (SDL_Window* window) {
@@ -59,7 +59,7 @@ SDL_Window* MySpeciInitSlavesWindow (SDL_Window* window) {
 };
 
 //メニュー画面2 レンダリングデータ初期化処理
-struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Window* window) {
+struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, SDL_Window* window) {
  
  unsigned char i = 0;
 
@@ -107,9 +107,13 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
  MySDLDrawSquare(render, view_square_xyrxlry);  //view_square
 };
 
+void MySpeciTexterBleadAndCreateSurface(struct MyStructRenderData* data_s) {
+data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->select_square2_strings[0], (SDL_Color){0,255,255,255});  
+data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
+};
+
 void MySpeciRenderTextMenue2Square(struct MyWindowAndRenderData* data) {
 };
 
-void MySpeciSetTTFTextRendererCopy() {
-};
+
 //void MyspeciCreateSlavesMainWindow()
