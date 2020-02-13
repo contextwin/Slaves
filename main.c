@@ -20,7 +20,6 @@ int main(int argc, char* argv[]) {
  SDL_FillRect(WinAndRender_s.Menue2_s.screenSurface, NULL,
               SDL_MapRGB(WinAndRender_s.Menue2_s.screenSurface->format,
                            0xFF, 0xFF, 0xFF));
- 
  //画面 Menue2 データ初期化処理
  WinAndRender_s.Menue2_s = MySpeciInitMenue2(WinAndRender_s.Menue2_s, slaves_window);
  //画面 Menue2 枠描画処理
