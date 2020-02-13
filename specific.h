@@ -129,9 +129,9 @@ void MySpeciTexterBleadAndCreateSurface_UserSelecting(struct MyStructRenderData*
  data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
-void MySpeciTexterBleadAndCreateSurface(struct MyStructRenderData* data_s) {
- data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->select_square2_strings[1], data_s->TTFColor2);  
- data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
+void MySpeciTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsigned char num) {
+  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->select_square2_strings[num], data_s->TTFColor2);  
+  data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciRenderTextMenue2Square(struct MyWindowAndRenderData* data) {
