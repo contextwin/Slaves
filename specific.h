@@ -54,7 +54,7 @@ SDL_Window* MySpeciInitSlavesWindow (SDL_Window* window) {
  if(window == NULL){
   printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
   exit(EXIT_FAILURE);
- }
+ };
  return window;
 };
 
@@ -71,7 +71,7 @@ struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Wind
  
  for(i = 0; i <= MyMENUE2_STRINGSNUM; i++){
   MyFuncStringsAssignment(Menue2_s.select_square2_strings[i], select_square2_strings[i]);
- }
+ };
  
  Menue2_s.image = NULL;
  strcat(Menue2_s.img_path_name, PNG_FILE02);
@@ -80,7 +80,7 @@ struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Wind
  Menue2_s.image = IMG_Load(Menue2_s.img_path_name);
  if(!Menue2_s.image){
   printf("IMG_GetError: %s\n", IMG_GetError());
- }
+ };
 
  //TTF初期化
  strcat(Menue2_s.font_path_name, TTF_FONT1);
@@ -97,7 +97,7 @@ struct MyStructMenue2 MySpeciInitMenue2(struct MyStructMenue2 Menue2_s, SDL_Wind
  SDL_BlitSurface(Menue2_s.image, NULL, Menue2_s.screenSurface, NULL);
  
  return Menue2_s;
-}
+};
 
 void MySpeciDrawMenue2Square(SDL_Renderer* render) {
  int select_square2_xyrxlry[4] = {100, 550, 950, 800},
@@ -105,8 +105,11 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
   
  MySDLDrawSquare(render, select_square2_xyrxlry); //select_square2
  MySDLDrawSquare(render, view_square_xyrxlry);  //view_square
-}
+};
 
+void MySpeciRenderTextMenue2Square(struct MyWindowAndRenderData* data) {
+};
 
-
+void MySpeciSetTTFTextRendererCopy() {
+};
 //void MyspeciCreateSlavesMainWindow()

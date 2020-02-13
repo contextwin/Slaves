@@ -28,53 +28,53 @@ int main(int argc, char* argv[]) {
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[0], (SDL_Color){0,255,255,255});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	 
  //テクスチャーをx,yの座標にレンダーコピー
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 575);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 575);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[1], (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
  
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 440, 575);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 440, 575);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[2], (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 730, 575);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 730, 575);
 
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[3], (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 675);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 675);
  
  //view_square
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "Chipo       Lv 1", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 75);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 75);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "        HP 23/23", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 125);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 125);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "        MP 15/15", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 170);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 170);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "       ABP 15/15", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 220);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 220);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "   STR  3  SPD 5", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 270);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 270);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "   VIT  3  MGC 5", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 320);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 320);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "   INT  3 LUCK 5", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 370);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 370);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, "NextLvUP   8 exp", (SDL_Color){0,0,0,0});	  
  WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- MyTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 440);
+ MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 550, 440);
 
  
  //サーフェイスを更新

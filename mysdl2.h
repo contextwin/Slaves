@@ -35,7 +35,7 @@ TTF_Font *MyFuncInitTTF(TTF_Font *font, char *font_path_name) {
  return font;
 }
 
-void MyTextureRenderCopy(SDL_Texture *texture, SDL_Renderer *render, int x, int y) {
+void MySDLTextureRenderCopy(SDL_Texture *texture, SDL_Renderer *render, int x, int y) {
 
  int iw,ih;
  SDL_QueryTexture(texture, NULL, NULL, &iw, &ih);
