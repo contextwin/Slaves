@@ -141,7 +141,12 @@ void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
  int xy[MyMENUE2_STRINGSNUM][2] ={{150, 575,},{440, 575},{730, 575},{150, 675}};
  
  for(i = 0; i < MyMENUE2_STRINGSNUM; i++) {
-	 MySpeciTexterBleadAndCreateSurface(data_s, i);
+	 
+	 if ( i == data_s->user_cursor_position ) {
+	  MySpeciTexterBleadAndCreateSurface_UserSelecting(data_s);
+	 } else { 
+	  MySpeciTexterBleadAndCreateSurface(data_s, i);
+     }
      MySDLTextureRenderCopy(data_s->texture, data_s->render, xy[i][MyRENDER_X], xy[i][MyRENDER_Y]);
  }
  
