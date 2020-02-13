@@ -7,7 +7,6 @@ int main(int argc, char* argv[]) {
  // 自己定義型宣言
  struct MyStructMenue2 Menue2_s;
  SDL_Window* slaves_window = NULL; // 描画ウィンドウ
-
  SDL_Event event;
  SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
  SDL_Texture *texture;
@@ -25,9 +24,10 @@ int main(int argc, char* argv[]) {
  Menue2_s = MySpeciInitMenue2(Menue2_s, slaves_window);
 
  //画面 Menue2 枠描画処理
- MySDLDrawSquare(Menue2_s.render, 100, 550, 950, 800); //select_square2
- MySDLDrawSquare(Menue2_s.render, 500, 50, 950, 500); //view_square
-   
+ //MySDLDrawSquare(Menue2_s.render, 100, 550, 950, 800); //select_square2
+ //MySDLDrawSquare(Menue2_s.render, 500, 50, 950, 500);  //view_square
+ MySpecicDrawMenue2Square(Menue2_s.render);
+ 
  //文字列表示処理
  //select_square2
  Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[0], (SDL_Color){0,255,255,255});	  
