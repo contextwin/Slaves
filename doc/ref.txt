@@ -6,3 +6,4 @@ https://daeudaeu.com/programming/c-language/libpng/
 http://lazyfoo.net/tutorials/SDL/index.php
 https://sdl2referencejp.osdn.jp/SDL_image-overview.html
 http://utsukemononi.gozaru.jp/gc/sdl/index.html
+http://sdl2referencejp.osdn.jp/SDL_Keycode.html

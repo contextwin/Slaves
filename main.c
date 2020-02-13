@@ -80,9 +80,12 @@ int main(int argc, char* argv[]) {
   while(SDL_PollEvent(&event)){
    if(event.type == SDL_QUIT) {
 	done = SDL_TRUE;
-   }
+   } else if (event.type == SDL_KEYDOWN &&
+              event.key.keysym.sym == SDLK_RETURN){
+	done = SDL_TRUE;
+}
   }
- }
+}
      
  /* ... */
  SDL_FreeSurface(WinAndRender_s.Menue2_s.screenSurface);
