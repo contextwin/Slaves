@@ -23,6 +23,7 @@
 
 //出力文言データ関連マクロ
 #define MyMENUE2_STRINGSNUM 4
+#define MyTEXTRENDER_ARRAYNUM 2
 #define MyRENDER_X 0
 #define MyRENDER_Y 1
 
@@ -138,7 +139,7 @@ void MySpeciTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsig
 
 void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
  unsigned char i;
- int xy[MyMENUE2_STRINGSNUM][2] ={{150, 575,},{440, 575},{730, 575},{150, 675}};
+ int xy[MyMENUE2_STRINGSNUM][MyTEXTRENDER_ARRAYNUM] ={{150, 575},{440, 575},{730, 575},{150, 675}};
  
  for(i = 0; i < MyMENUE2_STRINGSNUM; i++) {
 	 
