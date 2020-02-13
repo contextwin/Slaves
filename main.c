@@ -24,14 +24,11 @@ int main(int argc, char* argv[]) {
  MySpeciDrawMenue2Square(WinAndRender_s.Menue2_s.render);
  
  //文字列表示処理
- //select_square2
- MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s);
- //テクスチャーをx,yの座標にレンダーコピー
+ //select_square2 TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー
+ MySpeciTexterBleadAndCreateSurface_UserSelecting(&WinAndRender_s.Menue2_s);
  MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 575);
  
- WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[1], (SDL_Color){0,0,0,0});	  
- WinAndRender_s.Menue2_s.texture = SDL_CreateTextureFromSurface(WinAndRender_s.Menue2_s.render, WinAndRender_s.Menue2_s.screenSurface);	
- 
+ MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s);
  MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 440, 575);
  
  WinAndRender_s.Menue2_s.screenSurface = TTF_RenderUTF8_Blended(WinAndRender_s.Menue2_s.font10px, WinAndRender_s.Menue2_s.select_square2_strings[2], (SDL_Color){0,0,0,0});	  
