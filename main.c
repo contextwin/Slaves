@@ -24,8 +24,6 @@ int main(int argc, char* argv[]) {
  Menue2_s = MySpeciInitMenue2(Menue2_s, slaves_window);
 
  //画面 Menue2 枠描画処理
- //MySDLDrawSquare(Menue2_s.render, 100, 550, 950, 800); //select_square2
- //MySDLDrawSquare(Menue2_s.render, 500, 50, 950, 500);  //view_square
  MySpecicDrawMenue2Square(Menue2_s.render);
  
  //文字列表示処理
