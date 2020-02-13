@@ -27,6 +27,7 @@
 //メニュー画面2 レンダリングデータ保持用 構造体
 struct MyStructMenue2 {
  SDL_Surface *image; // 画像のサーフェイス
+ SDL_Surface *screenSurface; // windowのサーフェイス
  char img_path_name[FILE_NAME_MAX],
  font_path_name[FILE_NAME_MAX],
  select_square2_strings[4][STRINGS_MAX];

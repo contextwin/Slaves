@@ -18,71 +18,73 @@ int main(int argc, char* argv[]) {
  //Slaves SDL_Window データ初期化処理
  slaves_window = MySpeciInitSlavesWindow(slaves_window);
  //window サーフェイス取得 表示
- screenSurface = SDL_GetWindowSurface(slaves_window);
+ Menue2_s.screenSurface = SDL_GetWindowSurface(slaves_window);
   //サーフェイスの背景を白にする
- SDL_FillRect(screenSurface, NULL,
-              SDL_MapRGB(screenSurface->format,
+ SDL_FillRect(Menue2_s.screenSurface, NULL,
+              SDL_MapRGB(Menue2_s.screenSurface->format,
                            0xFF, 0xFF, 0xFF));
  //画面 Menue2 データ初期化処理
  Menue2_s = MySpeciInitMenue2(Menue2_s, slaves_window);
                    
+ //画面 Menue2 枠描画処理
+ 
  //引数1のサーフェイスを引数3のサーフェイスにコピーする
- SDL_BlitSurface(Menue2_s.image, NULL, screenSurface, NULL);
+ SDL_BlitSurface(Menue2_s.image, NULL, Menue2_s.screenSurface, NULL);
  
  MySDLDrawSquare(Menue2_s.render, 100, 550, 950, 800); //select_square2
  MySDLDrawSquare(Menue2_s.render, 500, 50, 950, 500); //view_square
    
  //文字列表示処理
  //select_square2
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[0], (SDL_Color){0,255,255,255});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	 
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[0], (SDL_Color){0,255,255,255});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	 
  //テクスチャーをx,yの座標にレンダーコピー
  MyTextureRenderCopy(texture, Menue2_s.render, 150, 575);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[1], (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[1], (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  
  MyTextureRenderCopy(texture, Menue2_s.render, 440, 575);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[2], (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[2], (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 730, 575);
 
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[3], (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, Menue2_s.select_square2_strings[3], (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 150, 675);
  
  //view_square
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "Chipo       Lv 1", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "Chipo       Lv 1", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 75);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "        HP 23/23", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "        HP 23/23", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 125);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "        MP 15/15", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "        MP 15/15", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 170);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "       ABP 15/15", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "       ABP 15/15", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 220);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "   STR  3  SPD 5", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "   STR  3  SPD 5", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 270);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "   VIT  3  MGC 5", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "   VIT  3  MGC 5", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 320);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "   INT  3 LUCK 5", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "   INT  3 LUCK 5", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 370);
  
- screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "NextLvUP   8 exp", (SDL_Color){0,0,0,0});	  
- texture = SDL_CreateTextureFromSurface(Menue2_s.render, screenSurface);	
+ Menue2_s.screenSurface = TTF_RenderUTF8_Blended(Menue2_s.font10px, "NextLvUP   8 exp", (SDL_Color){0,0,0,0});	  
+ texture = SDL_CreateTextureFromSurface(Menue2_s.render, Menue2_s.screenSurface);	
  MyTextureRenderCopy(texture, Menue2_s.render, 550, 440);
 
  
@@ -98,7 +100,7 @@ int main(int argc, char* argv[]) {
  }
      
  /* ... */
- SDL_FreeSurface(screenSurface);
+ SDL_FreeSurface(Menue2_s.screenSurface);
  SDL_DestroyTexture(texture);
  SDL_DestroyRenderer(Menue2_s.render);
  //window 開放
