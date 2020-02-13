@@ -24,18 +24,8 @@ int main(int argc, char* argv[]) {
  MySpeciDrawMenue2Square(WinAndRender_s.Menue2_s.render);
  
  //文字列表示処理
- //select_square2 TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー
+ //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー
  MySpeciTexterBleadAndCreateSurface_UserSelecting(&WinAndRender_s.Menue2_s);
- MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 575);
- 
- MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s, 1);
- MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 440, 575);
- 
- MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s, 2);
- MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 730, 575);
-
- MySpeciTexterBleadAndCreateSurface(&WinAndRender_s.Menue2_s, 3);
- MySDLTextureRenderCopy(WinAndRender_s.Menue2_s.texture, WinAndRender_s.Menue2_s.render, 150, 675);
  
  MySpeciRenderTextMenue2Square(&WinAndRender_s.Menue2_s);
  

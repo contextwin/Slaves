@@ -23,6 +23,8 @@
 
 //出力文言データ関連マクロ
 #define MyMENUE2_STRINGSNUM 4
+#define MyRENDER_X 0
+#define MyRENDER_Y 1
 
 //メニュー画面2 レンダリングデータ保持用構造体構造体変数
 struct MyStructRenderData {
@@ -140,7 +142,7 @@ void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
  
  for(i = 0; i < MyMENUE2_STRINGSNUM; i++) {
 	 MySpeciTexterBleadAndCreateSurface(data_s, i);
-     MySDLTextureRenderCopy(data_s->texture, data_s->render, xy[i][0], xy[i][1]);
+     MySDLTextureRenderCopy(data_s->texture, data_s->render, xy[i][MyRENDER_X], xy[i][MyRENDER_Y]);
  }
  
 };
