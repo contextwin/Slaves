@@ -6,22 +6,21 @@
 int main(int argc, char* argv[]) {
  // 自己定義型宣言
  struct MyWindowAndRenderData WinAndRender_s;
- SDL_Window* slaves_window = NULL; // 描画ウィンドウ
  SDL_Event event;
- SDL_Rect rect = {100, 600, 850, 200}, scr_rect;
  SDL_Texture *texture;
  SDL_bool done = SDL_FALSE;
 
  //Slaves SDL_Window データ初期化処理
- slaves_window = MySpeciInitSlavesWindow(slaves_window);
+ WinAndRender_s.slaves_window = NULL; // warning 対策
+ WinAndRender_s.slaves_window = MySpeciInitSlavesWindow(WinAndRender_s.slaves_window);
  //window サーフェイス取得 表示
- WinAndRender_s.Menue2_s.screenSurface = SDL_GetWindowSurface(slaves_window);
+ WinAndRender_s.Menue2_s.screenSurface = SDL_GetWindowSurface(WinAndRender_s.slaves_window);
  //サーフェイスの背景を白にする
  SDL_FillRect(WinAndRender_s.Menue2_s.screenSurface, NULL,
               SDL_MapRGB(WinAndRender_s.Menue2_s.screenSurface->format,
                            0xFF, 0xFF, 0xFF));
  //画面 Menue2 データ初期化処理
- WinAndRender_s.Menue2_s = MySpeciInitMenue2(WinAndRender_s.Menue2_s, slaves_window);
+ WinAndRender_s.Menue2_s = MySpeciInitMenue2(WinAndRender_s.Menue2_s, WinAndRender_s.slaves_window);
  //画面 Menue2 枠描画処理
  MySpeciDrawMenue2Square(WinAndRender_s.Menue2_s.render);
  
@@ -80,7 +79,7 @@ int main(int argc, char* argv[]) {
 
  
  //サーフェイスを更新
- SDL_UpdateWindowSurface(slaves_window);
+ SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
      
  while(!done) {
   while(SDL_PollEvent(&event)){
@@ -95,7 +94,7 @@ int main(int argc, char* argv[]) {
  SDL_DestroyTexture(texture);
  SDL_DestroyRenderer(WinAndRender_s.Menue2_s.render);
  //window 開放
- SDL_DestroyWindow(slaves_window);  
+ SDL_DestroyWindow(WinAndRender_s.slaves_window);  
  SDL_Quit(); // 全てのサブシステムの終了
 
  return EXIT_SUCCESS;

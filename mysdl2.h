@@ -11,7 +11,7 @@ struct MyStructSDLWindowData {
 };
 					   
 void MySDLDrawSquare(SDL_Renderer *render, int* square_xyrxly ) {
- enum { x, y, rx, lry}; // x, y, right x, lower right y;
+ enum {x, y, rx, lry}; // x, y, right x, lower right y;
  
  SDL_RenderDrawLine(render, square_xyrxly[x], square_xyrxly[y] , square_xyrxly[x], square_xyrxly[lry]);
  SDL_RenderDrawLine(render, square_xyrxly[rx], square_xyrxly[y], square_xyrxly[rx], square_xyrxly[lry]);
@@ -32,7 +32,7 @@ TTF_Font *MyFuncInitTTF(TTF_Font *font, char *font_path_name) {
 	  printf("TTF_OpenFont: %s\n", TTF_GetError());
  }
  
- return font; // ?
+ return font;
 }
 
 void MyTextureRenderCopy(SDL_Texture *texture, SDL_Renderer *render, int x, int y) {
