@@ -34,7 +34,8 @@ struct MyStructRenderData {
  TTF_Font *font12px, // 12px
           *font10px; // 10px
  SDL_Texture *texture;
- SDL_Color TTFColor1;
+ SDL_Color TTFColor1,
+           TTFColor2;
  SDL_Renderer* render;
 };
 
@@ -102,6 +103,11 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  Menue2_s.TTFColor1.b = 255;
  Menue2_s.TTFColor1.a = 255;
  
+ Menue2_s.TTFColor2.r = 0;
+ Menue2_s.TTFColor2.g = 0;
+ Menue2_s.TTFColor2.b = 0;
+ Menue2_s.TTFColor2.a = 0;
+
  return Menue2_s;
 };
 
