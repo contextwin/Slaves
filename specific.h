@@ -155,7 +155,14 @@ void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
 };
 
 void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
-	if (SDLK_DOWN == sym) {
+	
+	if (SDLK_UP == sym) {
+		if (3 != data_s->user_cursor_position) {
+			data_s->user_cursor_position = 3;
+		} else {
+			data_s->user_cursor_position = 0;
+		}
+	} else if (SDLK_DOWN == sym) {
 		if (0 == data_s->user_cursor_position) {
 			data_s->user_cursor_position = 3;
 		} else {
