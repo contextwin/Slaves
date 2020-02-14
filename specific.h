@@ -154,5 +154,12 @@ void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
  
 };
 
-
-//void MyspeciCreateSlavesMainWindow()
+void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
+	if (sym == SDLK_DOWN) {
+		if (0 == data_s->user_cursor_position) {
+			data_s->user_cursor_position = 3;
+			MySpeciRenderTextMenue2Square(data_s);
+		};
+	}
+}
+//void MySpeciRenderMenue2()

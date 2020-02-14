@@ -1,6 +1,7 @@
 //機能層のヘッダ
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <png.h>
 //マクロ変数
 #define HEADER_NUM 8

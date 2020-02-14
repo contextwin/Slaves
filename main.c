@@ -12,7 +12,8 @@ int main(int argc, char* argv[]) {
  //Slaves SDL_Window データ初期化処理
  WinAndRender_s.slaves_window = NULL; // warning 対策
  WinAndRender_s.slaves_window = MySpeciInitSlavesWindow(WinAndRender_s.slaves_window);
- //window サーフェイス取得 表示
+ 
+ //Menue2レンダリング用 サーフェイス取得 表示
  WinAndRender_s.Menue2_s.screenSurface = SDL_GetWindowSurface(WinAndRender_s.slaves_window);
  //サーフェイスの背景を白にする
  SDL_FillRect(WinAndRender_s.Menue2_s.screenSurface, NULL,
@@ -63,14 +64,18 @@ int main(int argc, char* argv[]) {
  //サーフェイスを更新
  SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
      
- while(!done) {
-  while(SDL_PollEvent(&event)){
-   if(event.type == SDL_QUIT) {
+ while (!done) {
+  while (SDL_PollEvent(&event)) {
+   if (event.type == SDL_QUIT) {
 	done = SDL_TRUE;
-   } else if (event.type == SDL_KEYDOWN &&
-              event.key.keysym.sym == SDLK_RETURN){
-	           done = SDL_TRUE;
-   }
+   } else if (event.type == SDL_KEYDOWN) {
+      if (event.key.keysym.sym == SDLK_RETURN) {
+	   done = SDL_TRUE;
+	  } else if (event.key.keysym.sym == SDLK_DOWN) {
+	   MySpeciMenue2UserInput(&WinAndRender_s.Menue2_s, event.key.keysym.sym);
+	    SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
+	  }
+  }
   }
  }
      
