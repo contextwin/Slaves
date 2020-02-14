@@ -155,13 +155,20 @@ void MySpeciRenderTextMenue2Square(struct MyStructRenderData* data_s) {
 };
 
 void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
-	if (sym == SDLK_DOWN) {
+	if (SDLK_DOWN == sym) {
 		if (0 == data_s->user_cursor_position) {
 			data_s->user_cursor_position = 3;
-		} else if(3 == data_s->user_cursor_position) {
+		} else {
 			data_s->user_cursor_position = 0;
 		}
 		MySpeciRenderTextMenue2Square(data_s);
+	} else if (SDLK_RIGHT == sym) {
+		if (3 > data_s->user_cursor_position) {
+			data_s->user_cursor_position++;
+		} else {
+			data_s->user_cursor_position = 0;
+		}
+	    MySpeciRenderTextMenue2Square(data_s);
 	}
 }
 //void MySpeciRenderMenue2()

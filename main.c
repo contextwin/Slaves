@@ -71,7 +71,8 @@ int main(int argc, char* argv[]) {
    } else if (event.type == SDL_KEYDOWN) {
       if (event.key.keysym.sym == SDLK_RETURN) {
 	   done = SDL_TRUE;
-	  } else if (event.key.keysym.sym == SDLK_DOWN) {
+	  } else if (event.key.keysym.sym == SDLK_DOWN || 
+	             event.key.keysym.sym == SDLK_RIGHT) {
 	   MySpeciMenue2UserInput(&WinAndRender_s.Menue2_s, event.key.keysym.sym);
 	   SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
 	  }
