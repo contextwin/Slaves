@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
 	   done = SDL_TRUE;
 	  } else if (event.key.keysym.sym == SDLK_DOWN) {
 	   MySpeciMenue2UserInput(&WinAndRender_s.Menue2_s, event.key.keysym.sym);
-	    SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
+	   SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
 	  }
   }
   }
