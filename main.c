@@ -6,8 +6,6 @@
 int main(int argc, char* argv[]) {
  // 自己定義型宣言
  struct MyWindowAndRenderData WinAndRender_s;
- SDL_Event event;
- SDL_bool done = SDL_FALSE;
 
  //Slaves SDL_Window データ初期化処理
  WinAndRender_s.slaves_window = NULL; // warning 対策
@@ -31,25 +29,9 @@ int main(int argc, char* argv[]) {
  MySpeciRenderTextMenue2ViewSquare(&WinAndRender_s.Menue2_s);
  //サーフェイスを更新
  SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
-     
- while (!done) {
-  while (SDL_PollEvent(&event)) {
-   if (event.type == SDL_QUIT) {
-	done = SDL_TRUE;
-   } else if (event.type == SDL_KEYDOWN) {
-      if (event.key.keysym.sym == SDLK_RETURN) {
-	   done = SDL_TRUE;
-	  } else if (event.key.keysym.sym == SDLK_UP    ||
-	             event.key.keysym.sym == SDLK_DOWN  || 
-	             event.key.keysym.sym == SDLK_RIGHT ||
-	             event.key.keysym.sym == SDLK_LEFT) {
-	   MySpeciMenue2UserInput(&WinAndRender_s.Menue2_s, event.key.keysym.sym);
-	   SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
-	  }
-  }
-  }
- }
-     
+ //メニュー画面2 キーイベントループ
+ MySpeciMenue2UserInpuLoop(&WinAndRender_s);
+ 
  /* ... */
  SDL_FreeSurface(WinAndRender_s.Menue2_s.screenSurface);
  SDL_DestroyTexture(WinAndRender_s.Menue2_s.texture);

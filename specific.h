@@ -219,5 +219,30 @@ void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
 	MySpeciRenderTextMenue2SelectSquare(data_s);
 }
 
+void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
+
+ SDL_Event event;
+ SDL_bool done = SDL_FALSE;
+ 
+ while (!done) {
+  while (SDL_PollEvent(&event)) {
+   if (event.type == SDL_QUIT) {
+	done = SDL_TRUE;
+   } else if (event.type == SDL_KEYDOWN) {
+    if (event.key.keysym.sym == SDLK_RETURN) {
+	 done = SDL_TRUE;
+    } else if (event.key.keysym.sym == SDLK_UP    ||
+	           event.key.keysym.sym == SDLK_DOWN  || 
+	           event.key.keysym.sym == SDLK_RIGHT ||
+	           event.key.keysym.sym == SDLK_LEFT) {
+	   MySpeciMenue2UserInput(&data_s->Menue2_s, event.key.keysym.sym);
+	   SDL_UpdateWindowSurface(data_s->slaves_window);
+	  }
+   }
+  }
+ }
+ 
+};
+
 //void () {
 //void MySpeciRenderMenue2()
