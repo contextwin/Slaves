@@ -376,9 +376,13 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
                                                    (158 / 2));
 
  SDL_SetRenderDrawColor(data_s->render, 255, 255, 255, 255);
- SDL_Rect rect2=(SDL_Rect){MyFIRSTDIVISIONPIXEL5_X,(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
+ SDL_Rect rect2 = (SDL_Rect){MyFIRSTDIVISIONPIXEL5_X,(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
  SDL_RenderFillRect(data_s->render,&rect2);
- 
+ rect2 = (SDL_Rect){(MyFIRSTDIVISIONPIXEL5_X * 2),(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
+ SDL_RenderFillRect(data_s->render,&rect2);
+ rect2 = (SDL_Rect){(MyFIRSTDIVISIONPIXEL5_X * 3),(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
+ SDL_RenderFillRect(data_s->render,&rect2);
+
  SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 255);
  SDL_Rect rect;
  rect.x = MyFIRSTDIVISIONPIXEL5_X;
