@@ -11,12 +11,8 @@ int main(int argc, char* argv[]) {
  WinAndRender_s.slaves_window = NULL; // warning 対策
  MySpeciInitSlavesWindow(&WinAndRender_s);
 
- //画面 Menue2 遷移
+ //画面 Menue2 遷移開始
  MySpeciMenue2Start(&WinAndRender_s);
-
- //window 開放
- SDL_DestroyWindow(WinAndRender_s.slaves_window);  
- SDL_Quit(); // 全てのサブシステムの終了
-
+	
  return EXIT_SUCCESS;
 }

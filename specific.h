@@ -276,4 +276,9 @@ void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
  SDL_DestroyTexture(data_s->Menue2_s.texture);
  SDL_DestroyRenderer(data_s->Menue2_s.render);
  
+};
+
+void MySpeciCloseSlavesWindow(struct MyWindowAndRenderData* data_s) {
+ SDL_DestroyWindow(data_s->slaves_window);  
+ SDL_Quit(); // 全てのサブシステムの終了
 }
