@@ -394,6 +394,11 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 3), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 3), MyHEIGHT);
  SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 4), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 4), MyHEIGHT);
  
+ SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X /2), (MyFIRSTDIVISIONPIXEL5_Y * 2),
+                                    (MyFIRSTDIVISIONPIXEL5_X /2), MyHEIGHT);
+ SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2), (MyFIRSTDIVISIONPIXEL5_Y * 2),
+                                    (MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2), MyHEIGHT);
+ 
 }
 
 void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
