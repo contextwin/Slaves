@@ -3,17 +3,23 @@
 //描画マクロ
 #define MyROOT_NUM 59
 #define MyPADDING 1
-#define MyMAXDIVISIONALIA 6
+#define MyMAXDIVISIONALIA_5 5
+#define MyMAXDIVISIONALIA_6 6
 #define MySpeciAddPixelSize(n) (MyROOT_NUM + ((n - 1) * (MyROOT_NUM + MyPADDING)))
 #define MyWIDTH MySpeciAddPixelSize(13) // 779 (0 ~ 778)
 #define MyHEIGHT MySpeciAddPixelSize(10) // 599 (0 ~ 598)
-#define MyGetFirstDivisionPixel(n) ((n / MyMAXDIVISIONALIA) + MyPADDING) 
-#define MyFIRSTDIVISIONPIXEL_X (MyGetFirstDivisionPixel(MyWIDTH)) //  6分割=129 5分割=155
-#define MyFIRSTDIVISIONPIXEL_Y (MyGetFirstDivisionPixel(MyHEIGHT)) // 6分割 =99 5分割=119
-#define MyMENUE2SELECTSQUARE_X (MyFIRSTDIVISIONPIXEL_X / 4)
-#define MyMENUE2SELECTSQUARE_Y (MyFIRSTDIVISIONPIXEL_Y * 4) - ((MyFIRSTDIVISIONPIXEL_Y / 4) - 1)
-#define MyMENUE2VIEWSQUARE_X MyFIRSTDIVISIONPIXEL_X * 3
-#define MyMENUE2VIEWSQUARE_Y (MyFIRSTDIVISIONPIXEL_Y / 4) + 1
+#define MyGetFirstDivisionPixel_5(n) ((n / MyMAXDIVISIONALIA_5) + MyPADDING) 
+#define MyGetFirstDivisionPixel_6(n) ((n / MyMAXDIVISIONALIA_6) + MyPADDING)
+#define MyFIRSTDIVISIONPIXEL5_X (MyGetFirstDivisionPixel_5(MyWIDTH)) //  5分割=155
+#define MyFIRSTDIVISIONPIXEL5_Y (MyGetFirstDivisionPixel_5(MyHEIGHT)) // 5分割=119
+#define MyFIRSTDIVISIONPIXEL6_X (MyGetFirstDivisionPixel_6(MyWIDTH)) //  6分割=129
+#define MyFIRSTDIVISIONPIXEL6_Y (MyGetFirstDivisionPixel_6(MyHEIGHT)) // 6分割 =99
+
+#define MyMENUE2SELECTSQUARE6_X (MyFIRSTDIVISIONPIXEL6_X / 4)
+#define MyMENUE2SELECTSQUARE6_Y (MyFIRSTDIVISIONPIXEL6_Y * 4) - ((MyFIRSTDIVISIONPIXEL6_Y / 4) - 1)
+#define MyMENUE2VIEWSQUARE6_X MyFIRSTDIVISIONPIXEL6_X * 3
+#define MyMENUE2VIEWSQUARE6_Y (MyFIRSTDIVISIONPIXEL6_Y / 4) + 1
+
 // limt
 #define FILE_NAME_MAX 256
 #define STRINGS_MAX 256
@@ -23,8 +29,7 @@
 
 //フォントデータ関連マクロ
 #define FONT_DIR "./fonts/"
-#define TTF_FONT1 "PixelMplus-20130602/PixelMplus12-Regular.ttf"
-#define TTF_FONT2 "PixelMplus-20130602/PixelMplus10-Regular.ttf"
+#define TTF_FONT1 "PixelMplus-20130602/PixelMplus10-Regular.ttf"
 
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
@@ -44,10 +49,9 @@ struct MyStructRenderData {
  SDL_Surface *screenSurface; // windowのサーフェイス
  char img_path_name[FILE_NAME_MAX],
  font_path_name[FILE_NAME_MAX],
- select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX],
- view_square_strings1[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX];
- TTF_Font *font12px, // 12px
-          *font10px; // 10px
+ select_square_strings[STRINGS_MAX][STRINGS_MAX],
+ view_square_strings[STRINGS_MAX][STRINGS_MAX];
+ TTF_Font *font10px;
  SDL_Texture *texture;
  SDL_Color TTFColor1,
            TTFColor2;
@@ -58,7 +62,7 @@ struct MyStructRenderData {
 //SDL_Window データと各画面レンダリングデータ保持用構造体変数
 struct MyWindowAndRenderData {
 	SDL_Window* slaves_window;
-	struct MyStructRenderData Menue2_s;
+    struct MyStructRenderData Menue1_s, Menue2_s;
 };
 
 void MySpeciInitSlavesWindow (struct MyWindowAndRenderData* data_s) {
@@ -74,19 +78,67 @@ void MySpeciInitSlavesWindow (struct MyWindowAndRenderData* data_s) {
   exit(EXIT_FAILURE);
  };
  
- //Menue2レンダリング用 サーフェイス取得 表示
- data_s->Menue2_s.screenSurface = SDL_GetWindowSurface(data_s->slaves_window);
+         
+};
+
+//メニュー画面1 レンダリングデータ初期化処理
+struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, SDL_Window* slaves_window) {
+
+ //Menue画面1 レンダリング用 サーフェイス取得 表示
+ Menue1_s.screenSurface = SDL_GetWindowSurface(slaves_window);
+ SDL_FillRect(Menue1_s.screenSurface, NULL,
+              SDL_MapRGB(Menue1_s.screenSurface->format,
+                           0xFF, 0xFF, 0xFF)); 
+                           
+ Menue1_s.user_cursor_position = 0;
+
+ //Menue画面1 レンダリング用 サーフェイス取得 表示
+ Menue1_s.screenSurface = SDL_GetWindowSurface(slaves_window);
  
  //サーフェイスの背景を白にする
- SDL_FillRect(data_s->Menue2_s.screenSurface, NULL,
-              SDL_MapRGB(data_s->Menue2_s.screenSurface->format,
-                           0xFF, 0xFF, 0xFF));
-                           
- //return window;
+ SDL_FillRect(Menue1_s.screenSurface, NULL,
+              SDL_MapRGB(Menue1_s.screenSurface->format,
+                           0xFF, 0xFF, 0xFF)); 
+
+ MyFuncStringsAssignment(Menue1_s.img_path_name, IMAGE_DIR);
+ MyFuncStringsAssignment(Menue1_s.font_path_name, FONT_DIR);           
+ 
+ Menue1_s.image = NULL;
+ strcat(Menue1_s.img_path_name, PNG_FILE01);
+ 
+ //画像データ読み込み
+ Menue1_s.image = IMG_Load(Menue1_s.img_path_name);
+ if(!Menue1_s.image){
+  printf("IMG_GetError: %s\n", IMG_GetError());
+ };
+ 
+ //引数1のサーフェイスを引数3のサーフェイスにコピーする
+ //SDL_BlitSurface(Menue1_s.image, NULL, Menue1_s.screenSurface, NULL);
+
+ //TTF初期化
+ strcat(Menue1_s.font_path_name, TTF_FONT1);
+ Menue1_s.font10px = MyFuncInitTTF(Menue1_s.font10px, Menue1_s.font_path_name);
+ 
+ //SDL_Renderer 初期化
+ Menue1_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
+ SDL_SetRenderDrawColor(Menue1_s.render, 0,0,0,0);
+  
+ Menue1_s.TTFColor1.r = 0;
+ Menue1_s.TTFColor1.g = 255;
+ Menue1_s.TTFColor1.b = 255;
+ Menue1_s.TTFColor1.a = 255;
+ 
+ Menue1_s.TTFColor2.r = 0;
+ Menue1_s.TTFColor2.g = 0;
+ Menue1_s.TTFColor2.b = 0;
+ Menue1_s.TTFColor2.a = 0;
+
+ return Menue1_s;
+ 
 };
 
 //メニュー画面2 レンダリングデータ初期化処理
-struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, SDL_Window* window) {
+struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, SDL_Window* slaves_window) {
  
  unsigned char i = 0;
 
@@ -94,7 +146,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //select_square
  char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  //view_square
- char view_square_strings1[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo         Lv 1",
+ char view_square_strings[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo         Lv 1",
 	                                                                 "          HP 23/23",
 	                                                                 "          MP 15/15",
 	                                                                 "         ABP 15/15",
@@ -103,7 +155,12 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 	                                                                 "     INT  3 LUCK 5",
 	                                                                 "NextLvUP     8 exp"};
  
- 
+ //サーフェイス取得
+ Menue2_s.screenSurface = SDL_GetWindowSurface(slaves_window);
+ SDL_FillRect(Menue2_s.screenSurface, NULL,
+              SDL_MapRGB(Menue2_s.screenSurface->format,
+                           0xFF, 0xFF, 0xFF));
+
  Menue2_s.user_cursor_position = 0;
  
  MyFuncStringsAssignment(Menue2_s.img_path_name, IMAGE_DIR);
@@ -114,7 +171,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  };
 
  for(i = 0; i <= MyMENUE2VIEW1_STRINGSNUM; i++){
-  MyFuncStringsAssignment(Menue2_s.view_square_strings1[i], view_square_strings1[i]);
+  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings[i]);
  };
  
  Menue2_s.image = NULL;
@@ -125,20 +182,17 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  if(!Menue2_s.image){
   printf("IMG_GetError: %s\n", IMG_GetError());
  };
-
- //TTF初期化
- strcat(Menue2_s.font_path_name, TTF_FONT1);
- Menue2_s.font12px = MyFuncInitTTF(Menue2_s.font12px, Menue2_s.font_path_name);
- MyFuncStringsAssignment(Menue2_s.font_path_name, FONT_DIR);
- strcat(Menue2_s.font_path_name, TTF_FONT2);
- Menue2_s.font10px = MyFuncInitTTF(Menue2_s.font10px, Menue2_s.font_path_name);
- 
- //SDL_Renderer 初期化
- Menue2_s.render = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
- SDL_SetRenderDrawColor(Menue2_s.render, 0,0,0,0);
  
  //引数1のサーフェイスを引数3のサーフェイスにコピーする
  SDL_BlitSurface(Menue2_s.image, NULL, Menue2_s.screenSurface, NULL);
+
+ //TTF初期化
+ strcat(Menue2_s.font_path_name, TTF_FONT1);
+ Menue2_s.font10px = MyFuncInitTTF(Menue2_s.font10px, Menue2_s.font_path_name);
+ 
+ //SDL_Renderer 初期化
+ Menue2_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
+ SDL_SetRenderDrawColor(Menue2_s.render, 0,0,0,0);
   
  Menue2_s.TTFColor1.r = 0;
  Menue2_s.TTFColor1.g = 255;
@@ -154,15 +208,15 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 };
 
 void MySpeciDrawMenue2Square(SDL_Renderer* render) {
- int select_square_xyrxlry[4] = {MyMENUE2SELECTSQUARE_X, 
-	                             MyMENUE2SELECTSQUARE_Y, 
-	                             ((MyFIRSTDIVISIONPIXEL_X * 5) + (MyFIRSTDIVISIONPIXEL_X - (MyFIRSTDIVISIONPIXEL_X / 4))),
-	                             ((MyFIRSTDIVISIONPIXEL_Y * 5) + ((MyFIRSTDIVISIONPIXEL_Y / 1.5) + 1))},
+ int select_square_xyrxlry[4] = {MyMENUE2SELECTSQUARE6_X, 
+	                             MyMENUE2SELECTSQUARE6_Y, 
+	                             ((MyFIRSTDIVISIONPIXEL6_X * 5) + (MyFIRSTDIVISIONPIXEL6_X - (MyFIRSTDIVISIONPIXEL6_X / 4))),
+	                             ((MyFIRSTDIVISIONPIXEL6_Y * 5) + ((MyFIRSTDIVISIONPIXEL6_Y / 1.5) + 1))},
 	                             
-     view_square_xyrxlry[4] = {MyMENUE2VIEWSQUARE_X,
-		                       MyMENUE2VIEWSQUARE_Y, 
-		                       ((MyFIRSTDIVISIONPIXEL_X * 5) + ((MyFIRSTDIVISIONPIXEL_X / 2) + 1)), 
-		                       (MyFIRSTDIVISIONPIXEL_Y * 3) + ((MyFIRSTDIVISIONPIXEL_Y / 2) + 1)};
+     view_square_xyrxlry[4] = {MyMENUE2VIEWSQUARE6_X,
+		                       MyMENUE2VIEWSQUARE6_Y, 
+		                       ((MyFIRSTDIVISIONPIXEL6_X * 5) + ((MyFIRSTDIVISIONPIXEL6_X / 2) + 1)), 
+		                       (MyFIRSTDIVISIONPIXEL6_Y * 3) + ((MyFIRSTDIVISIONPIXEL6_Y / 2) + 1)};
   
  MySDLDrawSquare(render, select_square_xyrxlry); //select_square
  MySDLDrawSquare(render, view_square_xyrxlry);   //view_square
@@ -181,12 +235,12 @@ void MySpeciSelectSquareTexterBleadAndCreateSurface(struct MyStructRenderData* d
 };
 
 void MySpeciViewSquareTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsigned char num) {
-  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->view_square_strings1[num], data_s->TTFColor2);  
+  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->view_square_strings[num], data_s->TTFColor2);  
   data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciRenderTextMenue2SelectSquare(struct MyStructRenderData* data_s) {
- int x_num = (MyMENUE2SELECTSQUARE_X + 50), y_num = ((MyMENUE2SELECTSQUARE_Y) + 20);
+ int x_num = (MyMENUE2SELECTSQUARE6_X + 50), y_num = ((MyMENUE2SELECTSQUARE6_Y) + 20);
  unsigned char i;
  
  int xy[MyMENUE2SELECT_STRINGSNUM][MyTEXTRENDER_ARRAYNUM];
@@ -196,7 +250,7 @@ void MySpeciRenderTextMenue2SelectSquare(struct MyStructRenderData* data_s) {
   xy[i][1] = y_num;
   
   if (i == 2) {
-   x_num = (MyMENUE2SELECTSQUARE_X + 50);
+   x_num = (MyMENUE2SELECTSQUARE6_X + 50);
    y_num = y_num + 70;
   } else {
    x_num = (x_num + 240);
@@ -217,7 +271,7 @@ void MySpeciRenderTextMenue2SelectSquare(struct MyStructRenderData* data_s) {
 };
 
 void MySpeciRenderTextMenue2ViewSquare(struct MyStructRenderData* data_s) {
- int x_num = (MyMENUE2VIEWSQUARE_X + 25), y_num = ((MyMENUE2VIEWSQUARE_Y) + 10);
+ int x_num = (MyMENUE2VIEWSQUARE6_X + 29), y_num = ((MyMENUE2VIEWSQUARE6_Y) + 10);
  unsigned char i;
  
  int xy[MyMENUE2VIEW1_STRINGSNUM][MyTEXTRENDER_ARRAYNUM];
@@ -264,6 +318,30 @@ void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
 	MySpeciRenderTextMenue2SelectSquare(data_s);
 }
 
+void MySpeciMenue1UserInpuLoop(struct MyWindowAndRenderData* data_s) {
+
+ SDL_Event event;
+ SDL_bool done = SDL_FALSE;
+ 
+ while (!done) {
+  while (SDL_PollEvent(&event)) {
+   if (event.type == SDL_QUIT) {
+	done = SDL_TRUE;
+   } else if (event.type == SDL_KEYDOWN) {
+    if (event.key.keysym.sym == SDLK_RETURN) {
+	 done = SDL_TRUE;
+    } else if (event.key.keysym.sym == SDLK_UP    ||
+	           event.key.keysym.sym == SDLK_DOWN  || 
+	           event.key.keysym.sym == SDLK_RIGHT ||
+	           event.key.keysym.sym == SDLK_LEFT) {
+	   MySpeciMenue2UserInput(&data_s->Menue2_s, event.key.keysym.sym);
+	   SDL_UpdateWindowSurface(data_s->slaves_window);
+	  }
+   }
+  }
+ }
+};
+
 void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
 
  SDL_Event event;
@@ -286,9 +364,48 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
    }
   }
  }
- 
 };
 
+void MySpeciDrawMenue1Lines(SDL_Renderer* render) {
+ SDL_RenderDrawLine(render, MyFIRSTDIVISIONPIXEL5_X, (MyFIRSTDIVISIONPIXEL5_Y * 3), MyFIRSTDIVISIONPIXEL5_X, MyHEIGHT);
+ SDL_RenderDrawLine(render, (MyFIRSTDIVISIONPIXEL5_X * 2), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 2), MyHEIGHT);
+ SDL_RenderDrawLine(render, (MyFIRSTDIVISIONPIXEL5_X * 3), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 3), MyHEIGHT);
+ SDL_RenderDrawLine(render, (MyFIRSTDIVISIONPIXEL5_X * 4), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 4), MyHEIGHT);
+ 
+ MySDLDrawCircle(render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
+                                                   (MyFIRSTDIVISIONPIXEL5_Y * 3),
+                                                   (158 / 2));
+ MySDLDrawCircle(render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 3,
+                                                   (MyFIRSTDIVISIONPIXEL5_Y * 3),
+                                                   (158 / 2));
+ MySDLDrawCircle(render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 5,
+                                                   (MyFIRSTDIVISIONPIXEL5_Y * 3),
+                                                   (158 / 2));
+}
+
+void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
+ 
+ //画面 Menue1 データ初期化処理
+ data_s->Menue1_s = MySpeciInitMenue1(data_s->Menue1_s, data_s->slaves_window);
+ //画面 Menue1 枠描画処理
+ MySpeciDrawMenue1Lines(data_s->Menue1_s.render);
+ //MySpeciDrawMenue2Square(data_s->Menue2_s.render);
+ 
+ //文字列表示処理
+ //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー 
+ //MySpeciRenderTextMenue2SelectSquare(&data_s->Menue2_s); 
+ //view_square1
+ //MySpeciRenderTextMenue2ViewSquare(&data_s->Menue2_s);
+ //サーフェイスを更新
+ SDL_UpdateWindowSurface(data_s->slaves_window);
+ //画面 Menue1 キーイベントループ
+ MySpeciMenue1UserInpuLoop(data_s);
+ //リソース開放
+ SDL_FreeSurface(data_s->Menue1_s.screenSurface);
+ SDL_DestroyTexture(data_s->Menue1_s.texture);
+ SDL_DestroyRenderer(data_s->Menue1_s.render);
+ 
+};
 
 void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
  
@@ -300,7 +417,7 @@ void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
  //文字列表示処理
  //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー 
  MySpeciRenderTextMenue2SelectSquare(&data_s->Menue2_s); 
- //view_square1
+ //view_square
  MySpeciRenderTextMenue2ViewSquare(&data_s->Menue2_s);
  //サーフェイスを更新
  SDL_UpdateWindowSurface(data_s->slaves_window);

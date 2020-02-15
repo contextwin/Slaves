@@ -11,6 +11,8 @@ int main(int argc, char* argv[]) {
  //Slaves SDL_Window データ初期化処理
  MySpeciInitSlavesWindow(&WinAndRender_s);
 
+ //画面 Menue1 遷移開始
+ MySpeciMenue1Start(&WinAndRender_s);
  //画面 Menue2 遷移開始
  MySpeciMenue2Start(&WinAndRender_s);
 	
