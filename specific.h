@@ -1,9 +1,19 @@
 //Slaves固有の振る舞いのヘッダ
 
 //描画マクロ
-#define MyWIDTH (521 * 2) + 1
-#define MyHEIGHT 351 * 3
-
+#define MyROOT_NUM 59
+#define MyPADDING 1
+#define MyMAXDIVISIONALIA 6
+#define MySpeciAddPixelSize(n) (MyROOT_NUM + ((n - 1) * (MyROOT_NUM + MyPADDING)))
+#define MyWIDTH MySpeciAddPixelSize(13) // 779 (0 ~ 778)
+#define MyHEIGHT MySpeciAddPixelSize(10) // 599 (0 ~ 598)
+#define MyGetFirstDivisionPixel(n) ((n / MyMAXDIVISIONALIA) + MyPADDING) 
+#define MyFIRSTDIVISIONPIXEL_X (MyGetFirstDivisionPixel(MyWIDTH)) //  6分割=129 5分割=155
+#define MyFIRSTDIVISIONPIXEL_Y (MyGetFirstDivisionPixel(MyHEIGHT)) // 6分割 =99 5分割=119
+#define MyMENUE2SELECTSQUARE_X (MyFIRSTDIVISIONPIXEL_X / 4)
+#define MyMENUE2SELECTSQUARE_Y (MyFIRSTDIVISIONPIXEL_Y * 4) - ((MyFIRSTDIVISIONPIXEL_Y / 4) - 1)
+#define MyMENUE2VIEWSQUARE_X MyFIRSTDIVISIONPIXEL_X * 3
+#define MyMENUE2VIEWSQUARE_Y (MyFIRSTDIVISIONPIXEL_Y / 4) + 1
 // limt
 #define FILE_NAME_MAX 256
 #define STRINGS_MAX 256
@@ -84,14 +94,14 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //select_square
  char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  //view_square
- char view_square_strings1[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo       Lv 1",
-	                                                                 "        HP 23/23",
-	                                                                 "        MP 15/15",
-	                                                                 "       ABP 15/15",
-	                                                                 "   STR  3  SPD 5",
-	                                                                 "   VIT  3  MGC 5",
-	                                                                 "   INT  3 LUCK 5",
-	                                                                 "NextLvUP   8 exp"};
+ char view_square_strings1[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo         Lv 1",
+	                                                                 "          HP 23/23",
+	                                                                 "          MP 15/15",
+	                                                                 "         ABP 15/15",
+	                                                                 "     STR  3  SPD 5",
+	                                                                 "     VIT  3  MGC 5",
+	                                                                 "     INT  3 LUCK 5",
+	                                                                 "NextLvUP     8 exp"};
  
  
  Menue2_s.user_cursor_position = 0;
@@ -144,8 +154,15 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 };
 
 void MySpeciDrawMenue2Square(SDL_Renderer* render) {
- int select_square_xyrxlry[4] = {100, 550, 950, 800},
-     view_square_xyrxlry[4] = {500, 50, 950, 500};
+ int select_square_xyrxlry[4] = {MyMENUE2SELECTSQUARE_X, 
+	                             MyMENUE2SELECTSQUARE_Y, 
+	                             ((MyFIRSTDIVISIONPIXEL_X * 5) + (MyFIRSTDIVISIONPIXEL_X - (MyFIRSTDIVISIONPIXEL_X / 4))),
+	                             ((MyFIRSTDIVISIONPIXEL_Y * 5) + ((MyFIRSTDIVISIONPIXEL_Y / 1.5) + 1))},
+	                             
+     view_square_xyrxlry[4] = {MyMENUE2VIEWSQUARE_X,
+		                       MyMENUE2VIEWSQUARE_Y, 
+		                       ((MyFIRSTDIVISIONPIXEL_X * 5) + ((MyFIRSTDIVISIONPIXEL_X / 2) + 1)), 
+		                       (MyFIRSTDIVISIONPIXEL_Y * 3) + ((MyFIRSTDIVISIONPIXEL_Y / 2) + 1)};
   
  MySDLDrawSquare(render, select_square_xyrxlry); //select_square
  MySDLDrawSquare(render, view_square_xyrxlry);   //view_square
@@ -169,9 +186,23 @@ void MySpeciViewSquareTexterBleadAndCreateSurface(struct MyStructRenderData* dat
 };
 
 void MySpeciRenderTextMenue2SelectSquare(struct MyStructRenderData* data_s) {
+ int x_num = (MyMENUE2SELECTSQUARE_X + 50), y_num = ((MyMENUE2SELECTSQUARE_Y) + 20);
  unsigned char i;
- int xy[MyMENUE2SELECT_STRINGSNUM][MyTEXTRENDER_ARRAYNUM] = {{150, 575},{440, 575},{730, 575},{150, 675}};
  
+ int xy[MyMENUE2SELECT_STRINGSNUM][MyTEXTRENDER_ARRAYNUM];
+
+ for (i = 0; i < MyMENUE2SELECT_STRINGSNUM; i++) {
+  xy[i][0] = x_num;
+  xy[i][1] = y_num;
+  
+  if (i == 2) {
+   x_num = (MyMENUE2SELECTSQUARE_X + 50);
+   y_num = y_num + 70;
+  } else {
+   x_num = (x_num + 240);
+  }
+ }
+ 	 
  //select square
  for(i = 0; i < MyMENUE2SELECT_STRINGSNUM; i++) {
 	 
@@ -186,11 +217,16 @@ void MySpeciRenderTextMenue2SelectSquare(struct MyStructRenderData* data_s) {
 };
 
 void MySpeciRenderTextMenue2ViewSquare(struct MyStructRenderData* data_s) {
+ int x_num = (MyMENUE2VIEWSQUARE_X + 25), y_num = ((MyMENUE2VIEWSQUARE_Y) + 10);
  unsigned char i;
- int xy[MyMENUE2VIEW1_STRINGSNUM][MyTEXTRENDER_ARRAYNUM] = {{550,75},{550,125},
-	                                                        {550,170},{550,220},
-	                                                        {550,270},{550,320},
-	                                                        {550,370},{550,440}};
+ 
+ int xy[MyMENUE2VIEW1_STRINGSNUM][MyTEXTRENDER_ARRAYNUM];
+
+ for (i = 0; i < MyMENUE2VIEW1_STRINGSNUM; i++) {
+	 xy[i][0] = x_num;
+	 xy[i][1] = y_num;
+	 y_num = y_num + 37;
+ }
  
  for (i = 0; MyMENUE2VIEW1_STRINGSNUM > i; i++) {
   MySpeciViewSquareTexterBleadAndCreateSurface(data_s, i);
