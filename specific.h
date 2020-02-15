@@ -270,5 +270,10 @@ void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
  SDL_UpdateWindowSurface(data_s->slaves_window);
  //画面 Menue2 キーイベントループ
  MySpeciMenue2UserInpuLoop(data_s);
-
+ 
+ //リソース開放
+ SDL_FreeSurface(data_s->Menue2_s.screenSurface);
+ SDL_DestroyTexture(data_s->Menue2_s.texture);
+ SDL_DestroyRenderer(data_s->Menue2_s.render);
+ 
 }

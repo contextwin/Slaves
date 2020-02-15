@@ -13,11 +13,7 @@ int main(int argc, char* argv[]) {
 
  //画面 Menue2 遷移
  MySpeciMenue2Start(&WinAndRender_s);
- 
- /* ... */
- SDL_FreeSurface(WinAndRender_s.Menue2_s.screenSurface);
- SDL_DestroyTexture(WinAndRender_s.Menue2_s.texture);
- SDL_DestroyRenderer(WinAndRender_s.Menue2_s.render);
+
  //window 開放
  SDL_DestroyWindow(WinAndRender_s.slaves_window);  
  SDL_Quit(); // 全てのサブシステムの終了
