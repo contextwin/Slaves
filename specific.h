@@ -111,9 +111,6 @@ struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, 
  if(!Menue1_s.image){
   printf("IMG_GetError: %s\n", IMG_GetError());
  };
- 
- //引数1のサーフェイスを引数3のサーフェイスにコピーする
- //SDL_BlitSurface(Menue1_s.image, NULL, Menue1_s.screenSurface, NULL);
 
  //TTF初期化
  strcat(Menue1_s.font_path_name, TTF_FONT1);
@@ -366,21 +363,33 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
  }
 };
 
-void MySpeciDrawMenue1Lines(SDL_Renderer* render) {
- SDL_RenderDrawLine(render, MyFIRSTDIVISIONPIXEL5_X, (MyFIRSTDIVISIONPIXEL5_Y * 3), MyFIRSTDIVISIONPIXEL5_X, MyHEIGHT);
- SDL_RenderDrawLine(render, (MyFIRSTDIVISIONPIXEL5_X * 2), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 2), MyHEIGHT);
- SDL_RenderDrawLine(render, (MyFIRSTDIVISIONPIXEL5_X * 3), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 3), MyHEIGHT);
- SDL_RenderDrawLine(render, (MyFIRSTDIVISIONPIXEL5_X * 4), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 4), MyHEIGHT);
+void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  
- MySDLDrawCircle(render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
+ MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
- MySDLDrawCircle(render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 3,
+ MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 3,
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
- MySDLDrawCircle(render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 5,
+ MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 5,
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
+
+ SDL_SetRenderDrawColor(data_s->render, 255, 255, 255, 255);
+ SDL_Rect rect2=(SDL_Rect){MyFIRSTDIVISIONPIXEL5_X,(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
+ SDL_RenderFillRect(data_s->render,&rect2);
+ 
+ SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 255);
+ SDL_Rect rect;
+ rect.x = MyFIRSTDIVISIONPIXEL5_X;
+ rect.y = (MyFIRSTDIVISIONPIXEL5_Y * 3);            
+ SDL_BlitSurface(data_s->image, NULL, data_s->screenSurface, &rect);
+                                                   
+ SDL_RenderDrawLine(data_s->render, MyFIRSTDIVISIONPIXEL5_X, (MyFIRSTDIVISIONPIXEL5_Y * 3), MyFIRSTDIVISIONPIXEL5_X, MyHEIGHT);
+ SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 2), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 2), MyHEIGHT);
+ SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 3), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 3), MyHEIGHT);
+ SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 4), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 4), MyHEIGHT);
+ 
 }
 
 void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
@@ -388,7 +397,7 @@ void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
  //画面 Menue1 データ初期化処理
  data_s->Menue1_s = MySpeciInitMenue1(data_s->Menue1_s, data_s->slaves_window);
  //画面 Menue1 枠描画処理
- MySpeciDrawMenue1Lines(data_s->Menue1_s.render);
+ MySpeciDrawMenue1Lines(&data_s->Menue1_s);
  //MySpeciDrawMenue2Square(data_s->Menue2_s.render);
  
  //文字列表示処理
