@@ -244,5 +244,22 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
  
 };
 
-//void () {
-//void MySpeciRenderMenue2()
+
+void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
+ 
+ //画面 Menue2 データ初期化処理
+ data_s->Menue2_s = MySpeciInitMenue2(data_s->Menue2_s, data_s->slaves_window);
+ //画面 Menue2 枠描画処理
+ MySpeciDrawMenue2Square(data_s->Menue2_s.render);
+ 
+ //文字列表示処理
+ //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー 
+ MySpeciRenderTextMenue2SelectSquare(&data_s->Menue2_s); 
+ //view_square1
+ MySpeciRenderTextMenue2ViewSquare(&data_s->Menue2_s);
+ //サーフェイスを更新
+ SDL_UpdateWindowSurface(data_s->slaves_window);
+ //画面 Menue2 キーイベントループ
+ MySpeciMenue2UserInpuLoop(data_s);
+
+}

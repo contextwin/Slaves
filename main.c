@@ -17,20 +17,9 @@ int main(int argc, char* argv[]) {
  SDL_FillRect(WinAndRender_s.Menue2_s.screenSurface, NULL,
               SDL_MapRGB(WinAndRender_s.Menue2_s.screenSurface->format,
                            0xFF, 0xFF, 0xFF));
- //画面 Menue2 データ初期化処理
- WinAndRender_s.Menue2_s = MySpeciInitMenue2(WinAndRender_s.Menue2_s, WinAndRender_s.slaves_window);
- //画面 Menue2 枠描画処理
- MySpeciDrawMenue2Square(WinAndRender_s.Menue2_s.render);
  
- //文字列表示処理
- //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー 
- MySpeciRenderTextMenue2SelectSquare(&WinAndRender_s.Menue2_s); 
- //view_square1
- MySpeciRenderTextMenue2ViewSquare(&WinAndRender_s.Menue2_s);
- //サーフェイスを更新
- SDL_UpdateWindowSurface(WinAndRender_s.slaves_window);
- //メニュー画面2 キーイベントループ
- MySpeciMenue2UserInpuLoop(&WinAndRender_s);
+ //画面 Menue2 遷移
+ MySpeciMenue2Start(&WinAndRender_s);
  
  /* ... */
  SDL_FreeSurface(WinAndRender_s.Menue2_s.screenSurface);
