@@ -9,15 +9,8 @@ int main(int argc, char* argv[]) {
 
  //Slaves SDL_Window データ初期化処理
  WinAndRender_s.slaves_window = NULL; // warning 対策
- WinAndRender_s.slaves_window = MySpeciInitSlavesWindow(WinAndRender_s.slaves_window);
- 
- //Menue2レンダリング用 サーフェイス取得 表示
- WinAndRender_s.Menue2_s.screenSurface = SDL_GetWindowSurface(WinAndRender_s.slaves_window);
- //サーフェイスの背景を白にする
- SDL_FillRect(WinAndRender_s.Menue2_s.screenSurface, NULL,
-              SDL_MapRGB(WinAndRender_s.Menue2_s.screenSurface->format,
-                           0xFF, 0xFF, 0xFF));
- 
+ MySpeciInitSlavesWindow(&WinAndRender_s);
+
  //画面 Menue2 遷移
  MySpeciMenue2Start(&WinAndRender_s);
  

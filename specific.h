@@ -51,19 +51,28 @@ struct MyWindowAndRenderData {
 	struct MyStructRenderData Menue2_s;
 };
 
-SDL_Window* MySpeciInitSlavesWindow (SDL_Window* window) {
- window = SDL_CreateWindow("Slaves", 
+void MySpeciInitSlavesWindow (struct MyWindowAndRenderData* data_s) {
+ data_s->slaves_window = SDL_CreateWindow("Slaves", 
                            SDL_WINDOWPOS_UNDEFINED,
                            SDL_WINDOWPOS_UNDEFINED,
                            MyWIDTH,
                            MyHEIGHT,
                            SDL_WINDOW_SHOWN);
   
- if(window == NULL){
+ if(data_s->slaves_window == NULL){
   printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
   exit(EXIT_FAILURE);
  };
- return window;
+ 
+ //Menue2レンダリング用 サーフェイス取得 表示
+ data_s->Menue2_s.screenSurface = SDL_GetWindowSurface(data_s->slaves_window);
+ 
+ //サーフェイスの背景を白にする
+ SDL_FillRect(data_s->Menue2_s.screenSurface, NULL,
+              SDL_MapRGB(data_s->Menue2_s.screenSurface->format,
+                           0xFF, 0xFF, 0xFF));
+                           
+ //return window;
 };
 
 //メニュー画面2 レンダリングデータ初期化処理
