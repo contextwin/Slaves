@@ -72,12 +72,12 @@ void MySpeciInitSlavesWindow (struct MyWindowAndRenderData* data_s) {
                            MyWIDTH,
                            MyHEIGHT,
                            SDL_WINDOW_SHOWN);
-  
+ 
  if(data_s->slaves_window == NULL){
   printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
   exit(EXIT_FAILURE);
  };
- 
+
          
 };
 
@@ -315,6 +315,11 @@ void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
 	MySpeciRenderTextMenue2SelectSquare(data_s);
 }
 
+void MySpeciCloseSlavesWindow(struct MyWindowAndRenderData* data_s) {
+ SDL_DestroyWindow(data_s->slaves_window);  
+ SDL_Quit(); // 全てのサブシステムの終了
+}
+
 void MySpeciMenue1UserInpuLoop(struct MyWindowAndRenderData* data_s) {
 
  SDL_Event event;
@@ -323,7 +328,14 @@ void MySpeciMenue1UserInpuLoop(struct MyWindowAndRenderData* data_s) {
  while (!done) {
   while (SDL_PollEvent(&event)) {
    if (event.type == SDL_QUIT) {
-	done = SDL_TRUE;
+	//done = SDL_TRUE;
+	SDL_FreeSurface(data_s->Menue1_s.screenSurface);
+    SDL_DestroyTexture(data_s->Menue1_s.texture);
+    SDL_DestroyRenderer(data_s->Menue1_s.render);
+	SDL_DestroyWindow(data_s->slaves_window);
+	MySpeciCloseSlavesWindow(data_s);
+	SDL_Quit();
+	exit(EXIT_SUCCESS);
    } else if (event.type == SDL_KEYDOWN) {
     if (event.key.keysym.sym == SDLK_RETURN) {
 	 done = SDL_TRUE;
@@ -399,6 +411,14 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2), (MyFIRSTDIVISIONPIXEL5_Y * 2),
                                     (MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2), MyHEIGHT);
  
+ MySDLDrawCircle(data_s->render, (MyFIRSTDIVISIONPIXEL5_X / 2),
+                                                   (MyFIRSTDIVISIONPIXEL5_Y * 2) - (MyFIRSTDIVISIONPIXEL5_Y / 2),
+                                                   (60));
+ MySDLDrawCircle(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2),
+                                                   (MyFIRSTDIVISIONPIXEL5_Y * 2) - (MyFIRSTDIVISIONPIXEL5_Y / 2),
+                                                   (60));
+ SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X / 2) + 60, (MyFIRSTDIVISIONPIXEL5_Y * 2) - (MyFIRSTDIVISIONPIXEL5_Y / 2), (((MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2)) - 60), (MyFIRSTDIVISIONPIXEL5_Y * 2) - (MyFIRSTDIVISIONPIXEL5_Y / 2));
+                                            
 }
 
 void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
@@ -449,7 +469,4 @@ void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
  
 };
 
-void MySpeciCloseSlavesWindow(struct MyWindowAndRenderData* data_s) {
- SDL_DestroyWindow(data_s->slaves_window);  
- SDL_Quit(); // 全てのサブシステムの終了
-}
+
