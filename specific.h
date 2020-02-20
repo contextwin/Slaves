@@ -30,6 +30,7 @@
 //フォントデータ関連マクロ
 #define FONT_DIR "./fonts/"
 #define TTF_FONT1 "PixelMplus-20130602/PixelMplus10-Regular.ttf"
+#define TTF_FONT2 "ipaexm00201/ipaexm.ttf"
 
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
