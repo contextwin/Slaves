@@ -317,6 +317,12 @@ void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
 	MySpeciRenderTextMenue2SelectSquare(data_s);
 }
 
+void MySpeciResourceRelease(struct MyStructRenderData* data_s) {
+	SDL_FreeSurface(data_s->screenSurface);
+    SDL_DestroyTexture(data_s->texture);
+    SDL_DestroyRenderer(data_s->render);
+}
+	
 void MySpeciCloseSlavesWindow(struct MyWindowAndRenderData* data_s) {
  SDL_DestroyWindow(data_s->slaves_window);  
  SDL_Quit(); // 全てのサブシステムの終了
@@ -331,9 +337,7 @@ void MySpeciMenue1UserInpuLoop(struct MyWindowAndRenderData* data_s) {
   while (SDL_PollEvent(&event)) {
    if (event.type == SDL_QUIT) {
 	//done = SDL_TRUE;
-	SDL_FreeSurface(data_s->Menue1_s.screenSurface);
-    SDL_DestroyTexture(data_s->Menue1_s.texture);
-    SDL_DestroyRenderer(data_s->Menue1_s.render);
+	MySpeciResourceRelease(&data_s->Menue1_s);
 	SDL_DestroyWindow(data_s->slaves_window);
 	MySpeciCloseSlavesWindow(data_s);
 	SDL_Quit();
@@ -454,9 +458,7 @@ void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
  //画面 Menue1 キーイベントループ
  MySpeciMenue1UserInpuLoop(data_s);
  //リソース開放
- SDL_FreeSurface(data_s->Menue1_s.screenSurface);
- SDL_DestroyTexture(data_s->Menue1_s.texture);
- SDL_DestroyRenderer(data_s->Menue1_s.render);
+ MySpeciResourceRelease(&data_s->Menue1_s);
  
 };
 
@@ -476,11 +478,8 @@ void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
  SDL_UpdateWindowSurface(data_s->slaves_window);
  //画面 Menue2 キーイベントループ
  MySpeciMenue2UserInpuLoop(data_s);
- 
  //リソース開放
- SDL_FreeSurface(data_s->Menue2_s.screenSurface);
- SDL_DestroyTexture(data_s->Menue2_s.texture);
- SDL_DestroyRenderer(data_s->Menue2_s.render);
+ MySpeciResourceRelease(&data_s->Menue2_s);
  
 };
 
