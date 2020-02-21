@@ -437,7 +437,6 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  SDL_RenderFillRect(data_s->render,&rect2);
  
  SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 255);
- 
  int square_xyrxly[MySQUARESIZE_ARRYNUM] = { MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
 	                   (MyFIRSTDIVISIONPIXEL6_Y / 3),
 	                   MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 5,
@@ -449,6 +448,19 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  rect2 = (SDL_Rect){square_xyrxly[0] + 1,
 	     square_xyrxly[1] + 1, (square_xyrxly[2] - square_xyrxly[0]) - 1, (square_xyrxly[3] - square_xyrxly[1]) -1};
  SDL_RenderFillRect(data_s->render,&rect2);
+ 
+ SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 0);
+ square_xyrxly[0] = ((MyFIRSTDIVISIONPIXEL5_X * 4) + 5);
+ square_xyrxly[1] = (MyFIRSTDIVISIONPIXEL6_Y * 2);
+ square_xyrxly[2] = (MyWIDTH - 5);
+ square_xyrxly[3] = ((MyFIRSTDIVISIONPIXEL6_Y * 4) + (MyFIRSTDIVISIONPIXEL6_Y / 2));
+	                   
+ MySDLDrawSquare(data_s->render, square_xyrxly);
+ SDL_SetRenderDrawColor(data_s->render, 255, 255, 255, 255);
+ rect2 = (SDL_Rect){square_xyrxly[0] + 1,
+	     square_xyrxly[1] + 1, (square_xyrxly[2] - square_xyrxly[0]) - 1, (square_xyrxly[3] - square_xyrxly[1]) -1};
+ SDL_RenderFillRect(data_s->render,&rect2);
+
                                        
 }
 
