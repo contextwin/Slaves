@@ -318,14 +318,15 @@ void MySpeciMenue2UserInput(struct MyStructRenderData* data_s, long sym) {
 }
 
 void MySpeciResourceRelease(struct MyStructRenderData* data_s) {
-	SDL_FreeSurface(data_s->screenSurface);
-    SDL_DestroyTexture(data_s->texture);
-    SDL_DestroyRenderer(data_s->render);
+ SDL_FreeSurface(data_s->screenSurface);
+ SDL_DestroyTexture(data_s->texture);
+ SDL_DestroyRenderer(data_s->render);
 }
 	
 void MySpeciCloseSlavesWindow(struct MyWindowAndRenderData* data_s) {
  SDL_DestroyWindow(data_s->slaves_window);  
  SDL_Quit(); // 全てのサブシステムの終了
+ exit(EXIT_SUCCESS);
 }
 
 void MySpeciMenue1UserInpuLoop(struct MyWindowAndRenderData* data_s) {
@@ -336,12 +337,8 @@ void MySpeciMenue1UserInpuLoop(struct MyWindowAndRenderData* data_s) {
  while (!done) {
   while (SDL_PollEvent(&event)) {
    if (event.type == SDL_QUIT) {
-	//done = SDL_TRUE;
 	MySpeciResourceRelease(&data_s->Menue1_s);
-	SDL_DestroyWindow(data_s->slaves_window);
 	MySpeciCloseSlavesWindow(data_s);
-	SDL_Quit();
-	exit(EXIT_SUCCESS);
    } else if (event.type == SDL_KEYDOWN) {
     if (event.key.keysym.sym == SDLK_RETURN) {
 	 done = SDL_TRUE;
@@ -365,7 +362,8 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
  while (!done) {
   while (SDL_PollEvent(&event)) {
    if (event.type == SDL_QUIT) {
-	done = SDL_TRUE;
+    MySpeciResourceRelease(&data_s->Menue1_s);
+	MySpeciCloseSlavesWindow(data_s);
    } else if (event.type == SDL_KEYDOWN) {
     if (event.key.keysym.sym == SDLK_RETURN) {
 	 done = SDL_TRUE;
