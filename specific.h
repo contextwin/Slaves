@@ -33,7 +33,7 @@
 //#define TTF_FONT1 "ipaexm00201/ipaexm.ttf"
 //#define TTF_FONT1 "BauhausModern/BauhausModern-Regular.ttf"
 //#define TTF_FONT1 "ipaexg00201/ipaexg.ttf"
-
+//#define TTF_FONT1 "RictyDiminished-for-Powerline/RictyDiminished-Regular.ttf"
 
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
@@ -44,6 +44,7 @@
 #define MyMENUE2SELECT_STRINGSNUM 4
 #define MyMENUE2VIEW1_STRINGSNUM 8
 #define MyTEXTRENDER_ARRAYNUM 2
+#define MySQUARESIZE_ARRYNUM 4
 #define MyRENDER_X 0
 #define MyRENDER_Y 1
 
@@ -206,12 +207,12 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 };
 
 void MySpeciDrawMenue2Square(SDL_Renderer* render) {
- int select_square_xyrxlry[4] = {MyMENUE2SELECTSQUARE6_X, 
+ int select_square_xyrxlry[MySQUARESIZE_ARRYNUM] = {MyMENUE2SELECTSQUARE6_X, 
 	                             MyMENUE2SELECTSQUARE6_Y, 
 	                             ((MyFIRSTDIVISIONPIXEL6_X * 5) + (MyFIRSTDIVISIONPIXEL6_X - (MyFIRSTDIVISIONPIXEL6_X / 4))),
 	                             ((MyFIRSTDIVISIONPIXEL6_Y * 5) + ((MyFIRSTDIVISIONPIXEL6_Y / 1.5) + 1))},
 	                             
-     view_square_xyrxlry[4] = {MyMENUE2VIEWSQUARE6_X,
+     view_square_xyrxlry[MySQUARESIZE_ARRYNUM] = {MyMENUE2VIEWSQUARE6_X,
 		                       MyMENUE2VIEWSQUARE6_Y, 
 		                       ((MyFIRSTDIVISIONPIXEL6_X * 5) + ((MyFIRSTDIVISIONPIXEL6_X / 2) + 1)), 
 		                       (MyFIRSTDIVISIONPIXEL6_Y * 3) + ((MyFIRSTDIVISIONPIXEL6_Y / 2) + 1)};
@@ -434,6 +435,15 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  rect2 = (SDL_Rect){(MyFIRSTDIVISIONPIXEL5_X * 4),
 	     (MyFIRSTDIVISIONPIXEL5_Y), (MyFIRSTDIVISIONPIXEL5_X), 60};
  SDL_RenderFillRect(data_s->render,&rect2);
+ 
+ SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 255);
+ 
+ int square_xyrxly[MySQUARESIZE_ARRYNUM] = { MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
+	                   (MyFIRSTDIVISIONPIXEL6_Y / 3),
+	                   MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 5,
+	                   (MyFIRSTDIVISIONPIXEL6_Y * 2.5)};
+	                   
+ MySDLDrawSquare(data_s->render, square_xyrxly);
                                        
 }
 
