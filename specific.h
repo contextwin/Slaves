@@ -81,8 +81,7 @@ void MySpeciInitSlavesWindow (struct MyWindowAndRenderData* data_s) {
   printf("Window 生成処理失敗. SDL_Error: %s\n", SDL_GetError());
   exit(EXIT_FAILURE);
  };
-
-         
+      
 };
 
 //メニュー画面1 レンダリングデータ初期化処理
@@ -466,7 +465,6 @@ void MySpeciMenue2Start(struct MyWindowAndRenderData* data_s) {
  data_s->Menue2_s = MySpeciInitMenue2(data_s->Menue2_s, data_s->slaves_window);
  //画面 Menue2 枠描画処理
  MySpeciDrawMenue2Square(data_s->Menue2_s.render);
- 
  //文字列表示処理
  //select_square TTFの出力文字とカラーを設定、テクスチャーをx,yの座標にレンダーコピー 
  MySpeciRenderTextMenue2SelectSquare(&data_s->Menue2_s); 
