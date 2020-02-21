@@ -30,7 +30,10 @@
 //フォントデータ関連マクロ
 #define FONT_DIR "./fonts/"
 #define TTF_FONT1 "PixelMplus-20130602/PixelMplus10-Regular.ttf"
-#define TTF_FONT2 "ipaexm00201/ipaexm.ttf"
+//#define TTF_FONT1 "ipaexm00201/ipaexm.ttf"
+//#define TTF_FONT1 "BauhausModern/BauhausModern-Regular.ttf"
+//#define TTF_FONT1 "ipaexg00201/ipaexg.ttf"
+
 
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
@@ -87,10 +90,7 @@ struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, 
 
  //Menue画面1 レンダリング用 サーフェイス取得 表示
  Menue1_s.screenSurface = SDL_GetWindowSurface(slaves_window);
- SDL_FillRect(Menue1_s.screenSurface, NULL,
-              SDL_MapRGB(Menue1_s.screenSurface->format,
-                           0xFF, 0xFF, 0xFF)); 
-                           
+                   
  Menue1_s.user_cursor_position = 0;
 
  //Menue画面1 レンダリング用 サーフェイス取得 表示
@@ -99,7 +99,8 @@ struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, 
  //サーフェイスの背景を白にする
  SDL_FillRect(Menue1_s.screenSurface, NULL,
               SDL_MapRGB(Menue1_s.screenSurface->format,
-                           0xFF, 0xFF, 0xFF)); 
+                         0xFF, 0xFF, 0xFF)); 
+                         //  95, 95, 95)); 
 
  MyFuncStringsAssignment(Menue1_s.img_path_name, IMAGE_DIR);
  MyFuncStringsAssignment(Menue1_s.font_path_name, FONT_DIR);           

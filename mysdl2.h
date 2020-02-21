@@ -26,8 +26,9 @@ TTF_Font *MyFuncInitTTF(TTF_Font *font, char *font_path_name) {
   printf("TTF_InitError: %s\n", TTF_GetError());
  }
  
- font = TTF_OpenFont(font_path_name, 30);
- 
+  font = TTF_OpenFont(font_path_name, 30);
+  //font = TTF_OpenFont(font_path_name, 17);
+
  if (!font) {
 	  printf("TTF_OpenFont: %s\n", TTF_GetError());
  }
