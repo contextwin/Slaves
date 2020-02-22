@@ -41,6 +41,11 @@
 #define PNG_FILE01 "chipo_center01.png"
 #define PNG_FILE02 "chipo_side01.png"
 
+//色指定関連マクロ & 広域変数
+#define MyRGBCOLOR_ARRYNUM 4
+int line_color[MyRGBCOLOR_ARRYNUM] = {0, 0, 0, 0};
+int fill_color[MyRGBCOLOR_ARRYNUM] = {255, 255, 255, 255};
+
 //出力文言データ関連マクロ
 #define MyMENUE2SELECT_STRINGSNUM 4
 #define MyMENUE2VIEW1_STRINGSNUM 8
@@ -382,8 +387,8 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
 
 void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  
- int line_color[4] = {0, 0, 0, 0};
- int fill_color[4] = {255, 255, 255, 255};
+ int line_color[MyRGBCOLOR_ARRYNUM] = {0, 0, 0, 0};
+ int fill_color[MyRGBCOLOR_ARRYNUM] = {255, 255, 255, 255};
   
  MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
@@ -395,7 +400,7 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
 
- SDL_SetRenderDrawColor(data_s->render, 255, 255, 255, 255);
+ MySDLSetDrawColor(data_s->render, fill_color);
  SDL_Rect rect2 = (SDL_Rect){MyFIRSTDIVISIONPIXEL5_X,(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
  SDL_RenderFillRect(data_s->render,&rect2);
  rect2 = (SDL_Rect){(MyFIRSTDIVISIONPIXEL5_X * 2),(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
@@ -403,7 +408,7 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  rect2 = (SDL_Rect){(MyFIRSTDIVISIONPIXEL5_X * 3),(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
  SDL_RenderFillRect(data_s->render,&rect2);
 
- SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 255);
+ MySDLSetDrawColor(data_s->render, line_color);
  SDL_Rect rect;
  rect.x = MyFIRSTDIVISIONPIXEL5_X;
  rect.y = (MyFIRSTDIVISIONPIXEL5_Y * 3);            
@@ -427,7 +432,7 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
                                                    (60));
  SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X / 2) + 60, (MyFIRSTDIVISIONPIXEL5_Y * 2) - (MyFIRSTDIVISIONPIXEL5_Y / 2), (((MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2)) - 60), (MyFIRSTDIVISIONPIXEL5_Y * 2) - (MyFIRSTDIVISIONPIXEL5_Y / 2));
 
- SDL_SetRenderDrawColor(data_s->render, 255, 255, 255, 255);
+ MySDLSetDrawColor(data_s->render, fill_color);
  rect2 = (SDL_Rect){0, (MyFIRSTDIVISIONPIXEL5_Y), (MyFIRSTDIVISIONPIXEL5_X /2), 200};
  SDL_RenderFillRect(data_s->render,&rect2);
  rect2 = (SDL_Rect){0, (MyFIRSTDIVISIONPIXEL5_Y), (MyFIRSTDIVISIONPIXEL5_X), 60};

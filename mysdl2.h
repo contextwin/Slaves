@@ -101,3 +101,7 @@ void MySDLDrawCircle(SDL_Renderer * renderer, int centreX, int centreY, int radi
       }
    }
 }
+
+void MySDLSetDrawColor(SDL_Renderer* render, int* render_color) {
+ SDL_SetRenderDrawColor(render, render_color[0], render_color[1], render_color[2], render_color[3]);
+}
