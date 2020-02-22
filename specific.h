@@ -386,10 +386,7 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
 };
 
 void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
- 
- int line_color[MyRGBCOLOR_ARRYNUM] = {0, 0, 0, 0};
- int fill_color[MyRGBCOLOR_ARRYNUM] = {255, 255, 255, 255};
-  
+
  MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
