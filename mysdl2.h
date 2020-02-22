@@ -20,6 +20,23 @@ void MySDLDrawSquare(SDL_Renderer *render, int* square_xyrxly ) {
 
 };
 
+void MySDLDrawSquareAndFill(SDL_Renderer *render, int* square_xyrxly, int* line_color, int* fill_color ) {
+ 
+ SDL_SetRenderDrawColor(render, line_color[0], line_color[1], line_color[2], line_color[3]);
+
+ MySDLDrawSquare(render, square_xyrxly);
+  
+ SDL_SetRenderDrawColor(render, fill_color[0], fill_color[1], fill_color[2], fill_color[3]);
+
+ SDL_Rect rect = (SDL_Rect){square_xyrxly[0] + 1,
+	     square_xyrxly[1] + 1, (square_xyrxly[2] - square_xyrxly[0]) - 1, (square_xyrxly[3] - square_xyrxly[1]) -1};
+	     
+ SDL_RenderFillRect(render,&rect); 
+ SDL_SetRenderDrawColor(render, line_color[0], line_color[1], line_color[2], line_color[3]);
+ 
+}
+;
+	
 TTF_Font *MyFuncInitTTF(TTF_Font *font, char *font_path_name) {
  
  if (TTF_Init() < 0) {

@@ -34,6 +34,7 @@
 //#define TTF_FONT1 "BauhausModern/BauhausModern-Regular.ttf"
 //#define TTF_FONT1 "ipaexg00201/ipaexg.ttf"
 //#define TTF_FONT1 "RictyDiminished-for-Powerline/RictyDiminished-Regular.ttf"
+//#define TTF_FONT1 "JF-Dot-Shinomoe14/JF-Dot-Shinonome14.ttf"
 
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
@@ -381,6 +382,9 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
 
 void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  
+ int line_color[4] = {0, 0, 0, 0};
+ int fill_color[4] = {255, 255, 255, 255};
+  
  MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
@@ -437,30 +441,21 @@ void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
  SDL_RenderFillRect(data_s->render,&rect2);
  
  SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 255);
+ 
  int square_xyrxly[MySQUARESIZE_ARRYNUM] = { MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
 	                   (MyFIRSTDIVISIONPIXEL6_Y / 3),
 	                   MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 5,
 	                   (MyFIRSTDIVISIONPIXEL6_Y * 2.5)};
 	                   
- MySDLDrawSquare(data_s->render, square_xyrxly);
- 
- SDL_SetRenderDrawColor(data_s->render, 255, 255, 255, 255);
- rect2 = (SDL_Rect){square_xyrxly[0] + 1,
-	     square_xyrxly[1] + 1, (square_xyrxly[2] - square_xyrxly[0]) - 1, (square_xyrxly[3] - square_xyrxly[1]) -1};
- SDL_RenderFillRect(data_s->render,&rect2);
- 
+ MySDLDrawSquareAndFill(data_s->render, square_xyrxly, line_color, fill_color);
+
  SDL_SetRenderDrawColor(data_s->render, 0, 0, 0, 0);
  square_xyrxly[0] = ((MyFIRSTDIVISIONPIXEL5_X * 4) + 5);
  square_xyrxly[1] = (MyFIRSTDIVISIONPIXEL6_Y * 2);
  square_xyrxly[2] = (MyWIDTH - 5);
  square_xyrxly[3] = ((MyFIRSTDIVISIONPIXEL6_Y * 4) + (MyFIRSTDIVISIONPIXEL6_Y / 2));
-	                   
- MySDLDrawSquare(data_s->render, square_xyrxly);
- SDL_SetRenderDrawColor(data_s->render, 255, 255, 255, 255);
- rect2 = (SDL_Rect){square_xyrxly[0] + 1,
-	     square_xyrxly[1] + 1, (square_xyrxly[2] - square_xyrxly[0]) - 1, (square_xyrxly[3] - square_xyrxly[1]) -1};
- SDL_RenderFillRect(data_s->render,&rect2);
 
+ MySDLDrawSquareAndFill(data_s->render, square_xyrxly, line_color, fill_color);
                                        
 }
 
