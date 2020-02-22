@@ -385,7 +385,7 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
  }
 };
 
-void MySpeciDrawMenue1Lines(struct MyStructRenderData* data_s) {
+void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
 
  MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
@@ -463,7 +463,7 @@ void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
  //画面 Menue1 データ初期化処理
  data_s->Menue1_s = MySpeciInitMenue1(data_s->Menue1_s, data_s->slaves_window);
  //画面 Menue1 枠描画処理
- MySpeciDrawMenue1Lines(&data_s->Menue1_s);
+ MySpeciDrawMenue1BackGround(&data_s->Menue1_s);
  //MySpeciDrawMenue2Square(data_s->Menue2_s.render);
  
  //文字列表示処理
