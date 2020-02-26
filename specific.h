@@ -483,7 +483,22 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  MySDLDrawCircle(data_s->render, square_xyrxly[2] - 59,
                 square_xyrxly[1] + 59,
                 (60));
-                                       
+ // 丸角塗りつぶし処理
+ MySDLSetDrawColor(data_s->render, fill_color);
+ SDL_RenderDrawLine(data_s->render, square_xyrxly[2] - 46, square_xyrxly[1], square_xyrxly[2], square_xyrxly[1]);
+ SDL_RenderDrawLine(data_s->render, square_xyrxly[2], square_xyrxly[1], square_xyrxly[2], square_xyrxly[1] + 47);
+
+ square_xyrxly[0] = (square_xyrxly[0] + 1);
+ square_xyrxly[1] = (square_xyrxly[1] + 47);
+ square_xyrxly[2] = (square_xyrxly[2] - 1);
+ square_xyrxly[3] = (square_xyrxly[3] - 1);
+ MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
+
+ //square_xyrxly[0] = (square_xyrxly[0] + 46);
+ square_xyrxly[1] = (square_xyrxly[1] - 46);
+ square_xyrxly[2] = (square_xyrxly[2] - 46);
+ MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
+
 }
 
 void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
