@@ -123,7 +123,9 @@ struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, 
  //TTF初期化
  strcat(Menue1_s.font_path_name, TTF_FONT1);
  Menue1_s.font_data[0] = MySDLInitTTF(Menue1_s.font_data[0], Menue1_s.font_path_name);
- 
+ strcat(Menue1_s.font_path_name, TTF_FONT2);
+ Menue1_s.font_data[1] = MySDLInitTTF(Menue1_s.font_data[1], Menue1_s.font_path_name);
+
  //SDL_Renderer 初期化
  Menue1_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
  SDL_SetRenderDrawColor(Menue1_s.render, 0,0,0,0);
