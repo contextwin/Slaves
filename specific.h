@@ -397,6 +397,7 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
 
+ // ロマネスクアーチ塗りつぶし
  MySDLSetDrawColor(data_s->render, fill_color);
  SDL_Rect rect2 = (SDL_Rect){MyFIRSTDIVISIONPIXEL5_X,(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
  SDL_RenderFillRect(data_s->render,&rect2);
@@ -405,12 +406,17 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  rect2 = (SDL_Rect){(MyFIRSTDIVISIONPIXEL5_X * 3),(MyFIRSTDIVISIONPIXEL5_Y * 3),MyFIRSTDIVISIONPIXEL5_X,200};
  SDL_RenderFillRect(data_s->render,&rect2);
 
+// MySDLSetDrawColor(data_s->render, line_color);
+// SDL_RenderDrawLine(data_s->render, 0, (MyFIRSTDIVISIONPIXEL5_Y), MyWIDTH, (MyFIRSTDIVISIONPIXEL5_Y * 4));
+
+ // 画像描画
  MySDLSetDrawColor(data_s->render, line_color);
  SDL_Rect rect;
  rect.x = MyFIRSTDIVISIONPIXEL5_X;
  rect.y = (MyFIRSTDIVISIONPIXEL5_Y * 3);            
  SDL_BlitSurface(data_s->image, NULL, data_s->screenSurface, &rect);
-                                                   
+ 
+ // キャラ選択ロマネスアーチ部                                                  
  SDL_RenderDrawLine(data_s->render, MyFIRSTDIVISIONPIXEL5_X, (MyFIRSTDIVISIONPIXEL5_Y * 3), MyFIRSTDIVISIONPIXEL5_X, MyHEIGHT);
  SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 2), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 2), MyHEIGHT);
  SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 3), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 3), MyHEIGHT);
@@ -435,6 +441,13 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  rect2 = (SDL_Rect){0, (MyFIRSTDIVISIONPIXEL5_Y), (MyFIRSTDIVISIONPIXEL5_X), 60};
  SDL_RenderFillRect(data_s->render,&rect2);
  
+ // 下部丸め
+ MySDLSetDrawColor(data_s->render, line_color);
+ /*MySDLDrawCircle(data_s->render, (MyFIRSTDIVISIONPIXEL5_X /2) + 59,
+                (MyFIRSTDIVISIONPIXEL5_Y * 3) - 59,
+                (60));*/
+ MySDLSetDrawColor(data_s->render, fill_color);
+ 
  rect2 = (SDL_Rect){(((MyFIRSTDIVISIONPIXEL5_X * 4) + (MyFIRSTDIVISIONPIXEL5_X /2)) + 1),
 	     ((MyFIRSTDIVISIONPIXEL5_Y)), (MyFIRSTDIVISIONPIXEL5_X /2), 200};
  SDL_RenderFillRect(data_s->render,&rect2); 
@@ -448,28 +461,28 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
 	                   MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2) * 5,
 	                   (MyFIRSTDIVISIONPIXEL6_Y * 2.5)};
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, line_color, fill_color);
- /*MySDLDrawCircle(data_s->render, square_xyrxly[0] + 59,
+ MySDLDrawCircle(data_s->render, square_xyrxly[0] + 59,
                 square_xyrxly[1] + 59,
-                (60));*/
-  MySDLDrawCircle(data_s->render, square_xyrxly[2] - 59,
+                (60));
+ MySDLDrawCircle(data_s->render, square_xyrxly[2] - 59,
                 square_xyrxly[1] + 59,
                 (60));
  
  // 丸角塗りつぶし処理
  MySDLSetDrawColor(data_s->render, fill_color);
- //SDL_RenderDrawLine(data_s->render, square_xyrxly[0], square_xyrxly[1], square_xyrxly[0] + 47, square_xyrxly[1]);
- //SDL_RenderDrawLine(data_s->render, square_xyrxly[0], square_xyrxly[1], square_xyrxly[0], square_xyrxly[1] + 47);
- SDL_RenderDrawLine(data_s->render, square_xyrxly[2] - 46, square_xyrxly[1], square_xyrxly[2], square_xyrxly[1]);
+ SDL_RenderDrawLine(data_s->render, square_xyrxly[0], square_xyrxly[1], square_xyrxly[0] + 47, square_xyrxly[1]);
+ SDL_RenderDrawLine(data_s->render, square_xyrxly[0], square_xyrxly[1], square_xyrxly[0], square_xyrxly[1] + 47);
+ SDL_RenderDrawLine(data_s->render, square_xyrxly[2] - 46, square_xyrxly[1] , square_xyrxly[2], square_xyrxly[1]);
  SDL_RenderDrawLine(data_s->render, square_xyrxly[2], square_xyrxly[1], square_xyrxly[2], square_xyrxly[1] + 47);
 
  square_xyrxly[0] = (square_xyrxly[0] + 1);
- square_xyrxly[1] = (square_xyrxly[1] + 47);
+ square_xyrxly[1] = (square_xyrxly[1] + 48);
  square_xyrxly[2] = (square_xyrxly[2] - 1);
  square_xyrxly[3] = (square_xyrxly[3] - 1);
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
 
- square_xyrxly[0] = (square_xyrxly[0] + 46);
- square_xyrxly[1] = (square_xyrxly[1] - 46);
+ square_xyrxly[0] = (square_xyrxly[0] + 47);
+ square_xyrxly[1] = (square_xyrxly[1] - 47);
  square_xyrxly[2] = (square_xyrxly[2] - 46);
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
                 
