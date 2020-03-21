@@ -62,7 +62,7 @@ struct MyStructRenderData {
  font_path_name[FILE_NAME_MAX],
  select_square_strings[STRINGS_MAX][STRINGS_MAX],
  view_square_strings[STRINGS_MAX][STRINGS_MAX];
- TTF_Font *font_data;
+ TTF_Font *font_data[256];
  SDL_Texture *texture;
  SDL_Color TTFColor1,
            TTFColor2;
@@ -122,7 +122,7 @@ struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, 
 
  //TTF初期化
  strcat(Menue1_s.font_path_name, TTF_FONT1);
- Menue1_s.font_data = MyFuncInitTTF(Menue1_s.font_data, Menue1_s.font_path_name);
+ Menue1_s.font_data[0] = MySDLInitTTF(Menue1_s.font_data[0], Menue1_s.font_path_name);
  
  //SDL_Renderer 初期化
  Menue1_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
@@ -193,7 +193,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 
  //TTF初期化
  strcat(Menue2_s.font_path_name, TTF_FONT1);
- Menue2_s.font_data = MyFuncInitTTF(Menue2_s.font_data, Menue2_s.font_path_name);
+ Menue2_s.font_data[0] = MySDLInitTTF(Menue2_s.font_data[0], Menue2_s.font_path_name);
  
  //SDL_Renderer 初期化
  Menue2_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
@@ -228,19 +228,19 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
 };
 
 void MySpeciSelectSquareTexterBleadAndCreateSurface_UserSelecting(struct MyStructRenderData* data_s) {
- data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data, 
+ data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data[0], 
                          data_s->select_square_strings[data_s->user_cursor_position],
                          data_s->TTFColor1);  
  data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciSelectSquareTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsigned char num) {
-  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data, data_s->select_square_strings[num], data_s->TTFColor2);  
+  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data[0], data_s->select_square_strings[num], data_s->TTFColor2);  
   data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciViewSquareTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsigned char num) {
-  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data, data_s->view_square_strings[num], data_s->TTFColor2);  
+  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data[0], data_s->view_square_strings[num], data_s->TTFColor2);  
   data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 

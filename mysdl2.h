@@ -37,7 +37,7 @@ void MySDLDrawSquareAndFill(SDL_Renderer *render, int* square_xyrxly, int* line_
 }
 ;
 	
-TTF_Font *MyFuncInitTTF(TTF_Font *font, char *font_path_name) {
+TTF_Font *MySDLInitTTF(TTF_Font *font, char *font_path_name) {
  
  if (TTF_Init() < 0) {
   printf("TTF_InitError: %s\n", TTF_GetError());
