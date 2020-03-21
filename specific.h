@@ -154,7 +154,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //select_square
  char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  //view_square
- char view_square_strings1[2][MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {
+ char view_square_strings[2][MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {
 	                                                                    // 固定値
 	                                                                   {"Chipo         Lv 1",
 	                                                                   "         HP  23/23",
@@ -183,7 +183,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  };
 
  for(i = 0; i <= MyMENUE2VIEW1_STRINGSNUM; i++){
-  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings1[0][i]);
+  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings[0][i]);
  };
  
  Menue2_s.image = NULL;
