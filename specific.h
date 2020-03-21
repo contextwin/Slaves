@@ -62,7 +62,7 @@ struct MyStructRenderData {
  font_path_name[FILE_NAME_MAX],
  select_square_strings[STRINGS_MAX][STRINGS_MAX],
  view_square_strings[STRINGS_MAX][STRINGS_MAX];
- TTF_Font *font_data[256];
+ TTF_Font *font_data[STRINGS_MAX];
  SDL_Texture *texture;
  SDL_Color TTFColor1,
            TTFColor2;
