@@ -153,14 +153,14 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //select_square
  char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  //view_square
- char view_square_strings[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = { "Chipo         Lv 1",
-	                                                                 "         HP  23/23",
-	                                                                 "         MP  15/15",
-	                                                                 "        ABP  15/15",
-	                                                                 "     STR  3  SPD 5",
-	                                                                 "     VIT  3  MGC 5",
-	                                                                 "     INT  3 LUCK 5",
-	                                                                 "NextLvUP     8 exp"};
+ char view_square_strings1[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo         Lv 1",
+	                                                                   "         HP  23/23",
+	                                                                   "         MP  15/15",
+	                                                                   "        ABP  15/15",
+	                                                                   "     STR  3  SPD 5",
+	                                                                   "     VIT  3  MGC 5",
+	                                                                   "     INT  3 LUCK 5",
+	                                                                   "NextLvUP     8 exp"};
  
  //サーフェイス取得
  Menue2_s.screenSurface = SDL_GetWindowSurface(slaves_window);
@@ -178,7 +178,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  };
 
  for(i = 0; i <= MyMENUE2VIEW1_STRINGSNUM; i++){
-  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings[i]);
+  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings1[i]);
  };
  
  Menue2_s.image = NULL;
