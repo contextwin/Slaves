@@ -30,7 +30,7 @@
 //フォントデータ関連マクロ
 #define FONT_DIR "./fonts/"
 #define TTF_FONT1 "PixelMplus-20130602/PixelMplus10-Regular.ttf"
-//#define TTF_FONT1 "ipaexm00201/ipaexm.ttf"
+#define TTF_FONT2 "ipaexm00201/ipaexm.ttf"
 //#define TTF_FONT1 "BauhausModern/BauhausModern-Regular.ttf"
 //#define TTF_FONT1 "ipaexg00201/ipaexg.ttf"
 //#define TTF_FONT1 "RictyDiminished-for-Powerline/RictyDiminished-Regular.ttf"
@@ -62,7 +62,7 @@ struct MyStructRenderData {
  font_path_name[FILE_NAME_MAX],
  select_square_strings[STRINGS_MAX][STRINGS_MAX],
  view_square_strings[STRINGS_MAX][STRINGS_MAX];
- TTF_Font *font10px;
+ TTF_Font *font_data;
  SDL_Texture *texture;
  SDL_Color TTFColor1,
            TTFColor2;
@@ -122,7 +122,7 @@ struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, 
 
  //TTF初期化
  strcat(Menue1_s.font_path_name, TTF_FONT1);
- Menue1_s.font10px = MyFuncInitTTF(Menue1_s.font10px, Menue1_s.font_path_name);
+ Menue1_s.font_data = MyFuncInitTTF(Menue1_s.font_data, Menue1_s.font_path_name);
  
  //SDL_Renderer 初期化
  Menue1_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
@@ -151,10 +151,10 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //select_square
  char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  //view_square
- char view_square_strings[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo         Lv 1",
-	                                                                 "          HP 23/23",
-	                                                                 "          MP 15/15",
-	                                                                 "         ABP 15/15",
+ char view_square_strings[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = { "Chipo         Lv 1",
+	                                                                 "         HP  23/23",
+	                                                                 "         MP  15/15",
+	                                                                 "        ABP  15/15",
 	                                                                 "     STR  3  SPD 5",
 	                                                                 "     VIT  3  MGC 5",
 	                                                                 "     INT  3 LUCK 5",
@@ -193,7 +193,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 
  //TTF初期化
  strcat(Menue2_s.font_path_name, TTF_FONT1);
- Menue2_s.font10px = MyFuncInitTTF(Menue2_s.font10px, Menue2_s.font_path_name);
+ Menue2_s.font_data = MyFuncInitTTF(Menue2_s.font_data, Menue2_s.font_path_name);
  
  //SDL_Renderer 初期化
  Menue2_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
@@ -228,19 +228,19 @@ void MySpeciDrawMenue2Square(SDL_Renderer* render) {
 };
 
 void MySpeciSelectSquareTexterBleadAndCreateSurface_UserSelecting(struct MyStructRenderData* data_s) {
- data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, 
+ data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data, 
                          data_s->select_square_strings[data_s->user_cursor_position],
                          data_s->TTFColor1);  
  data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciSelectSquareTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsigned char num) {
-  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->select_square_strings[num], data_s->TTFColor2);  
+  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data, data_s->select_square_strings[num], data_s->TTFColor2);  
   data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciViewSquareTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsigned char num) {
-  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font10px, data_s->view_square_strings[num], data_s->TTFColor2);  
+  data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data, data_s->view_square_strings[num], data_s->TTFColor2);  
   data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
