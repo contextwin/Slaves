@@ -31,6 +31,8 @@
 #define FONT_DIR "./fonts/"
 #define TTF_FONT1 "PixelMplus-20130602/PixelMplus10-Regular.ttf"
 #define TTF_FONT2 "ipaexm00201/ipaexm.ttf"
+#define FIXED 0 // 固定値
+#define DYNAMIC 1 // 変動値
 //#define TTF_FONT1 "BauhausModern/BauhausModern-Regular.ttf"
 //#define TTF_FONT1 "ipaexg00201/ipaexg.ttf"
 //#define TTF_FONT1 "RictyDiminished-for-Powerline/RictyDiminished-Regular.ttf"
@@ -183,7 +185,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  };
 
  for(i = 0; i <= MyMENUE2VIEW1_STRINGSNUM; i++){
-  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings[0][i]);
+  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings[FIXED][i]);
  };
  
  Menue2_s.image = NULL;
