@@ -123,6 +123,7 @@ struct MyStructRenderData MySpeciInitMenue1(struct MyStructRenderData Menue1_s, 
  //TTF初期化
  strcat(Menue1_s.font_path_name, TTF_FONT1);
  Menue1_s.font_data[0] = MySDLInitTTF(Menue1_s.font_data[0], Menue1_s.font_path_name);
+ MyFuncStringsAssignment(Menue1_s.font_path_name, FONT_DIR);
  strcat(Menue1_s.font_path_name, TTF_FONT2);
  Menue1_s.font_data[1] = MySDLInitTTF(Menue1_s.font_data[1], Menue1_s.font_path_name);
 
@@ -153,23 +154,18 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //select_square
  char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
  //view_square
- char view_square_strings1[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo         Lv 1",
+ char view_square_strings1[2][MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {
+	                                                                    // 固定値
+	                                                                   {"Chipo         Lv 1",
 	                                                                   "         HP  23/23",
 	                                                                   "         MP  15/15",
 	                                                                   "        ABP  15/15",
 	                                                                   "     STR  3  SPD 5",
 	                                                                   "     VIT  3  MGC 5",
 	                                                                   "     INT  3 LUCK 5",
-	                                                                   "NextLvUP     8 exp"};
-
- char view_square_strings2[MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {"Chipo         Lv 1",
-	                                                                   "         HP  23/23",
-	                                                                   "         MP  15/15",
-	                                                                   "        ABP  15/15",
-	                                                                   "     STR  3  SPD 5",
-	                                                                   "     VIT  3  MGC 5",
-	                                                                   "     INT  3 LUCK 5",
-	                                                                   "NextLvUP     8 exp"};                                                        
+	                                                                   "NextLvUP     8 exp"},
+	                                                                   // 変動値
+	                                                                   {}};
  
  //サーフェイス取得
  Menue2_s.screenSurface = SDL_GetWindowSurface(slaves_window);
@@ -187,7 +183,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  };
 
  for(i = 0; i <= MyMENUE2VIEW1_STRINGSNUM; i++){
-  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings1[i]);
+  MyFuncStringsAssignment(Menue2_s.view_square_strings[i], view_square_strings1[0][i]);
  };
  
  Menue2_s.image = NULL;
@@ -205,6 +201,9 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  //TTF初期化
  strcat(Menue2_s.font_path_name, TTF_FONT1);
  Menue2_s.font_data[0] = MySDLInitTTF(Menue2_s.font_data[0], Menue2_s.font_path_name);
+ MyFuncStringsAssignment(Menue2_s.font_path_name, FONT_DIR);
+ strcat(Menue2_s.font_path_name, TTF_FONT2);
+ Menue2_s.font_data[1] = MySDLInitTTF(Menue2_s.font_data[1], Menue2_s.font_path_name);
  
  //SDL_Renderer 初期化
  Menue2_s.render = SDL_CreateRenderer(slaves_window, -1, SDL_RENDERER_SOFTWARE);
