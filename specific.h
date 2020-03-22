@@ -29,7 +29,7 @@
 
 //フォントデータ関連マクロ
 #define FONT_DIR "./fonts/"
-#define TTF_FONT1 "PixelMplus-20130602/PixelMplus10-Regular.ttf"
+#define TTF_FONT1 "JF-Dot-Shinomoe14/JF-Dot-Shinonome14.ttf"
 #define TTF_FONT2 "ipaexm00201/ipaexm.ttf"
 #define FIXED 0 // 固定値
 #define DYNAMIC 1 // 変動値
@@ -41,7 +41,7 @@
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
 #define PNG_FILE01 "chipo_center01.png"
-#define PNG_FILE02 "chipo_side_75.png"
+#define PNG_FILE02 "chipo_side01.png"
 
 //色指定関連マクロ & 広域変数
 #define MyRGBCOLOR_ARRYNUM 4
