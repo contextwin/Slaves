@@ -41,7 +41,7 @@
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
 #define PNG_FILE01 "chipo_center01.png"
-#define PNG_FILE02 "chipo_side01.png"
+#define PNG_FILE02 "chipo_side_75.png"
 
 //色指定関連マクロ & 広域変数
 #define MyRGBCOLOR_ARRYNUM 4
