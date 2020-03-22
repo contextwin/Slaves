@@ -513,7 +513,7 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
                 (60));
                 
  // 貨表示ウィンドウ(右枠左角) 丸め処理
- MySDLDrawCircle(data_s->render, square_xyrxly[2] - 99,
+ MySDLDrawCircle(data_s->render, square_xyrxly[2] - 100,
                 square_xyrxly[1] + 59,
                 (60)); 
  
@@ -523,13 +523,12 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  SDL_RenderDrawLine(data_s->render, square_xyrxly[2] - 75, square_xyrxly[1] - 1, square_xyrxly[2], square_xyrxly[1] - 1);
  SDL_RenderDrawLine(data_s->render, square_xyrxly[2] - 34, square_xyrxly[1], square_xyrxly[2], square_xyrxly[1]);
  // 縦線
- SDL_RenderDrawLine(data_s->render, square_xyrxly[2], square_xyrxly[1], square_xyrxly[2], square_xyrxly[1] + 19);
+ SDL_RenderDrawLine(data_s->render, ((MyFIRSTDIVISIONPIXEL5_X * 4) + 5), square_xyrxly[1], ((MyFIRSTDIVISIONPIXEL5_X * 4) + 5), square_xyrxly[1] + 19);
 
  MySDLSetDrawColor(data_s->render, fill_color);
  // 通貨表示ウィンドウ(右枠左角) 丸角塗りつぶし処理
  // 横線
- SDL_RenderDrawLine(data_s->render, square_xyrxly[2] - 150, square_xyrxly[1], square_xyrxly[2] - 110, square_xyrxly[1]);
- //SDL_RenderDrawLine(data_s->render, square_xyrxly[2], square_xyrxly[1], square_xyrxly[2], square_xyrxly[1]);
+ SDL_RenderDrawLine(data_s->render, square_xyrxly[2] - 150, square_xyrxly[1], square_xyrxly[2] - 111, square_xyrxly[1]);
  // 縦線
  SDL_RenderDrawLine(data_s->render, square_xyrxly[2], square_xyrxly[1], square_xyrxly[2], square_xyrxly[1] + 19);
 
