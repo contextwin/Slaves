@@ -512,6 +512,11 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
                 square_xyrxly[1] + 59,
                 (60));
                 
+ // 貨表示ウィンドウ(右枠左角) 丸め処理
+ MySDLDrawCircle(data_s->render, square_xyrxly[2] - 99,
+                square_xyrxly[1] + 59,
+                (60)); 
+ 
  // 通貨表示ウィンドウ(右枠右角) 丸角塗りつぶし処理
  MySDLSetDrawColor(data_s->render, fill_color);
  // 横線
@@ -530,9 +535,9 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  square_xyrxly[3] = (square_xyrxly[3] - 1);
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
 
- //square_xyrxly[0] = (square_xyrxly[0] + 46);
+ square_xyrxly[0] = (square_xyrxly[0] + 40);
  square_xyrxly[1] = (square_xyrxly[1] - 46);
- square_xyrxly[2] = (square_xyrxly[2] - 44);
+ square_xyrxly[2] = (square_xyrxly[2] - 40);
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
 
 }
