@@ -547,6 +547,11 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  square_xyrxly[2] = (square_xyrxly[2] - 40);
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
 
+ square_xyrxly[0] = (square_xyrxly[0] - 60);
+ square_xyrxly[1] = (square_xyrxly[1]);
+ square_xyrxly[2] = (square_xyrxly[2] - 105);
+ square_xyrxly[3] = (square_xyrxly[3] - 145);
+ MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
 }
 
 void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
