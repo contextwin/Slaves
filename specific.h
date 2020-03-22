@@ -159,12 +159,12 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  char view_square_strings[2][MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {
 	                                                                    // 固定値
 	                                                                   {"Chipo         Lv 1",
-	                                                                   "         HP  23/23",
-	                                                                   "         MP  15/15",
-	                                                                   "        ABP  15/15",
-	                                                                   "     STR  3  SPD 5",
-	                                                                   "     VIT  3  MGC 5",
-	                                                                   "     INT  3 LUCK 5",
+	                                                                   "        HP  23/ 23",
+	                                                                   "        MP  15/ 15",
+	                                                                   "       ABP  15/ 15",
+	                                                                   "    STR  3  SPD  5",
+	                                                                   "    VIT  3  MGC  5",
+	                                                                   "    INT  3 LUCK  5",
 	                                                                   "NextLvUP     8 exp"},
 	                                                                   // 変動値
 	                                                                   {}};
@@ -254,6 +254,8 @@ void MySpeciSelectSquareTexterBleadAndCreateSurface(struct MyStructRenderData* d
 void MySpeciViewSquareTexterBleadAndCreateSurface(struct MyStructRenderData* data_s, unsigned char num) {
   data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data[0], data_s->view_square_strings[num], data_s->TTFColor2);  
   data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
+ // data_s->screenSurface = TTF_RenderUTF8_Blended(data_s->font_data[1], data_s->view_square_strings[num], data_s->TTFColor2);  
+ // data_s->texture = SDL_CreateTextureFromSurface(data_s->render, data_s->screenSurface);
 };
 
 void MySpeciRenderTextMenue2SelectSquare(struct MyStructRenderData* data_s) {
