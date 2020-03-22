@@ -1,0 +1,1 @@
+../tool/sh/image_resize.sh
