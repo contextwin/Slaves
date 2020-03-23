@@ -40,7 +40,8 @@
 
 //画像データ関連マクロ
 #define IMAGE_DIR "./image/"
-#define PNG_FILE01 "chipo_center01.png"
+//#define PNG_FILE01 "chipo_center01.png"
+#define PNG_FILE01 "chipo_overall_30.jpeg"
 #define PNG_FILE02 "chipo_side01.png"
 
 //色指定関連マクロ & 広域変数
@@ -191,15 +192,20 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  Menue2_s.image = NULL;
  strcat(Menue2_s.img_path_name, PNG_FILE02);
  
- //画像データ読み込み
+ //画像データ読み込み 横顔グラ
  Menue2_s.image = IMG_Load(Menue2_s.img_path_name);
  if(!Menue2_s.image){
   printf("IMG_GetError: %s\n", IMG_GetError());
  };
  
- //引数1のサーフェイスを引数3のサーフェイスにコピーする
- SDL_BlitSurface(Menue2_s.image, NULL, Menue2_s.screenSurface, NULL);
-
+ //横顔グラ表示座標指定
+ SDL_Rect rect;
+ rect.x = (MyFIRSTDIVISIONPIXEL5_X / 5);
+ rect.y = 0;            
+ 
+ //引数1のサーフェイスを引数3のサーフェイスにコピーする     
+ SDL_BlitSurface(Menue2_s.image, NULL, Menue2_s.screenSurface, &rect);
+ 
  //TTF初期化
  strcat(Menue2_s.font_path_name, TTF_FONT1);
  Menue2_s.font_data[0] = MySDLInitTTF(Menue2_s.font_data[0], Menue2_s.font_path_name);
@@ -423,10 +429,10 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
 // MySDLSetDrawColor(data_s->render, line_color);
 // SDL_RenderDrawLine(data_s->render, 0, (MyFIRSTDIVISIONPIXEL5_Y), MyWIDTH, (MyFIRSTDIVISIONPIXEL5_Y * 4));
 
- // 画像描画
+ // 画像描画 キャラ正面絵1
  MySDLSetDrawColor(data_s->render, line_color);
- SDL_Rect rect;
- rect.x = MyFIRSTDIVISIONPIXEL5_X;
+ SDL_Rect rect; //画像表示座標
+ rect.x = -22;//(MyFIRSTDIVISIONPIXEL5_X / 2) / 8;
  rect.y = (MyFIRSTDIVISIONPIXEL5_Y * 3);            
  SDL_BlitSurface(data_s->image, NULL, data_s->screenSurface, &rect);
  
@@ -552,6 +558,16 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  square_xyrxly[2] = (square_xyrxly[2] - 105);
  square_xyrxly[3] = (square_xyrxly[3] - 145);
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
+ 
+ //HP MP 表示領域部描画
+ square_xyrxly[0] = MyFIRSTDIVISIONPIXEL5_X;
+ square_xyrxly[1] = ((MyFIRSTDIVISIONPIXEL6_Y * 5)  +
+                      (MyFIRSTDIVISIONPIXEL6_Y / 4));
+ square_xyrxly[2] = MyFIRSTDIVISIONPIXEL5_X * 2;
+ square_xyrxly[3] = MyHEIGHT;
+ MySDLSetDrawColor(data_s->render, line_color);
+ MySDLDrawSquare(data_s->render, square_xyrxly);
+ //MySDLDrawSquareAndFill(data_s->render, square_xyrxly, line_color, fill_color);
 }
 
 void MySpeciMenue1Start(struct MyWindowAndRenderData* data_s) {
