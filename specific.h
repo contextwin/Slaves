@@ -407,6 +407,15 @@ void MySpeciMenue2UserInpuLoop(struct MyWindowAndRenderData* data_s) {
 
 void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
 
+/*
+ // 画像描画 キャラ正面絵1
+ MySDLSetDrawColor(data_s->render, line_color);
+ SDL_Rect rect; //画像表示座標
+ rect.x = -22;//(MyFIRSTDIVISIONPIXEL5_X / 2) / 8;
+ rect.y = ((MyFIRSTDIVISIONPIXEL5_Y * 3)
+           - (MyFIRSTDIVISIONPIXEL5_Y / 4));                      
+ SDL_BlitSurface(data_s->image, NULL, data_s->screenSurface, &rect);
+ */
  MySDLDrawCircle(data_s->render, MyFIRSTDIVISIONPIXEL5_X + (MyFIRSTDIVISIONPIXEL5_X / 2),
                                                    (MyFIRSTDIVISIONPIXEL5_Y * 3),
                                                    (158 / 2));
@@ -433,9 +442,12 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  MySDLSetDrawColor(data_s->render, line_color);
  SDL_Rect rect; //画像表示座標
  rect.x = -22;//(MyFIRSTDIVISIONPIXEL5_X / 2) / 8;
- rect.y = (MyFIRSTDIVISIONPIXEL5_Y * 3);            
- SDL_BlitSurface(data_s->image, NULL, data_s->screenSurface, &rect);
- 
+ rect.y = ((MyFIRSTDIVISIONPIXEL5_Y * 3)
+           - (MyFIRSTDIVISIONPIXEL5_Y / 4));            
+ SDL_BlitSurface(data_s->image, NULL, data_s->screenSurface, &rect); 
+ // 縦線
+ //SDL_RenderDrawLine(data_s->render, ((MyFIRSTDIVISIONPIXEL5_X * 4) + 5), square_xyrxly[1], ((MyFIRSTDIVISIONPIXEL5_X * 4) + 5), square_xyrxly[1] + 19);
+
  // キャラ選択ロマネスアーチ部                                                  
  SDL_RenderDrawLine(data_s->render, MyFIRSTDIVISIONPIXEL5_X, (MyFIRSTDIVISIONPIXEL5_Y * 3), MyFIRSTDIVISIONPIXEL5_X, MyHEIGHT);
  SDL_RenderDrawLine(data_s->render, (MyFIRSTDIVISIONPIXEL5_X * 2), (MyFIRSTDIVISIONPIXEL5_Y * 3), (MyFIRSTDIVISIONPIXEL5_X * 2), MyHEIGHT);
@@ -505,7 +517,7 @@ void MySpeciDrawMenue1BackGround(struct MyStructRenderData* data_s) {
  square_xyrxly[1] = (square_xyrxly[1] - 47);
  square_xyrxly[2] = (square_xyrxly[2] - 46);
  MySDLDrawSquareAndFill(data_s->render, square_xyrxly, fill_color, fill_color);
-                
+                                                   
  // 通貨表示ウィンドウ(右枠) レンダリング
  square_xyrxly[0] = ((MyFIRSTDIVISIONPIXEL5_X * 4) + 5);
  square_xyrxly[1] = (MyFIRSTDIVISIONPIXEL6_Y * 2);
