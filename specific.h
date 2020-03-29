@@ -42,7 +42,7 @@
 #define IMAGE_DIR "./image/current/"
 //#define PNG_FILE01 "chipo_center01.png"
 #define PNG_FILE01 "menue1/chipo_overall_30.png"
-#define PNG_FILE02 "menue2/chipo_side01.png"
+#define PNG_FILE02 "menue2/chipo_side01_65.png"
 
 //色指定関連マクロ & 広域変数
 #define MyRGBCOLOR_ARRYNUM 4
@@ -57,7 +57,7 @@ int fill_color[MyRGBCOLOR_ARRYNUM] = {255, 255, 255, 255};
 #define MyRENDER_X 0
 #define MyRENDER_Y 1
 
-//メニュー画面2 レンダリングデータ保持用構造体構造体変数
+//画面 レンダリングデータ保持用構造体構造体変数
 struct MyStructRenderData {
  SDL_Surface *image; // 画像のサーフェイス
  SDL_Surface *screenSurface; // windowのサーフェイス
@@ -200,7 +200,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
  
  //横顔グラ表示座標指定
  SDL_Rect rect;
- rect.x = (MyFIRSTDIVISIONPIXEL5_X / 5);
+ rect.x = 0;//(MyFIRSTDIVISIONPIXEL5_X / 5);
  rect.y = 0;            
  
  //引数1のサーフェイスを引数3のサーフェイスにコピーする     
@@ -231,11 +231,14 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 };
 
 void MySpeciDrawMenue2Square(SDL_Renderer* render) {
- int select_square_xyrxlry[MySQUARESIZE_ARRYNUM] = {MyMENUE2SELECTSQUARE6_X, 
-	                             MyMENUE2SELECTSQUARE6_Y, 
+ int select_square_xyrxlry[MySQUARESIZE_ARRYNUM] = {MyMENUE2SELECTSQUARE6_X * 2,
+	                             MyMENUE2SELECTSQUARE6_Y,
+	                             ((MyFIRSTDIVISIONPIXEL6_X * 5) + ((MyFIRSTDIVISIONPIXEL6_X / 2) + 1)),
+	                             ((MyFIRSTDIVISIONPIXEL6_Y * 5) + ((MyFIRSTDIVISIONPIXEL6_Y / 1.5) + 1))},
+/*
 	                             ((MyFIRSTDIVISIONPIXEL6_X * 5) + (MyFIRSTDIVISIONPIXEL6_X - (MyFIRSTDIVISIONPIXEL6_X / 4))),
 	                             ((MyFIRSTDIVISIONPIXEL6_Y * 5) + ((MyFIRSTDIVISIONPIXEL6_Y / 1.5) + 1))},
-	                             
+	*/                             
      view_square_xyrxlry[MySQUARESIZE_ARRYNUM] = {MyMENUE2VIEWSQUARE6_X,
 		                       MyMENUE2VIEWSQUARE6_Y, 
 		                       ((MyFIRSTDIVISIONPIXEL6_X * 5) + ((MyFIRSTDIVISIONPIXEL6_X / 2) + 1)), 
