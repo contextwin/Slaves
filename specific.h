@@ -155,7 +155,7 @@ struct MyStructRenderData MySpeciInitMenue2(struct MyStructRenderData Menue2_s, 
 
  //メニュー画面2 出力文言
  //select_square
- char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"つよさ", "そうび", "とくぎ", "アビリティUP"};
+ char select_square_strings[MyMENUE2SELECT_STRINGSNUM][STRINGS_MAX] = {"  つよさ", "そうび", "とくぎ", "  アビリティUP"}; // 後日修正
  //view_square
  char view_square_strings[2][MyMENUE2VIEW1_STRINGSNUM][STRINGS_MAX] = {
 	                                                                    // 固定値
