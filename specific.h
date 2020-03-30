@@ -42,7 +42,7 @@
 #define IMAGE_DIR "./image/current/"
 //#define PNG_FILE01 "chipo_center01.png"
 #define PNG_FILE01 "menue1/chipo_overall_30.png"
-#define PNG_FILE02 "menue2/chipo_side01_65.png"
+#define PNG_FILE02 "menue2/chipo_side01_68.png"
 
 //色指定関連マクロ & 広域変数
 #define MyRGBCOLOR_ARRYNUM 4
