@@ -2,7 +2,12 @@
 # 外部コマンド wgetコマンドに依存しています!!
 DATE=`date "+%Y%m%d_%H%M%S"`
 THISPROJECTS="/home/contextwin/work/src/Slaves/Slaves/doc/thisproject/"
-for LIST in "5307375" "5331764" "5402599" "5422771" "5435893"
+
+wget http://contextwin.livedoor.blog
+cat index.html | grep sidebody | grep -v 2020 | awk '{print substr($0, index($0, "archives/"))}' | awk '{sub(".html.*", "");print $0;}' | awk '{sub("archives/", "");print $0;}' > page_list.txt
+rm index.html
+
+for LIST in `cat page_list.txt`
 do
 wget -O "${THISPROJECTS}${LIST}/${DATE}.html" http://contextwin.livedoor.blog/archives/${LIST}.html
 done
