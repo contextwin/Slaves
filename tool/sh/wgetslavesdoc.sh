@@ -1,4 +1,5 @@
 #!/bin/sh
+# 外部コマンド wgetコマンドに依存しています!!
 DATE=`date "+%Y%m%d_%H%M%S"`
 THISPROJECTS="/home/contextwin/work/src/Slaves/Slaves/doc/thisproject/"
 for LIST in "5307375" "5331764" "5402599" "5422771" "5435893"
