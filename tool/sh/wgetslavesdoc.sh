@@ -12,6 +12,9 @@ for LIST in `cat page_list.txt`
 do
  if [ ! -e ${THISPROJECTS}${LIST} ]; then
  mkdir ${THISPROJECTS}${LIST}
+ mkdir ${THISPROJECTS}${LIST}/curent
+ touch ${THISPROJECTS}${LIST}/curent/a.html
+ mkdir ${THISPROJECTS}${LIST}/old
  fi
 done
 
@@ -27,8 +30,13 @@ if [ ${WC} -gt 0 ]; then
   echo updated ${LIST} 
   mv ${THISPROJECTS}${LIST}/curent/*.html ${THISPROJECTS}${LIST}/old/.
   mv ${THISPROJECTS}${LIST}/${DATE}.html ${THISPROJECTS}${LIST}/curent/.
+  if [ -e ${THISPROJECTS}${LIST}/old/a.html ]; then
+   rm ${THISPROJECTS}${LIST}/old/a.html
+  fi
  else
   echo no-updated ${LIST}	 
   rm ${THISPROJECTS}${LIST}/${DATE}.html
 fi
 done
+
+rm page_list.txt
