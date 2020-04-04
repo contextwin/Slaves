@@ -12,8 +12,8 @@ for LIST in `cat page_list.txt`
 do
  if [ ! -e ${THISPROJECTS}${LIST} ]; then
  mkdir ${THISPROJECTS}${LIST}
- mkdir ${THISPROJECTS}${LIST}/curent
- touch ${THISPROJECTS}${LIST}/curent/a.html
+ mkdir ${THISPROJECTS}${LIST}/current
+ touch ${THISPROJECTS}${LIST}/current/a.html
  mkdir ${THISPROJECTS}${LIST}/old
  fi
 done
@@ -25,11 +25,11 @@ done
 
 for LIST in `cat page_list.txt`
 do
-WC=`diff ${THISPROJECTS}${LIST}/${DATE}.html ${THISPROJECTS}${LIST}/curent/*.html | wc -l`
+WC=`diff ${THISPROJECTS}${LIST}/${DATE}.html ${THISPROJECTS}${LIST}/current/*.html | wc -l`
 if [ ${WC} -gt 0 ]; then
   echo updated ${LIST} 
-  mv ${THISPROJECTS}${LIST}/curent/*.html ${THISPROJECTS}${LIST}/old/.
-  mv ${THISPROJECTS}${LIST}/${DATE}.html ${THISPROJECTS}${LIST}/curent/.
+  mv ${THISPROJECTS}${LIST}/current/*.html ${THISPROJECTS}${LIST}/old/.
+  mv ${THISPROJECTS}${LIST}/${DATE}.html ${THISPROJECTS}${LIST}/current/.
   if [ -e ${THISPROJECTS}${LIST}/old/a.html ]; then
    rm ${THISPROJECTS}${LIST}/old/a.html
   fi
