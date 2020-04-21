@@ -1,0 +1,1 @@
+../../tool/sh/change_exif.sh
