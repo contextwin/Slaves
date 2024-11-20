@@ -15,7 +15,7 @@ sudo apt install xorg-dev
 2.
 Slavesはビルド要件として、libsdl2-dev群に依存しています。
 aptコマンドで導入する場合,
-sudo apt install libsdl2-dev libsdl-image1.2-dev libsdl2-ttf-dev
+sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
 を実行して下さい。
 
 RPGゲーム
