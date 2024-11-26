@@ -13,9 +13,9 @@ sudo apt install xorg-dev
 を実行して下さい。
 
 2.
-Slavesはビルド要件として、libsdl2-dev群に依存しています。
+Slavesはビルド要件として、libimlib2-devに依存します。
 aptコマンドで導入する場合,
-sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
+sudo apt install libimlib2-dev
 を実行して下さい。
 
 RPGゲーム
@@ -34,3 +34,6 @@ contextwin プログラミング担当
 ガビ イメージデータ作成担当
   twitter: @goblinmajo
   ArtStation: https://www.artstation.com/maimiestoybox
+
+ナツメ イラスト担当
+  X(twitter): @@8h0nGiMLtJ53754
