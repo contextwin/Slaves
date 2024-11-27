@@ -27,6 +27,26 @@ int MyWindowsize( int n ) {
  return MyROOT_NUM + ((n - 1) * (MyROOT_NUM + MyPADDING));
 }
 
+/* 画像を描画する */
+void MyDrawImage( char *imagepath, int x, int y, int width, int height ) {
+ 
+ Imlib_Image buffer, image;
+ int w, h;
+
+ buffer = imlib_create_image( width, height );
+ image = imlib_load_image( imagepath );
+ imlib_context_set_image(image);
+ w = imlib_image_get_width();
+ h = imlib_image_get_height();
+ imlib_context_set_image( buffer );
+ imlib_blend_image_onto_image( image, 0, 
+                                         0, 0, w, h, 
+                                          0, 0, width, height );
+ imlib_render_image_on_drawable( x, y );
+ imlib_free_image();
+
+}
+
 int main(void)
 {
  /* X Windowの設定変数 */
@@ -50,7 +70,6 @@ memset(imagepath, 0, sizeof(imagepath)); ;
  Pixmap pat;
 
  /* Imlib2の設定 */
- Imlib_Image buffer;
  Imlib_Font font;
 
  /* ウィンドウサイズ計算、保持 */
@@ -89,11 +108,7 @@ XMapWindow( display, window );
  imlib_context_set_visual(vis);
  imlib_context_set_colormap(cm);
  imlib_context_set_drawable(window);
- Imlib_Image image;
- int w, h;
 
-
- 
 /* Imlib2 設定 font */
 imlib_set_font_cache_size (512 * 1024);
 imlib_add_path_to_font_path ( "./fonts/PixelMplus-20130602" );
@@ -240,46 +255,17 @@ for ( i = 0 ; x >= y; i++ ) {
 
  /* キャラ1正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
-buffer = imlib_create_image(99, 150);
- image = imlib_load_image( imagepath );
- imlib_context_set_image(image);
- w = imlib_image_get_width();
- h = imlib_image_get_height();
- imlib_context_set_image(buffer);
- imlib_blend_image_onto_image(image, 0, 
-                                         0, 0, w, h, 
-                                          0, 0, 99, 150 );
- imlib_render_image_on_drawable(( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ) );
- imlib_free_image();
+MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150 );
 usleep(300);
 
  /* キャラ2正面絵描画 */
- snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
- buffer = imlib_create_image( 99, 150 );
- image = imlib_load_image( imagepath );
- imlib_context_set_image(image);
- w = imlib_image_get_width();
- h = imlib_image_get_height();
- imlib_context_set_image(buffer);
- imlib_blend_image_onto_image(image, 0, 
-                                         0, 0, w, h, 
-                                          0, 0, 99, 150 );
- imlib_render_image_on_drawable(( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ) );
- imlib_free_image();
+snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
+MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150 );
 usleep(300);
 
  /* キャラ3正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
- buffer = imlib_create_image(99, 150);
- image = imlib_load_image( imagepath );
- imlib_context_set_image(image);
- w = imlib_image_get_width();
- h = imlib_image_get_height();
- imlib_context_set_image(buffer);
- imlib_blend_image_onto_image(image, 0, 0, 0, w, h, 
-                                0, 0, 99, 150 );
- imlib_render_image_on_drawable(( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ) );
- imlib_free_image();
+MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
 usleep(300);
 
 /* 画面左部文字表示領域 */
@@ -349,8 +335,8 @@ XCopyArea( display, pat, window, gc, 0, 0,
  
 
  /* Imlib2による文字列表示 */
- image = imlib_create_image(500, 200);
-  imlib_context_set_image(image);
+ //image = imlib_create_image(500, 200);
+  //imlib_context_set_image(image);
  //imlib_context_set_image(image);
  font = imlib_load_font( "PixelMplus12-Regular.ttf/12" );
  if (font) {
