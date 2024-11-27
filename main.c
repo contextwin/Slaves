@@ -69,9 +69,6 @@ memset(imagepath, 0, sizeof(imagepath)); ;
  /* xbmび関連の変数 */
  Pixmap pat;
 
- /* Imlib2の設定 */
- Imlib_Font font;
-
  /* ウィンドウサイズ計算、保持 */
  int MyWidth = MyWindowsize(14);
  int MyHeight = MyWindowsize(11);
@@ -108,14 +105,7 @@ XMapWindow( display, window );
  imlib_context_set_visual(vis);
  imlib_context_set_colormap(cm);
  imlib_context_set_drawable(window);
-
-/* Imlib2 設定 font */
-imlib_set_font_cache_size (512 * 1024);
-imlib_add_path_to_font_path ( "./fonts/PixelMplus-20130602" );
-int text_w, text_h;
  
-
-
 /* XサーバからExposeイベントが送られてくるまで待つ */
 do{
         XNextEvent( display, &ev);
@@ -256,17 +246,20 @@ for ( i = 0 ; x >= y; i++ ) {
  /* キャラ1正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
 MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150 );
-usleep(300);
+XFlush( display );
+usleep( 300 );
 
  /* キャラ2正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
 MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150 );
-usleep(300);
+XFlush( display );
+usleep( 300 );
 
  /* キャラ3正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
 MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
-usleep(300);
+XFlush( display );
+usleep( 300 );
 
 /* 画面左部文字表示領域 */
 for ( i = 0; (i < MyHeight / 3); i++ ){
@@ -333,33 +326,6 @@ XCopyArea( display, pat, window, gc, 0, 0,
  XFlush( display );
  usleep(500);
  
-
- /* Imlib2による文字列表示 */
- //image = imlib_create_image(500, 200);
-  //imlib_context_set_image(image);
- //imlib_context_set_image(image);
- font = imlib_load_font( "PixelMplus12-Regular.ttf/12" );
- if (font) {
- char text[4096];
- imlib_context_set_font(font);
-
- imlib_context_set_color(0, 0, 0, 255);
- sprintf(text, "test");
- //imlib_render_text(50, 100, text);
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw(text_w, text_h, text);
- imlib_free_font();
- }
- XFlush( display );
- usleep(500);
-
-/* 文字列表示 */
-/*
-XDrawString( display, window, gc, 10, 30, TEST_TEXT, strlen(TEST_TEXT));
- XFlush( display );
- usleep(500);
-*/
-
  getchar();
 
  XDestroyWindow( display, window);
