@@ -327,32 +327,26 @@ XCopyArea( display, pat, window, gc, 0, 0,
  imlib_get_text_size(text, &text_w, &text_h);
  imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 45, text ); 
 
- imlib_context_set_color(0, 0, 0, 255);
  sprintf( text, "とくぎ" );
  imlib_get_text_size(text, &text_w, &text_h);
  imlib_text_draw( ( MyWidth / 2.5 ) + 95, ( MyHeight / 9 ) + 45, text ); 
 
- imlib_context_set_color(0, 0, 0, 255);
  sprintf( text, "そうび" );
  imlib_get_text_size(text, &text_w, &text_h);
  imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 90, text ); 
 
- imlib_context_set_color(0, 0, 0, 255);
  sprintf( text, "所持金" );
  imlib_get_text_size(text, &text_w, &text_h);
  imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 5, text );
 
- imlib_context_set_color(0, 0, 0, 255);
  sprintf( text, "500G" );
  imlib_get_text_size(text, &text_w, &text_h);
  imlib_text_draw( ( MyWidth / 1.25 ) + 70, ( MyHeight / 3 ) + 50, text );
 
- imlib_context_set_color(0, 0, 0, 255);
  sprintf( text, "経過時間" );
  imlib_get_text_size(text, &text_w, &text_h);
  imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 95, text );
 
- imlib_context_set_color(0, 0, 0, 255);
  sprintf( text, "00:00:00" );
  imlib_get_text_size(text, &text_w, &text_h);
  imlib_text_draw( ( MyWidth / 1.25 ) +15, ( MyHeight / 3 ) + 140, text );
@@ -383,25 +377,4 @@ MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
 XFlush( display );
 usleep( 300 );
 
-/* 文字列描画 */
-//int w, h, text_w, text_h;
-////buffer = imlib_create_image(MyWidth / 2, MyHeight / 2);
-//    font = imlib_load_font("PixelMplus12-Regular/30");
-//   if (font)
-//     {
-//        char text[4096];
-//
-//        imlib_context_set_font(font);
-//        imlib_context_set_image(buffer);
-//        imlib_context_set_color(255, 255, 255, 255);
-//        sprintf( text, "hello, こんにちわ。" );
-//        imlib_get_text_size(text, &text_w, &text_h);
-//        imlib_text_draw(320 - (text_w / 2), 240 - (text_h / 2), text); 
-//        imlib_free_font();
-//     }
-//              
-//   imlib_context_set_blend(0);   
-//   imlib_context_set_image(buffer);   
-//   imlib_render_image_on_drawable(0, 0);    
-//   imlib_free_image();
  }
