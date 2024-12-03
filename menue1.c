@@ -3,13 +3,16 @@
 #include <unistd.h>
 
 #include "common.h"
-#include "image.h"
+#include "MyImlib2.h"
 
 /* xbmデータのインクルード */
 #include "./image/current/menue1/test.xbm"
 
 /* 画像格納ディレクトリへのパス */
 #define MyImagePath "./image/current/menue1"
+
+/* menue1画像変数 */
+#define MyMenue1Image "/menue1.png"
 
 /* キャラクター正面画像変数 */
 #define MyHogeFront "/test3.jpg"
@@ -33,12 +36,13 @@ void MyDrawMenue1(void) {
  Colormap cm;
  int i;
 
- /* フォント関連の変数 */
- //Font font;
-
 /* 画像描画関連の変数 */
 char imagepath[100];
 memset(imagepath, 0, sizeof(imagepath)); ;
+
+/* フォント描画関連の変数 */
+Imlib_Font font;
+Imlib_Image buffer;
 
  /* xbmび関連の変数 */
  Pixmap pat;
@@ -71,7 +75,7 @@ XMapWindow( display, window );
                                         DefaultDepth( display, 0 ) );
 
 
-/* Imlib2 設定 image*/
+ /* Imlib2 設定 image*/
  imlib_set_cache_size(2048 * 1024);
  imlib_set_color_usage(128);
  imlib_context_set_dither(1);
@@ -80,6 +84,10 @@ XMapWindow( display, window );
  imlib_context_set_colormap(cm);
  imlib_context_set_drawable(window);
  
+ /* Imlib2 設定 font */
+ imlib_add_path_to_font_path("./fonts/PixelMplus-20130602/");
+ font = imlib_load_font("PixelMplus12-Regular/20");
+
 /* XサーバからExposeイベントが送られてくるまで待つ */
 do{
         XNextEvent( display, &ev);
@@ -217,24 +225,6 @@ for ( i = 0 ; x >= y; i++ ) {
  usleep(300);
 }
 
- /* キャラ1正面絵描画 */
-snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
-MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150 );
-XFlush( display );
-usleep( 300 );
-
- /* キャラ2正面絵描画 */
-snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
-MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150 );
-XFlush( display );
-usleep( 300 );
-
- /* キャラ3正面絵描画 */
-snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
-MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
-XFlush( display );
-usleep( 300 );
-
 /* 画面左部文字表示領域 */
 for ( i = 0; (i < MyHeight / 3); i++ ){
  XDrawPoint( display, window, gc, (MyWidth / 1.25), (MyHeight / 3) + i);
@@ -299,4 +289,119 @@ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 90 ), 100 );
  XFlush( display );
  usleep(500);
+
+/* menue1枠線画像描画 */
+ Imlib_Image image;
+ int w, h;
+
+ snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyMenue1Image );
+ buffer = imlib_create_image( MyWidth, MyHeight );
+ image = imlib_load_image( imagepath );
+ imlib_context_set_image(image);
+ w = imlib_image_get_width();
+ h = imlib_image_get_height();
+ imlib_context_set_image( buffer );
+ imlib_blend_image_onto_image( image, 0, 
+                                         0, 0, w, h, 
+                                          0, 0, MyWidth, MyHeight );
+ /* 文字列描画 */
+ int text_w, text_h;
+ if (font)
+ {
+ char text[4096];
+
+ imlib_context_set_font(font);
+ imlib_context_set_image(buffer);
+ 
+ imlib_context_set_color(0, 255, 255, 255);
+ sprintf( text, "アイテム" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 2.5 ) - 35, MyHeight / 9, text ); 
+ 
+ imlib_context_set_color(0, 0, 0, 255);
+ sprintf( text, "つよさ" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 2.5 ) + 95, MyHeight / 9, text ); 
+ 
+ sprintf( text, "まほう" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 45, text ); 
+
+ imlib_context_set_color(0, 0, 0, 255);
+ sprintf( text, "とくぎ" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 2.5 ) + 95, ( MyHeight / 9 ) + 45, text ); 
+
+ imlib_context_set_color(0, 0, 0, 255);
+ sprintf( text, "そうび" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 90, text ); 
+
+ imlib_context_set_color(0, 0, 0, 255);
+ sprintf( text, "所持金" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 5, text );
+
+ imlib_context_set_color(0, 0, 0, 255);
+ sprintf( text, "500G" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 1.25 ) + 70, ( MyHeight / 3 ) + 50, text );
+
+ imlib_context_set_color(0, 0, 0, 255);
+ sprintf( text, "経過時間" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 95, text );
+
+ imlib_context_set_color(0, 0, 0, 255);
+ sprintf( text, "00:00:00" );
+ imlib_get_text_size(text, &text_w, &text_h);
+ imlib_text_draw( ( MyWidth / 1.25 ) +15, ( MyHeight / 3 ) + 140, text );
+
+ imlib_free_font();
+ }
+              
+ imlib_context_set_blend(0);   
+ imlib_context_set_image(buffer);   
+ imlib_render_image_on_drawable(0, 0); 
+ imlib_free_image();
+ 
+/* キャラ1正面絵描画 */
+snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
+MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150 );
+XFlush( display );
+usleep( 300 );
+
+ /* キャラ2正面絵描画 */
+snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
+MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150 );
+XFlush( display );
+usleep( 300 );
+
+ /* キャラ3正面絵描画 */
+snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
+MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
+XFlush( display );
+usleep( 300 );
+
+/* 文字列描画 */
+//int w, h, text_w, text_h;
+////buffer = imlib_create_image(MyWidth / 2, MyHeight / 2);
+//    font = imlib_load_font("PixelMplus12-Regular/30");
+//   if (font)
+//     {
+//        char text[4096];
+//
+//        imlib_context_set_font(font);
+//        imlib_context_set_image(buffer);
+//        imlib_context_set_color(255, 255, 255, 255);
+//        sprintf( text, "hello, こんにちわ。" );
+//        imlib_get_text_size(text, &text_w, &text_h);
+//        imlib_text_draw(320 - (text_w / 2), 240 - (text_h / 2), text); 
+//        imlib_free_font();
+//     }
+//              
+//   imlib_context_set_blend(0);   
+//   imlib_context_set_image(buffer);   
+//   imlib_render_image_on_drawable(0, 0);    
+//   imlib_free_image();
  }
