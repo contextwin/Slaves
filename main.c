@@ -4,6 +4,8 @@
 /* グローバル変数の定義 */
 Display *display;
 Window window;
+XEvent event;
+KeySym keysym;
 
 int main(void)
 {
@@ -11,7 +13,7 @@ int main(void)
 /* メニュー1の表示 */
  MyDrawMenue1();
 
- getchar();
+ //getchar();
 
  XDestroyWindow( display, window );
  XCloseDisplay( display );

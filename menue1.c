@@ -30,7 +30,7 @@ int MyWindowsize( int n ) {
 void MyDrawMenue1(void) {
 /* X Windowの設定変数 */
  int screen;
- XEvent ev;
+ //XEvent ev;
  GC gc, gc1;
  Visual *vis;
  Colormap cm;
@@ -66,7 +66,7 @@ gc = XCreateGC( display, window, 0, 0 );
 gc1 = XCreateGC( display, window, 0, 0 );
 XSetForeground( display, gc1, WhitePixel( display, 0 ) );
 
-XSelectInput( display, window, ExposureMask );
+XSelectInput( display, window, ExposureMask | KeyPressMask );
 XMapWindow( display, window );
 
 /* xbm 設定 */
@@ -90,8 +90,8 @@ XMapWindow( display, window );
 
 /* XサーバからExposeイベントが送られてくるまで待つ */
 do{
-        XNextEvent( display, &ev);
-}while( ev.type != Expose );
+        XNextEvent( display, &event);
+}while( event.type != Expose );
 
 for ( i = 0; i < ( MyWidth / 3 ); i++ ) {
  XDrawPoint( display, window, gc, ( ( MyWidth / 2 ) - i ), ( ( MyHeight / 5 ) ) );
@@ -377,4 +377,16 @@ MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
 XFlush( display );
 usleep( 300 );
 
+ /* ユーザーイベント待受 */
+ for (;;) {
+  XNextEvent( display, &event );
+  if ( event.type == KeyPress ) {
+   keysym = XLookupKeysym( &event.xkey, 0 );
+
+   if ( keysym == XK_Escape ) {
+    break;
+   }
+  
+  }
  }
+}
