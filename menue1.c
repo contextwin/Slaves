@@ -21,12 +21,6 @@
 
 #define TEST_TEXT "test"
 
-/* ウィンドウサイズを計算する関数 */
-int MyWindowsize( int n ) {
- return MyROOT_NUM + ((n - 1) * (MyROOT_NUM + MyPADDING));
-}
-
-
 void MyDrawMenue1(void) {
 /* X Windowの設定変数 */
  int screen;
@@ -46,10 +40,6 @@ Imlib_Image buffer;
 
  /* xbmび関連の変数 */
  Pixmap pat;
-
- /* ウィンドウサイズ計算、保持 */
- int MyWidth = MyWindowsize(14);
- int MyHeight = MyWindowsize(11);
 
  /* ウィンドウの設定 */
  display = XOpenDisplay( NULL );
@@ -305,7 +295,6 @@ XCopyArea( display, pat, window, gc, 0, 0,
                                          0, 0, w, h, 
                                           0, 0, MyWidth, MyHeight );
  /* 文字列描画 */
- int text_w, text_h;
  if (font)
  {
  char text[4096];
@@ -314,44 +303,34 @@ XCopyArea( display, pat, window, gc, 0, 0,
  imlib_context_set_image(buffer);
  
  imlib_context_set_color(0, 255, 255, 255);
- sprintf( text, "アイテム" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 2.5 ) - 35, MyHeight / 9, text ); 
- 
- imlib_context_set_color(0, 0, 0, 255);
- sprintf( text, "つよさ" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 2.5 ) + 95, MyHeight / 9, text ); 
- 
- sprintf( text, "まほう" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 45, text ); 
+sprintf( text, "アイテム" );
+imlib_text_draw( ( MyWidth / 2.5 ) - 35, MyHeight / 9, text ); 
 
- sprintf( text, "とくぎ" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 2.5 ) + 95, ( MyHeight / 9 ) + 45, text ); 
+imlib_context_set_color(0, 0, 0, 255);
+sprintf( text, "つよさ" );
+imlib_text_draw( ( MyWidth / 2.5 ) + 95, MyHeight / 9, text ); 
 
- sprintf( text, "そうび" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 90, text ); 
+sprintf( text, "まほう" );
+imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 45, text ); 
 
- sprintf( text, "所持金" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 5, text );
+sprintf( text, "とくぎ" );
+imlib_text_draw( ( MyWidth / 2.5 ) + 95, ( MyHeight / 9 ) + 45, text ); 
 
- sprintf( text, "500G" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 1.25 ) + 70, ( MyHeight / 3 ) + 50, text );
+sprintf( text, "そうび" );
+imlib_text_draw( ( MyWidth / 2.5 ) - 35, ( MyHeight / 9 ) + 90, text ); 
 
- sprintf( text, "経過時間" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 95, text );
+sprintf( text, "所持金" );
+imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 5, text );
 
- sprintf( text, "00:00:00" );
- imlib_get_text_size(text, &text_w, &text_h);
- imlib_text_draw( ( MyWidth / 1.25 ) +15, ( MyHeight / 3 ) + 140, text );
+sprintf( text, "500G" );
+imlib_text_draw( ( MyWidth / 1.25 ) + 70, ( MyHeight / 3 ) + 50, text );
 
- imlib_free_font();
+sprintf( text, "経過時間" );
+imlib_text_draw( ( MyWidth / 1.25 ) + 5, ( MyHeight / 3 ) + 95, text );
+
+sprintf( text, "00:00:00" );
+imlib_text_draw( ( MyWidth / 1.25 ) +15, ( MyHeight / 3 ) + 140, text );
+
  }
               
  imlib_context_set_blend(0);   
@@ -362,19 +341,16 @@ XCopyArea( display, pat, window, gc, 0, 0,
 /* キャラ1正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
 MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150 );
-XFlush( display );
 usleep( 300 );
 
  /* キャラ2正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
 MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150 );
-XFlush( display );
 usleep( 300 );
 
  /* キャラ3正面絵描画 */
 snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
 MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
-XFlush( display );
 usleep( 300 );
 
  /* ユーザーイベント待受 */
@@ -383,10 +359,50 @@ usleep( 300 );
   if ( event.type == KeyPress ) {
    keysym = XLookupKeysym( &event.xkey, 0 );
 
+   if ( keysym == XK_Down ) {
+
+ /* メニュー画面画像バッファ合成 */
+ snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyMenue1Image );
+ buffer = imlib_create_image( MyWidth, MyHeight );
+ image = imlib_load_image( imagepath );
+ imlib_context_set_image( image );
+ w = imlib_image_get_width();
+ h = imlib_image_get_height();
+ imlib_context_set_image( buffer );
+ imlib_blend_image_onto_image( image, 0, 
+                                         0, 0, w, h, 
+                                          0, 0, MyWidth, MyHeight );
+ 
+ /* 文字列描画バッファ合成 */
+ imlib_context_set_font(font);
+ imlib_context_set_image(buffer);
+ imlib_context_set_color(0, 0, 0, 255);
+ MyBlendMenue1Strings1();
+              
+ /* キャラ1正面絵描画 */
+ snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
+ MyBlendImage( buffer, imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
+
+ /* キャラ2正面絵描画 */
+ snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
+ MyBlendImage( buffer, imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150 );
+
+ /* キャラ3正面絵描画 */
+ snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
+ MyBlendImage( buffer, imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150 );
+
+ imlib_context_set_blend(0);   
+ imlib_context_set_image(buffer);  
+ imlib_render_image_on_drawable(0, 0);
+
+}
+
    if ( keysym == XK_Escape ) {
     break;
    }
   
   }
+  //imlib_free_font();
+  //imlib_free_image();
  }
 }
