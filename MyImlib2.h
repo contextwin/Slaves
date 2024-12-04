@@ -10,6 +10,7 @@ extern void MyDrawImage( char *imagepath, int x, int y, int width, int height );
 extern void MyBlendImage( Imlib_Image buffer, char *imagepath, int x, int y, int width, int height );
 
 /* font.c内の関数 */
-extern void MyBlendMenue1Strings1();
+/* メニュー画面にフォントをブレンドする */
+extern void MyBlendMenueStrings1(char positionnum);
 
 #endif
