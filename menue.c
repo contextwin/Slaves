@@ -260,46 +260,46 @@ for ( i = 0; i < MyWidth; i++ ) {
 XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, 70, 125 );
                  XFlush( display );
- usleep(500);
+ usleep(300);
 XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, 60, 25 );
  XFlush( display );
- usleep(500);
+ usleep(300);
 XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, 35, 85 );
  XFlush( display );
- usleep(500);
+ usleep(300);
 XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 70 ), 150 );
  XFlush( display );
- usleep(500);
+ usleep(300);
 
 XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 60 ), 30 );
  XFlush( display );
- usleep(500);
+ usleep(300);
 
 XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 35 ), 80 );
  XFlush( display );
- usleep(500);
+ usleep(300);
 XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 90 ), 100 );
  XFlush( display );
- usleep(500);
+ usleep(300);
  
  /* キャラクター正面画像バッファ合成 */
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
  MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
- usleep(500);
+ usleep(300);
 
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
  MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150);
- usleep(500);
+ usleep(300);
  
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
  MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150);
- usleep(500);
+ usleep(300);
 
  /* メニュー画面画像バッファ合成 */
  char positionnum = 1;
