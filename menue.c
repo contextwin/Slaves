@@ -7,6 +7,7 @@
 
 /* xbmデータのインクルード */
 #include "./image/current/menue/test.xbm"
+#include "./image/current/menue/triangle.xbm"
 
 /* 画像格納ディレクトリへのパス */
 #define MyImagePath "./image/current/menue"
@@ -40,6 +41,7 @@ Imlib_Font font1, font2;
 
  /* xbmび関連の変数 */
  Pixmap pat;
+ XColor xcolor;
 
  /* ウィンドウの設定 */
  display = XOpenDisplay( NULL );
@@ -91,7 +93,7 @@ for ( i = 0; i < ( MyWidth / 3 ); i++ ) {
  XDrawPoint( display, window, gc, ( ( MyWidth / 2 ) + i ), ( ( MyHeight / 1.25 ) ) );
 
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 int centrex1 = ( ( ( ( ( MyWidth / 2 ) - i ) / 1.5 ) + 2 ) / 2 );   /* 原点のx座標1 */
@@ -136,21 +138,21 @@ for ( i = 0 ; x >= y; i++ ) {
  }
 
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 /* 側面の線を描画 */
 for( i = 0 ; i < ( ( MyHeight / 2 ) + 21 ); i++ ) {
  XDrawPoint( display, window, gc, centrex1 * 2, ( ( ( MyHeight / 4 ) + 13 ) + i ) );
  XDrawPoint( display, window, gc, centrex2, ( ( ( MyHeight / 4 ) + 13 ) + i ) );
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 for ( i = 0; i < 15; i++ ) {
  XDrawPoint( display, window, gc, centrex1 + 47 + i, (MyHeight / 1.25));
  XDrawPoint( display, window, gc, centrex2 - i, (MyHeight / 1.25));
  XFlush( display );
- usleep(300); 
+ usleep(200); 
 }
 /* キャラグラ表示領域 */
 for( i = 0; i < 200; i++ ) {
@@ -161,7 +163,7 @@ for( i = 0; i < 200; i++ ) {
  XDrawPoint( display, window, gc, ( MyWidth / 2 ) - 200 , ( ( MyHeight / 1.25 ) - i  ));
 
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 centrex1 = ( MyWidth / 2 );   /* 原点のx座標1 */
@@ -213,24 +215,24 @@ for ( i = 0 ; x >= y; i++ ) {
  }
 
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 /* 画面左部文字表示領域 */
 for ( i = 0; (i < MyHeight / 3); i++ ){
  XDrawPoint( display, window, gc, (MyWidth / 1.25), (MyHeight / 3) + i);
  XDrawPoint( display, window, gc, (MyWidth / 1.05), (MyHeight / 3) + i);
- XDrawPoint( display, window, gc1, (MyWidth / 1.05) - (((MyWidth / 1.05) - (MyWidth / 1.25)) / 2) + 8,
+ XDrawPoint( display, window, gc, (MyWidth / 1.05) - (((MyWidth / 1.05) - (MyWidth / 1.25)) / 2) + 8,
                 (MyHeight / 3) + i);
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 for ( i = 0; i < (MyWidth / 1.05) - (MyWidth / 1.25); i++ ){
  XDrawPoint( display, window, gc, (MyWidth / 1.05) - i, (MyHeight / 3) );
  XDrawPoint( display, window, gc, (MyWidth / 1.05) - i, (MyHeight / 3) + (MyHeight / 3) );
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 /* 画面上部文字表示領域 */
@@ -238,16 +240,16 @@ for ( i = 0; (i < MyHeight / 3.5); i++ ){
  XDrawPoint( display, window, gc, (MyWidth / 3), (MyHeight / 14) + i);
  XDrawPoint( display, window, gc, (MyWidth / 1.5), (MyHeight / 14) + i);               
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 for ( i = 0; i <= (MyWidth / 3); i++ ) {
  XDrawPoint( display, window, gc, (MyWidth / 3) + i, ((MyHeight / 14)));
  XDrawPoint( display, window, gc, (MyWidth / 3) + i, (MyHeight / 2.75) - 3);
- XDrawPoint( display, window, gc1, (MyWidth / 3) + i,
+ XDrawPoint( display, window, gc, (MyWidth / 3) + i,
                 ( MyHeight / 5 ));
  XFlush( display );
- usleep(300);
+ usleep(200);
 }
 
 for ( i = 0; i < MyWidth; i++ ) {
@@ -256,58 +258,58 @@ for ( i = 0; i < MyWidth; i++ ) {
  usleep(150);
 }
 
-/* クロス描画 */
-XCopyArea( display, pat, window, gc, 0, 0,
+ /* クロス描画 */
+ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, 70, 125 );
                  XFlush( display );
- usleep(300);
-XCopyArea( display, pat, window, gc, 0, 0,
+ usleep(200);
+ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, 60, 25 );
  XFlush( display );
- usleep(300);
-XCopyArea( display, pat, window, gc, 0, 0,
+ usleep(200);
+ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, 35, 85 );
  XFlush( display );
- usleep(300);
-XCopyArea( display, pat, window, gc, 0, 0,
+ usleep(200);
+ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 70 ), 150 );
  XFlush( display );
- usleep(300);
+ usleep(200);
 
-XCopyArea( display, pat, window, gc, 0, 0,
+ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 60 ), 30 );
  XFlush( display );
- usleep(300);
+ usleep(200);
 
-XCopyArea( display, pat, window, gc, 0, 0,
+ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 35 ), 80 );
  XFlush( display );
- usleep(300);
-XCopyArea( display, pat, window, gc, 0, 0,
+ usleep(200);
+ XCopyArea( display, pat, window, gc, 0, 0,
                 test_width, test_height, ( MyWidth - 90 ), 100 );
  XFlush( display );
- usleep(300);
+ usleep(200);
  
  /* キャラクター正面画像バッファ合成 */
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
  MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
- usleep(300);
+ usleep(200);
 
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
  MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150);
- usleep(300);
+ usleep(200);
  
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
  MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150);
- usleep(300);
+ usleep(200);
 
  /* メニュー画面画像バッファ合成 */
- char positionnum = 1;
+ char positionnum1 = 1;
  Imlib_Image image1 = imlib_create_image( 279, 188 );
  imlib_context_set_font(font1);
  imlib_context_set_image(image1);
  /* 領域1フォント合成 */
- MyBlendMenueStrings1(positionnum);
+ MyBlendMenueStrings1(positionnum1);
  /* ウィンドウへの描画 */
  imlib_context_set_drawable(window);
  imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
@@ -330,62 +332,157 @@ XCopyArea( display, pat, window, gc, 0, 0,
  /* ループ中のフォントブレンド用に設定 */
  imlib_context_set_font(font1);
  
+ /* ループ中のtriangle.xbmカラー設定 */
+ unsigned long red = BlackPixel(display, screen);
+ if (XAllocNamedColor(display, cm, "red", &xcolor, &xcolor)) {
+  red = xcolor.pixel; // 赤色をピクセル値として取得
+ } else {
+  fprintf(stderr, "Cannot allocate red color\n");
+ }
+ pat = XCreatePixmapFromBitmapData( display, window, triangle_bits, triangle_width, triangle_height,
+                                        red, WhitePixel( display, 0 ),
+                                        DefaultDepth( display, 0 ) );
+
  /* ユーザーイベント待受 */
  for (;;) {
   XNextEvent( display, &event );
   if ( event.type == KeyPress ) {
    keysym = XLookupKeysym( &event.xkey, 0 );
 
-  if ( keysym == XK_Right ) {
-   if ( positionnum == 1 || positionnum == 3 || positionnum == 5 )  { 
-    positionnum += 1;
-   } else {
-    positionnum -= 1;
+   if ( keysym == XK_Right ) {
+    if ( positionnum1 == 1 || positionnum1 == 3 || positionnum1 == 5 )  { 
+     positionnum1 += 1;
+    } else {
+     positionnum1 -= 1;
+    }
    }
-  }
 
-  if ( keysym == XK_Down ) {
-   if ( positionnum == 5 || positionnum == 6 ) { 
-    positionnum -= 4;
-   } else if ( positionnum == 4 && positionnum == 6 ) {
-    positionnum = 2;
-   } else {
-    positionnum += 2;
+   if ( keysym == XK_Down ) {
+    if ( positionnum1 == 5 || positionnum1 == 6 ) { 
+     positionnum1 -= 4;
+    } else if ( positionnum1 == 4 && positionnum1 == 6 ) {
+     positionnum1 = 2;
+    } else {
+     positionnum1 += 2;
+    }
    }
-  }
 
-  if ( keysym == XK_Left ) {
-   if (positionnum == 1 ) { 
-    positionnum = 2;
-   } else if ( positionnum == 3 ) {
-    positionnum = 4;
-   } else if ( positionnum == 5 ) {
-    positionnum += 0;
-   } else {
-    positionnum -= 1;
+   if ( keysym == XK_Left ) {
+    if (positionnum1 == 1 ) { 
+     positionnum1 = 2;
+    } else if ( positionnum1 == 3 ) {
+     positionnum1 = 4;
+    } else if ( positionnum1 == 5 ) {
+     positionnum1 += 0;
+    } else {
+     positionnum1 -= 1;
+    }
    }
-  }
 
-  if ( keysym == XK_Up ) {
-   if (positionnum == 1 || positionnum == 2 ) { 
-    positionnum += 4;
-   } else {
-    positionnum -= 2;
+   if ( keysym == XK_Up ) {
+    if (positionnum1 == 1 || positionnum1 == 2 ) { 
+     positionnum1 += 4;
+    } else {
+     positionnum1 -= 2;
+    }
    }
-  }
 
-  /* 文字列描画バッファ合成 */
-  imlib_context_set_image(image1);
-  MyBlendMenueStrings1(positionnum);
+   /* 文字列描画バッファ合成 */
+   imlib_context_set_image(image1);
+   MyBlendMenueStrings1(positionnum1);
 
-  if ( keysym == XK_Escape ) {
-   break;
-  }
-   
-  //imlib_context_set_blend(0);
-  imlib_context_set_drawable(window);   
-  //imlib_context_set_image(buffer);  
-  imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
+   if ( keysym == XK_Escape ) {
+    break;
+   }
+
+   if ( keysym == XK_Return ) {
+    if ( positionnum1 == 2 ) {
+     char positionnum2 = 1;
+     
+     /* triangle.xbm描画 */
+     XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165 );
+     XFlush( display );
+     
+     // 黒の透明マスクの設定
+     imlib_context_set_color(0, 0, 0, 220);
+     // 四角形を塗りつぶす
+     imlib_image_fill_rectangle( 0, 0, 279, 188 );
+     // 描画
+     imlib_context_set_drawable(window);
+     imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
+     /* 強さ選択中イベントループ(キャラクター選択)*/
+     for (;;) {
+      XNextEvent( display, &event );
+      if ( event.type == KeyPress ) {
+       keysym = XLookupKeysym( &event.xkey, 0 );
+       
+       if ( keysym == XK_Right ) {
+        if ( positionnum2 == 3 ) {
+         positionnum2 = 1;
+        } else {
+         positionnum2 += 1;
+        }
+
+        if ( positionnum2 == 1 ) {
+         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+         XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165 );
+         XFlush( display );
+        } else if ( positionnum2 == 2 ) {
+         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+         XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165 );
+         XFlush( display );
+        } else if ( positionnum2 == 3 ) {
+         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+         XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165 );
+         XFlush( display );
+        }
+       }
+       if ( keysym == XK_Left ) {
+        if ( positionnum2 == 1 ) {
+         positionnum2 = 3;
+        } else {
+         positionnum2 -= 1;
+        }
+
+        if ( positionnum2 == 1 ) {
+         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+         XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165 );
+         XFlush( display );
+        } else if ( positionnum2 == 2 ) {
+         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+         XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165 );
+         XFlush( display );
+        } else if ( positionnum2 == 3 ) {
+         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+         XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165 );
+         XFlush( display );
+        }
+
+       }
+
+       if ( keysym == XK_space ) {
+        XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+        XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+        XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+        MyBlendMenueStrings1(positionnum1);
+        break;
+        
+       }
+      }
+     }
+    }
+   }
+   //imlib_context_set_blend(0);
+   imlib_context_set_drawable(window);   
+   //imlib_context_set_image(buffer);  
+   imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
   }
  }
 }

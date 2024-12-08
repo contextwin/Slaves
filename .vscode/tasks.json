@@ -8,7 +8,11 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${file}",
+				"main.c",
+				"image.c",
+				"menue.c",
+				"common.c",
+				"font.c",
 				"-o",
 				"${fileDirname}/Slaves",
 				"-lX11",
