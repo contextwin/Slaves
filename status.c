@@ -15,7 +15,7 @@ void MyDrawStatus( char positionnum2 ) {
    for(;;) {
     XNextEvent( display, &event );
     keysym = XLookupKeysym( &event.xkey, 0 );
-    
+
     if ( event.type == KeyPress ) {
      if ( keysym == XK_space ) {
       keysym = NoSymbol;

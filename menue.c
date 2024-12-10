@@ -391,6 +391,11 @@ for ( i = 0; i < MyWidth; i++ ) {
      positionnum1 -= 2;
     }
    }
+   
+   if ( keysym == XK_Escape ) {
+    keysym = NoSymbol;
+    break;
+   }
 
    /* 文字列描画バッファ合成 */
    imlib_context_set_font( font1 );
@@ -399,11 +404,6 @@ for ( i = 0; i < MyWidth; i++ ) {
    /* 描画 */
    imlib_context_set_drawable(window);
    imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
-   
-   if ( keysym == XK_Escape ) {
-    keysym = NoSymbol;
-    break;
-   }
 
    if ( keysym == XK_Return ) {
     keysym = NoSymbol;
@@ -485,9 +485,12 @@ for ( i = 0; i < MyWidth; i++ ) {
         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+        imlib_context_set_font( font1 );
+        imlib_context_set_image( image1 );
         MyBlendMenueStrings1(positionnum1);
+        imlib_context_set_drawable(window);    
+        imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
         break;
-
        }
       }
       
@@ -496,15 +499,16 @@ for ( i = 0; i < MyWidth; i++ ) {
        XFillRectangle(display, window, gc1, 0, 0, MyWidth, MyHeight );
        MyDrawStatus( positionnum2 );
 
-       // 黒の透明マスクの設定
-       imlib_context_set_color(0, 0, 0, 220);
-       // 四角形を塗りつぶす
-       imlib_image_fill_rectangle( 0, 0, 279, 188 );
        snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyMenueImage );
        MyDrawImage( imagepath, 0, 0, MyWidth, MyHeight );
        imlib_context_set_image(image1);
        imlib_context_set_font( font1 );
+
        MyBlendMenueStrings1(positionnum1);
+       // 黒の透明マスクの設定
+       imlib_context_set_color(0, 0, 0, 220);
+       // 四角形を塗りつぶす
+       imlib_image_fill_rectangle( 0, 0, 279, 188 );
        imlib_context_set_drawable(window);    
        imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
                if ( positionnum2 == 1 ) {
@@ -536,15 +540,13 @@ for ( i = 0; i < MyWidth; i++ ) {
          imlib_context_set_font(font2); 
          imlib_context_set_image(image3);
          MyBlendMenueStrings3();
+
          imlib_context_set_drawable(window);
          imlib_render_image_on_drawable( 0, MyHeight - 80 );
       }
      }
     }
    }
-
-   //imlib_context_set_drawable(window);    
-   //imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
   }
  }
 }
