@@ -1,5 +1,5 @@
 #include "common.h"
-#include "menue1.h"
+#include "menue.h"
 
 /* グローバル変数の定義 */
 Display *display;
@@ -16,7 +16,7 @@ int main(void)
  MyHeight = MyWindowsize(11);
 
  /* メニュー1の表示 */
- MyDrawMenue1();
+ MyDrawMenue();
 
  //getchar();
 

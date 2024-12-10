@@ -4,6 +4,7 @@
 
 #include "common.h"
 #include "MyImlib2.h"
+#include "menue.h"
 
 /* xbmデータのインクルード */
 #include "./image/current/menue/test.xbm"
@@ -22,7 +23,8 @@
 
 #define TEST_TEXT "test"
 
-void MyDrawMenue1(void) {
+void MyDrawMenue(void) {
+
 /* X Windowの設定変数 */
  int screen;
  //XEvent ev;
@@ -37,7 +39,6 @@ memset(imagepath, 0, sizeof(imagepath)); ;
 
 /* フォント描画関連の変数 */
 Imlib_Font font1, font2;
-//Imlib_Image buffer;
 
  /* xbmび関連の変数 */
  Pixmap pat;
@@ -473,15 +474,18 @@ for ( i = 0; i < MyWidth; i++ ) {
         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
         MyBlendMenueStrings1(positionnum1);
         break;
-        
+
        }
+      }
+      
+      if ( keysym == XK_Return ) {
+       MyDrawStatus( positionnum2 );
       }
      }
     }
    }
-   //imlib_context_set_blend(0);
-   imlib_context_set_drawable(window);   
-   //imlib_context_set_image(buffer);  
+
+   imlib_context_set_drawable(window);    
    imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
   }
  }
