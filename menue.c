@@ -28,7 +28,6 @@ void MyDrawMenue(void) {
 /* X Windowの設定変数 */
  int screen;
  //XEvent ev;
- GC gc, gc1;
  Visual *vis;
  Colormap cm;
  int i;
@@ -330,9 +329,6 @@ for ( i = 0; i < MyWidth; i++ ) {
  imlib_context_set_drawable(window);
  imlib_render_image_on_drawable( 0, MyHeight - 80 );
 
- /* ループ中のフォントブレンド用に設定 */
- //imlib_context_set_font(font1);
- 
  /* ループ中のtriangle.xbmカラー設定 */
  unsigned long red = BlackPixel(display, screen);
  if (XAllocNamedColor(display, cm, "red", &xcolor, &xcolor)) {
@@ -402,8 +398,8 @@ for ( i = 0; i < MyWidth; i++ ) {
    imlib_context_set_image( image1 );
    MyBlendMenueStrings1( positionnum1 );
    /* 描画 */
-   imlib_context_set_drawable(window);
-   imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
+   imlib_context_set_drawable( window );
+   imlib_render_image_on_drawable( ( MyWidth / 3 ) + 1, ( MyHeight / 14 ) + 1 );
 
    if ( keysym == XK_Return ) {
     keysym = NoSymbol;
@@ -537,12 +533,6 @@ for ( i = 0; i < MyWidth; i++ ) {
          MyBlendMenueStrings2();
          imlib_context_set_drawable(window);
          imlib_render_image_on_drawable( ( MyWidth / 1.25 ) + 1, ( MyHeight / 3 ) + 1 );
-         imlib_context_set_font(font2); 
-         imlib_context_set_image(image3);
-         MyBlendMenueStrings3();
-
-         imlib_context_set_drawable(window);
-         imlib_render_image_on_drawable( 0, MyHeight - 80 );
       }
      }
     }

@@ -6,6 +6,8 @@ Display *display;
 Window window;
 XEvent event;
 KeySym keysym;
+GC gc, gc1;
+
 int MyWidth;
 int MyHeight;
 

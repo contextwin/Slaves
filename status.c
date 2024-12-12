@@ -23,6 +23,8 @@ void MyDrawStatus( char positionnum2 ) {
   MyDrawImage( imagepath, 0, 0, 625, 750);
  }
 
+ XDrawRectangle(display, window, gc, MyWidth / 8, MyHeight / 1.5, MyWidth / 1.325, 150);
+
  for(;;) {
   XNextEvent( display, &event );
   keysym = XLookupKeysym( &event.xkey, 0 );

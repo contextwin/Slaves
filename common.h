@@ -13,6 +13,7 @@ extern Display *display;
 extern Window window;
 extern XEvent event;
 extern KeySym keysym;
+extern GC gc, gc1;
 
 /* common.c */
 /* ウィンドウサイズを計算する関数 */
