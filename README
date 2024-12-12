@@ -13,7 +13,7 @@ sudo apt install xorg-dev
 2.
 Slavesはビルド要件として、libimlib2-devに依存します。
 aptコマンドで導入する場合,
-sudo apt install libimlib2-dev
+sudo apt install libimlib libimlib2-dev
 を実行して下さい。
 
 RPGゲーム
