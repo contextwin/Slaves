@@ -7,7 +7,7 @@
 /* 画像を描画する */
 extern void MyDrawImage( char *imagepath, int x, int y, int width, int height );
 /* 画像をバッファにブレンドする */
-extern void MyBlendImage( Imlib_Image buffer, char *imagepath, int x, int y, int width, int height );
+extern void MyBlendImage( char *imagepath, int x, int y, int width, int height );
 
 /* font.c内の関数 */
 /* メニュー画面にフォントをブレンドする、領域1 */

@@ -17,12 +17,14 @@ void MyDrawImage( char *imagepath, int x, int y, int width, int height ) {
                                           0, 0, w, h, 
                                           0, 0, width, height );
  imlib_render_image_on_drawable( x, y );
+ imlib_context_set_image( image );
  imlib_free_image();
+ imlib_context_set_image( main_buffer );
 
 }
 
 /* 画像をバッファにブレンドする */
-void MyBlendImage(Imlib_Image buffer, char *imagepath, int x, int y, int width, int height) {
+void MyBlendImage( char *imagepath, int x, int y, int width, int height ) {
     Imlib_Image image;
     int w, h;
 
@@ -39,7 +41,7 @@ void MyBlendImage(Imlib_Image buffer, char *imagepath, int x, int y, int width, 
     h = imlib_image_get_height();
 
     // 描画対象バッファを設定
-    imlib_context_set_image(buffer);
+    imlib_context_set_image( main_buffer );
 
     // アルファブレンドを有効化
     imlib_context_set_blend(1);
@@ -50,4 +52,6 @@ void MyBlendImage(Imlib_Image buffer, char *imagepath, int x, int y, int width, 
     // ロードした画像を解放
     imlib_context_set_image(image);
     imlib_free_image();
+
+    imlib_context_set_image( main_buffer );
 }

@@ -24,36 +24,20 @@
 #define TEST_TEXT "test"
 
 void MyDrawMenue(void) {
-
-/* X Windowの設定変数 */
- int screen;
- //XEvent ev;
- Visual *vis;
- Colormap cm;
- int i;
+ 
+int i;
 
 /* 画像描画関連の変数 */
 char imagepath[100];
-memset(imagepath, 0, sizeof(imagepath)); ;
+//memset(imagepath, 0, sizeof(imagepath)); ;
 
 /* フォント描画関連の変数 */
-Imlib_Font font1, font2;
+Imlib_Font font1; //font2;
 
  /* xbmび関連の変数 */
  Pixmap pat;
  XColor xcolor;
 
- /* ウィンドウの設定 */
- display = XOpenDisplay( NULL );
- vis   = DefaultVisual(display, DefaultScreen(display));
- cm    = DefaultColormap(display, DefaultScreen(display));
- screen = DefaultScreen( display );
- window = XCreateSimpleWindow( display,
-        RootWindow( display, screen ),
-        /* WIDHT == 839, HEIGHT == 659 */
-        100, 50, MyWidth, MyHeight, 4,
-        BlackPixel( display, screen ),
-        WhitePixel( display, screen));
 gc = XCreateGC( display, window, 0, 0 );
 gc1 = XCreateGC( display, window, 0, 0 );
 XSetForeground( display, gc1, WhitePixel( display, 0 ) );
@@ -66,20 +50,10 @@ XMapWindow( display, window );
                                         BlackPixel( display, 0 ), WhitePixel( display, 0 ),
                                         DefaultDepth( display, 0 ) );
 
-
- /* Imlib2 設定 image*/
- imlib_set_cache_size(2048 * 1024);
- imlib_set_color_usage(128);
- imlib_context_set_dither(1);
- imlib_context_set_display(display);
- imlib_context_set_visual(vis);
- imlib_context_set_colormap(cm);
- imlib_context_set_drawable(window);
- 
  /* Imlib2 設定 font */
  imlib_add_path_to_font_path("./fonts/PixelMplus-20130602/");
  font1 = imlib_load_font("PixelMplus12-Regular/20");
- font2 = imlib_load_font("PixelMplus12-Regular/12");
+ //font2 = imlib_load_font("PixelMplus12-Regular/12");
 
 /* XサーバからExposeイベントが送られてくるまで待つ */
 do{
@@ -290,44 +264,36 @@ for ( i = 0; i < MyWidth; i++ ) {
  XFlush( display );
  usleep(200);
  
+ /* メニュー画面画像表示 */
+ snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyMenueImage );
+ MyBlendImage( imagepath, 0, 0, MyWidth, MyHeight);
+ 
+ /* メニュー画面画像バッファ合成 */
+ char positionnum1 = 1;
+
+ imlib_context_set_font( font1 );
+
+ /* 領域1フォント合成 */
+ MyBlendMenueStrings1( positionnum1 );
+ /* 領域2フォント合成 */
+ MyBlendMenueStrings2();
+
  /* キャラクター正面画像バッファ合成 */
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
- MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
+ MyBlendImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
  usleep(200);
 
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
- MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150);
+ MyBlendImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150);
  usleep(200);
  
  snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
- MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150);
+ MyBlendImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150);
  usleep(200);
 
- /* メニュー画面画像バッファ合成 */
- char positionnum1 = 1;
- Imlib_Image image1 = imlib_create_image( 279, 188 );
- imlib_context_set_font(font1);
- imlib_context_set_image(image1);
- /* 領域1フォント合成 */
- MyBlendMenueStrings1(positionnum1);
  /* ウィンドウへの描画 */
  imlib_context_set_drawable(window);
- imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
- /* 領域2フォント合成 */
- Imlib_Image image2 = imlib_create_image( 127, 218 ); 
- imlib_context_set_image(image2);
- MyBlendMenueStrings2();
- /* ウィンドウへの描画 */
- imlib_context_set_drawable(window);
- imlib_render_image_on_drawable( ( MyWidth / 1.25 ) + 1, ( MyHeight / 3 ) + 1 );
- /* 領域3フォント合成 */
- Imlib_Image image3 = imlib_create_image( MyWidth, (MyHeight - (MyHeight - 80)) );
- imlib_context_set_font(font2); 
- imlib_context_set_image(image3);
- MyBlendMenueStrings3();
- /* ウィンドウへの描画 */
- imlib_context_set_drawable(window);
- imlib_render_image_on_drawable( 0, MyHeight - 80 );
+ imlib_render_image_on_drawable( 0, 0 );
 
  /* ループ中のtriangle.xbmカラー設定 */
  unsigned long red = BlackPixel(display, screen);
@@ -394,30 +360,27 @@ for ( i = 0; i < MyWidth; i++ ) {
    }
 
    /* 文字列描画バッファ合成 */
-   imlib_context_set_font( font1 );
-   imlib_context_set_image( image1 );
    MyBlendMenueStrings1( positionnum1 );
    /* 描画 */
-   imlib_context_set_drawable( window );
-   imlib_render_image_on_drawable( ( MyWidth / 3 ) + 1, ( MyHeight / 14 ) + 1 );
+   imlib_render_image_on_drawable( 0, 0 );
 
    if ( keysym == XK_Return ) {
     keysym = NoSymbol;
-    if ( positionnum1 == 2 ) {
+    if ( positionnum1 == 2 ) { // つよさ押下時
      char positionnum2 = 1;
-     
-     /* triangle.xbm描画 */
-     XCopyArea( display, pat, window, gc, 0, 0,
-                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165 );
-     XFlush( display );
      
      // 黒の透明マスクの設定
      imlib_context_set_color(0, 0, 0, 220);
      // 四角形を塗りつぶす
-     imlib_image_fill_rectangle( 0, 0, 279, 188 );
+     imlib_image_fill_rectangle( (MyWidth / 3) + 1, (MyHeight / 14) + 1, 279, 188 );
      // 描画
-     imlib_context_set_drawable(window);
-     imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
+     imlib_render_image_on_drawable( 0, 0 );
+
+     /* triangle.xbm描画 */
+     XCopyArea( display, pat, window, gc, 0, 0,
+                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165 );
+     XFlush( display );
+
      /* 強さ選択中イベントループ(キャラクター選択)*/
      for (;;) {
       XNextEvent( display, &event );
@@ -481,11 +444,18 @@ for ( i = 0; i < MyWidth; i++ ) {
         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
-        imlib_context_set_font( font1 );
-        imlib_context_set_image( image1 );
+        /* メニュー画面画像合成 */
+        snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyMenueImage );
+        MyBlendImage( imagepath, 0, 0, MyWidth, MyHeight);
         MyBlendMenueStrings1(positionnum1);
-        imlib_context_set_drawable(window);    
-        imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
+        snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
+        MyBlendImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
+        snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
+        MyBlendImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150);
+        snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
+        MyBlendImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150);
+        MyBlendMenueStrings2();
+        imlib_render_image_on_drawable( 0, 0 );
         break;
        }
       }
@@ -494,46 +464,39 @@ for ( i = 0; i < MyWidth; i++ ) {
        keysym = NoSymbol;
        XFillRectangle(display, window, gc1, 0, 0, MyWidth, MyHeight );
        MyDrawStatus( positionnum2 );
-
+       /* メニュー画面画像合成 */
        snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyMenueImage );
-       MyDrawImage( imagepath, 0, 0, MyWidth, MyHeight );
-       imlib_context_set_image(image1);
-       imlib_context_set_font( font1 );
-
+       MyBlendImage( imagepath, 0, 0, MyWidth, MyHeight );
        MyBlendMenueStrings1(positionnum1);
        // 黒の透明マスクの設定
        imlib_context_set_color(0, 0, 0, 220);
        // 四角形を塗りつぶす
-       imlib_image_fill_rectangle( 0, 0, 279, 188 );
-       imlib_context_set_drawable(window);    
-       imlib_render_image_on_drawable( (MyWidth / 3) + 1, (MyHeight / 14) + 1 );
-               if ( positionnum2 == 1 ) {
-         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
-         XCopyArea( display, pat, window, gc, 0, 0,
-                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165 );
-         XFlush( display );
-        } else if ( positionnum2 == 2 ) {
-         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
-         XCopyArea( display, pat, window, gc, 0, 0,
-                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165 );
-         XFlush( display );
-        } else if ( positionnum2 == 3 ) {
-         XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
-         XCopyArea( display, pat, window, gc, 0, 0,
-                triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165 );
-         XFlush( display );
-        }
-         snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
-         MyDrawImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
-         snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
-         MyDrawImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150);
-         snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
-         MyDrawImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150);
-         imlib_context_set_image(image2);
-         MyBlendMenueStrings2();
-         imlib_context_set_drawable(window);
-         imlib_render_image_on_drawable( ( MyWidth / 1.25 ) + 1, ( MyHeight / 3 ) + 1 );
-      }
+       imlib_image_fill_rectangle( (MyWidth / 3) + 1, (MyHeight / 14) + 1, 279, 188 );
+       snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeFront );
+       MyBlendImage( imagepath, ( MyWidth / 2 ) - 199, ( MyHeight / 1.75 ), 99, 150);
+       snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoFront );
+       MyBlendImage( imagepath, ( MyWidth / 2 ) - 99, ( MyHeight / 1.75 ), 99, 150);
+       snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoFront );
+       MyBlendImage( imagepath, ( MyWidth / 2 ) + 1, ( MyHeight / 1.75 ), 99, 150);
+       MyBlendMenueStrings2();
+       imlib_render_image_on_drawable( 0, 0 );
+       if ( positionnum2 == 1 ) {
+       XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+        XCopyArea( display, pat, window, gc, 0, 0,
+               triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165 );
+        XFlush( display );
+       } else if ( positionnum2 == 2 ) {
+        XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 45, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+        XCopyArea( display, pat, window, gc, 0, 0,
+               triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165 );
+        XFlush( display );
+       } else if ( positionnum2 == 3 ) {
+        XFillRectangle(display, window, gc1, ( ( MyWidth / 2 ) - 199 ) + 144, ( MyHeight / 1.75 ) + 165, triangle_width, triangle_height );
+        XCopyArea( display, pat, window, gc, 0, 0,
+               triangle_width, triangle_height, ( ( MyWidth / 2 ) - 199 ) + 243, ( MyHeight / 1.75 ) + 165 );
+        XFlush( display );
+       }
+      } 
      }
     }
    }

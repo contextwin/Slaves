@@ -7,7 +7,7 @@ void MyBlendMenueStrings1(char positionnum) {
  // 白色を設定 (R=255, G=255, B=255, A=255)
  imlib_context_set_color(255, 255, 255, 255);
  // 四角形を塗りつぶす
- imlib_image_fill_rectangle( 0, 0, 279, 188 );
+ imlib_image_fill_rectangle( (MyWidth / 3) + 1, (MyHeight / 14) + 1, 279, 188 );
 
  if ( positionnum == 1 ) {
   imlib_context_set_color( 0, 255, 255, 255 );
@@ -17,7 +17,7 @@ void MyBlendMenueStrings1(char positionnum) {
   imlib_context_set_color(0, 0, 0, 255);
   sprintf( text, "アイテム" );
  }
- imlib_text_draw( 15, 15, text );
+ imlib_text_draw( (MyWidth / 3) + 1 + 15, (MyHeight / 14) + 1 + 15, text );
 
  if ( positionnum == 2 ) { 
   imlib_context_set_color( 0, 255, 255, 255 );
@@ -27,7 +27,7 @@ void MyBlendMenueStrings1(char positionnum) {
   imlib_context_set_color(0, 0, 0, 255);
   sprintf( text, "つよさ" );
  }
- imlib_text_draw( 145, 15, text ); 
+ imlib_text_draw( (MyWidth / 3) + 1 + 145, (MyHeight / 14) + 1 + 15, text ); 
 
  if ( positionnum == 3 ) {
   imlib_context_set_color( 0, 255, 255, 255 );
@@ -37,7 +37,7 @@ void MyBlendMenueStrings1(char positionnum) {
   imlib_context_set_color(0, 0, 0, 255);
   sprintf( text, "まほう" );
  }
- imlib_text_draw( 15, 55, text );
+ imlib_text_draw( (MyWidth / 3) + 1 + 15, (MyHeight / 14) + 1 + 55, text );
 
  if ( positionnum == 4 ) {
   imlib_context_set_color( 0, 255, 255, 255 );
@@ -46,7 +46,7 @@ void MyBlendMenueStrings1(char positionnum) {
   imlib_context_set_color(0, 0, 0, 255);
   sprintf( text, "とくぎ" );
  }
- imlib_text_draw( 145, 55, text ); 
+ imlib_text_draw( (MyWidth / 3) + 1 + 145, (MyHeight / 14) + 1 + 55, text ); 
 
  if ( positionnum == 5 ) {
   imlib_context_set_color( 0, 255, 255, 255 );
@@ -55,7 +55,7 @@ void MyBlendMenueStrings1(char positionnum) {
   imlib_context_set_color(0, 0, 0, 255);
   sprintf( text, "そうび" );
  }
- imlib_text_draw( 15, 95, text ); 
+ imlib_text_draw( (MyWidth / 3) + 1 + 15, (MyHeight / 14) + 1 + 95, text ); 
  
  if ( positionnum == 6 ) {
   imlib_context_set_color( 0, 255, 255, 255 );
@@ -64,7 +64,7 @@ void MyBlendMenueStrings1(char positionnum) {
   imlib_context_set_color(0, 0, 0, 255);
   sprintf( text, "ならび" );
  }
- imlib_text_draw( 145, 95, text );  
+ imlib_text_draw( (MyWidth / 3) + 1 + 145, (MyHeight / 14) + 1 + 95, text );  
 
 }
 
@@ -72,17 +72,17 @@ void MyBlendMenueStrings2( void ) {
  char text[4096];
 
 imlib_context_set_color(255, 255, 255, 255);
-imlib_image_fill_rectangle( 0, 0, 127, 218);
+imlib_image_fill_rectangle( ( MyWidth / 1.25 ) + 1, ( MyHeight / 3 ) + 1, 127, 218);
 
 imlib_context_set_color(0, 0, 0, 255);
 sprintf( text, "所持金" );
-imlib_text_draw( 5, 5, text );
+imlib_text_draw( ( MyWidth / 1.25 ) + 1 + 5, ( MyHeight / 3 ) + 1 + 5, text );
 sprintf( text, "500G" );
-imlib_text_draw(  70, 50, text );
+imlib_text_draw(  ( MyWidth / 1.25 ) + 1 + 70, ( MyHeight / 3 ) + 1 + 50, text );
 sprintf( text, "経過時間" );
-imlib_text_draw( 5, 95, text );
+imlib_text_draw( ( MyWidth / 1.25 ) + 1 + 5, ( MyHeight / 3 ) + 1 + 95, text );
 sprintf( text, "00:00:00" );
-imlib_text_draw( 15, 140, text );
+imlib_text_draw( ( MyWidth / 1.25 ) + 1 + 15, ( MyHeight / 3 ) + 1 + 140, text );
 
 }
 
