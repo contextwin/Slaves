@@ -23,7 +23,7 @@ void MyDrawStatus( char positionnum2 ) {
  
  if ( positionnum2 == 1 ) {
   snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyHogeSide );
-  MyBlendImage( imagepath, 0, 0, 625, 750);  
+  MyBlendImage( imagepath, 60, 0, 625 / 1.5 , 750 / 1.5 );  
  } else
  if ( positionnum2 == 2 ) {
   snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyChipoSide );
@@ -31,8 +31,15 @@ void MyDrawStatus( char positionnum2 ) {
  } else
  if ( positionnum2 == 3 ) {
   snprintf( imagepath, sizeof( imagepath ), "%s%s", MyImagePath, MyPiyoSide );
-  MyBlendImage( imagepath, 0, 0, 625, 750);
+  MyBlendImage( imagepath, 60, 0, 625 / 1.5 , 750 / 1.5 );
  }
+ 
+ /* ステータス 領域1(半透明) */
+ imlib_image_fill_rectangle(  MyWidth / 1.75 + 1, MyHeight / 10 + 1, 300 - 1, 350 - 1);
+ /* ステータス 領域2(半透明) */
+ imlib_image_fill_rectangle( MyWidth / 9 + 1, MyHeight / 1.5 + 1, MyWidth / 1.275 - 1, 150 - 1 );
+
+ MyBlendMenueStrings3();
 
  imlib_render_image_on_drawable( 0, 0 );
  //imlib_free_image();
@@ -40,7 +47,7 @@ void MyDrawStatus( char positionnum2 ) {
  /* ステータス 領域1 */
  XDrawRectangle(display, window, gc, ( MyWidth / 1.75 ) - 5, ( MyHeight / 10 ) - 5, 300 + 10, 350 + 10);
  XDrawRectangle(display, window, gc, MyWidth / 1.75, MyHeight / 10, 300, 350);
-
+ 
  /* ステータス 領域2 */
  XDrawRectangle(display, window, gc, ( MyWidth / 9 ) - 5 , ( MyHeight / 1.5 ) - 5 , ( MyWidth / 1.275 ) + 10, 150 + 10);
  XDrawRectangle(display, window, gc, MyWidth / 9, MyHeight / 1.5, MyWidth / 1.275, 150);

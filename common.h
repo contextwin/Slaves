@@ -25,6 +25,9 @@ extern GC gc, gc1;
 /* Imlib2設定変数 */
  extern Imlib_Image main_buffer;
 
+/* フォント描画関連の変数 */
+ extern Imlib_Font font1, font2;
+
 /* common.c */
 /* ウィンドウサイズを計算する関数 */
 extern int MyWindowsize( int n );

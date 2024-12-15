@@ -14,6 +14,9 @@ Visual *vis;
 Colormap cm;
 Imlib_Image main_buffer;
 
+ /* フォント描画関連の変数 */
+ Imlib_Font font1, font2;
+
 int MyWidth;
 int MyHeight;
 
@@ -42,7 +45,12 @@ int main(void)
  imlib_context_set_visual(vis);
  imlib_context_set_colormap(cm);
  imlib_context_set_drawable(window);
-
+ 
+ /* Imlib2 設定 font */
+ imlib_add_path_to_font_path("./fonts/PixelMplus-20130602/");
+ font1 = imlib_load_font("PixelMplus12-Regular/20");
+ font2 = imlib_load_font("PixelMplus12-Regular/12");
+ 
  main_buffer = imlib_create_image( MyWidth, MyHeight );
  imlib_context_set_image( main_buffer );
  imlib_context_set_color( 255, 255, 255, 255 ); // main_bufferを白く塗りつぶす

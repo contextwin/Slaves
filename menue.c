@@ -31,9 +31,6 @@ int i;
 char imagepath[100];
 //memset(imagepath, 0, sizeof(imagepath)); ;
 
-/* フォント描画関連の変数 */
-Imlib_Font font1; //font2;
-
  /* xbmび関連の変数 */
  Pixmap pat;
  XColor xcolor;
@@ -50,10 +47,6 @@ XMapWindow( display, window );
                                         BlackPixel( display, 0 ), WhitePixel( display, 0 ),
                                         DefaultDepth( display, 0 ) );
 
- /* Imlib2 設定 font */
- imlib_add_path_to_font_path("./fonts/PixelMplus-20130602/");
- font1 = imlib_load_font("PixelMplus12-Regular/20");
- //font2 = imlib_load_font("PixelMplus12-Regular/12");
 
 /* XサーバからExposeイベントが送られてくるまで待つ */
 do{
@@ -270,8 +263,6 @@ for ( i = 0; i < MyWidth; i++ ) {
  
  /* メニュー画面画像バッファ合成 */
  char positionnum1 = 1;
-
- imlib_context_set_font( font1 );
 
  /* 領域1フォント合成 */
  MyBlendMenueStrings1( positionnum1 );
