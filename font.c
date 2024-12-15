@@ -96,10 +96,10 @@ void MyBlendMenueStrings3( void ) {
  imlib_context_set_font( font2 );
 
  imlib_context_set_color(255, 255, 255, 255);
- imlib_image_fill_rectangle( 0, 0, MyWidth, ( MyHeight - ( MyHeight - 80 ) ) );
+ imlib_image_fill_rectangle( 60, ( MyHeight - 80 ), MyWidth, ( MyHeight - ( MyHeight - 80 ) ) );
 
  imlib_context_set_color(0, 0, 0, 255);
  sprintf( text, "[esc] - メニュー終了。   [↑↓←→] - 選択。  [space] - キャンセル。   [enter] - 決定。" );
- imlib_text_draw( 60, 30, text );
+ imlib_text_draw( 60, ( MyHeight - 80 ) + 30, text );
 
 }
