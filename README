@@ -1,7 +1,6 @@
 git clone https://github.com/contextwin/Slaves.git
 
-実行要件:
-Slavesがビルトインの機能しかインストールされていないlinuxで動作するかはまだ検証しておりません。
+対応OSはLinux系システムです。
 
 ビルド要件:
 1.
