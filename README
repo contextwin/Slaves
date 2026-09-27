@@ -3,17 +3,40 @@ git clone https://github.com/contextwin/Slaves.git
 対応OSはLinux系システムです。
 
 ビルド要件:
+
 1.
+SlavesのビルドのためにC言語の処理系(コンパイラ)が必要です。
+どのコンパイラを用いればいいかわからなければ。
+build-essentialを導入することをおすすめします。
+aptコマンドで導入する場合,
+sudo apt install build-essential
+を実行して下さい。
+
+aptコマンドが終了すると、主に以下のようなツールがまとめてインストールされます。
+gcc       GNU Cコンパイラ
+g++       GNU C++コンパイラ
+make      Makefileからビルドを実行するプログラム
+libc6-dev C言語用の標準ライブラリ開発ファイル
+dpkg-dev  Debianパッケージ開発用ツール
+
+clangというコンパイラもとても有名で良い手段だと思いますが、
+しかしbuild-essentialのmakeというツールは色々と出番があるでしょうから、このREADMEではbuild-essentialをおすすめします。
+
+2.
 Slavesはビルド要件として、xorg-devに依存します。
 aptコマンドで導入する場合,
 sudo apt install xorg-dev
 を実行して下さい。
 
-2.
+3.
 Slavesはビルド要件として、libimlib2-devに依存します。
 aptコマンドで導入する場合,
 sudo apt install libimlib libimlib2-dev
 を実行して下さい。
+
+4.
+上記の準備ができた状態でSlavesディレクトリ内でmakeコマンドを実行してください。
+別にmakeを用いなくてもビルドできますが、この方法が現状では一番楽で一般的な方法だと個人的に思っています。
 
 RPGゲーム
 設定資料
